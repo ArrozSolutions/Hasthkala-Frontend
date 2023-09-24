@@ -11,7 +11,7 @@ const initState = {
     error: [],
 };
 
-export default (state = initState, action) => {
+const UserReducer =(state = initState, action) => {
 
     switch (action.type) {
         case userLoginConstants.LOGIN_REQUEST:
@@ -96,3 +96,5 @@ export default (state = initState, action) => {
     }
     return state;
 }
+
+export default UserReducer

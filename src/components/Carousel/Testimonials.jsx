@@ -1,8 +1,6 @@
 import { Splide, SplideSlide } from '@splidejs/react-splide';
-import Logo from '../../assets/logo.jpg';
 import '@splidejs/react-splide/css';
 import Lamp from '../../assets/lamp.jpg';
-import { BiStar } from 'react-icons/bi';
 import './Testimonials.css'
 import GoldenStar from '../../assets/goldenstar.png';
 import GrayStar from '../../assets/graystar.png';

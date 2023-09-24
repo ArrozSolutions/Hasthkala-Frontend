@@ -1,11 +1,6 @@
-import { Splide, SplideSlide } from '@splidejs/react-splide';
-import Logo from '../../assets/logo.jpg';
 import '@splidejs/react-splide/css';
-import Lamp from '../../assets/lamp.jpg';
-import ProdImage from '../../assets/prodimage.jpg';
 import './NewlyAddedCarousel.css';
 import { useSelector } from 'react-redux';
-import { api } from '../../helpers/baseUrl';
 import { Link } from 'react-router-dom';
 
 
@@ -19,7 +14,7 @@ const NewlyAddedProducts = () => {
                 <Link to={`/product/${products[0]?.slug}`}>
                     <div className='flex flex-col w-[245px] sm:w-[300px] h-full shadow-xl rounded-bl-lg rounded-br-lg  sm:rounded-bl-3xl sm:rounded-br-3xl '>
                         <div className='w-full h-[115px] min-[392px]:h-[140px] sm:h-[300px] overflow-hidden'>
-                            <img className='min-h-full min-w-full rounded-tr-lg rounded-tl-lg sm:rounded-tr-3xl sm:rounded-tl-3xl hover:scale-110 transition-all duration-500' src={products[0]?.images[0].img} alt="Image 1" />
+                            <img className='min-h-full min-w-full rounded-tr-lg rounded-tl-lg sm:rounded-tr-3xl sm:rounded-tl-3xl hover:scale-110 transition-all duration-500' src={products[0]?.images[0].img} alt='Img1' />
                         </div>
                         <div className='w-full flex flex-col sm:pl-5 sm:pr-5 pl-1 pr-1'>
                             <p className='mb-2 mt-2 font-semibold font-alegreya text-sm sm:text-[16.5px]'>{products[0]?.name}</p>
@@ -32,7 +27,7 @@ const NewlyAddedProducts = () => {
                 <Link to={`/product/${products[1]?.slug}`}>
                     <div className='flex flex-col  w-[245px] sm:w-[300px] h-full shadow-xl rounded-bl-lg rounded-br-lg  sm:rounded-bl-3xl sm:rounded-br-3xl '>
                         <div className='w-full h-[115px] min-[392px]:h-[140px] sm:h-[300px] overflow-hidden'>
-                            <img className='h-full w-full rounded-tr-lg rounded-tl-lg sm:rounded-tr-3xl sm:rounded-tl-3xl hover:scale-110 transition-all duration-500' src={products[1]?.images[0].img} alt="Image 1" />
+                            <img className='h-full w-full rounded-tr-lg rounded-tl-lg sm:rounded-tr-3xl sm:rounded-tl-3xl hover:scale-110 transition-all duration-500' src={products[1]?.images[0].img} alt='img1' />
                         </div>
                         <div className='w-full flex flex-col sm:pl-5 sm:pr-5 pl-1 pr-1'>
                             <p className='mb-2 mt-2 font-semibold font-alegreya text-sm sm:text-[16.5px]'>{products[1]?.name}</p>
@@ -49,7 +44,7 @@ const NewlyAddedProducts = () => {
                 <Link to={`/product/${products[2]?.slug}`}>
                     <div className='flex flex-col  w-[245px] sm:w-[300px] h-full shadow-xl rounded-bl-lg rounded-br-lg  sm:rounded-bl-3xl sm:rounded-br-3xl '>
                         <div className='w-full h-[115px] min-[392px]:h-[140px] sm:h-[300px] overflow-hidden'>
-                            <img className='h-full w-full rounded-tr-lg rounded-tl-lg sm:rounded-tr-3xl sm:rounded-tl-3xl hover:scale-110 transition-all duration-500' src={products[2]?.images[0].img} alt="Image 1" />
+                            <img className='h-full w-full rounded-tr-lg rounded-tl-lg sm:rounded-tr-3xl sm:rounded-tl-3xl hover:scale-110 transition-all duration-500' src={products[2]?.images[0].img} alt='img1' />
                         </div>
                         <div className='w-full flex flex-col sm:pl-5 sm:pr-5 pl-1 pr-1'>
                             <p className='mb-2 mt-2 font-semibold font-alegreya text-sm sm:text-[16.5px]'>{products[2]?.name}</p>
@@ -62,7 +57,7 @@ const NewlyAddedProducts = () => {
                 <Link to={`/product/${products[3]?.slug}`}>
                     <div className='flex flex-col  w-[245px] sm:w-[300px] h-full shadow-xl rounded-bl-lg rounded-br-lg  sm:rounded-bl-3xl sm:rounded-br-3xl '>
                         <div className='w-full h-[115px] min-[392px]:h-[140px] sm:h-[300px] overflow-hidden'>
-                            <img className='h-full w-full rounded-tr-lg rounded-tl-lg sm:rounded-tr-3xl sm:rounded-tl-3xl hover:scale-110 transition-all duration-500' src={products[3]?.images[0].img} alt="Image 1" />
+                            <img className='h-full w-full rounded-tr-lg rounded-tl-lg sm:rounded-tr-3xl sm:rounded-tl-3xl hover:scale-110 transition-all duration-500' src={products[3]?.images[0].img} alt='img1' />
                         </div>
                         <div className='w-full flex flex-col sm:pl-5 sm:pr-5 pl-1 pr-1'>
                             <p className='mb-2 mt-2 font-semibold font-alegreya text-sm sm:text-[16.5px]'>{products[3]?.name}</p>

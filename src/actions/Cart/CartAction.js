@@ -1,15 +1,14 @@
-import { useDispatch } from "react-redux";
 import axios from "../../helpers/axios";
-import { addToCartConstants, getCartDataConstants, getSavedConstants, quantityEditConstants, removeCartDataConstants, saveConstants } from "../../constant/constant";
+import { addToCartConstants, getCartDataConstants, getSavedConstants, quantityEditConstants, removeCartDataConstants, removeSavedDataConstants, saveConstants } from "../../constant/constant";
 
-export const addItemToCart = (pid,uid,quantity,initialquantity) => {
+export const addItemToCart = (pid, uid, quantity, initialquantity) => {
   return async (dispatch) => {
     dispatch({ type: addToCartConstants.ADDTOCART_REQUEST });
-    const res = await axios.post(`/add-to-cart`,{
-        pid,
-        uid,
-        quantity,
-        initialquantity
+    const res = await axios.post(`/add-to-cart`, {
+      pid,
+      uid,
+      quantity,
+      initialquantity
     })
     if (res.status === 200) {
       const { cart } = res.data;
@@ -28,9 +27,9 @@ export const addItemToCart = (pid,uid,quantity,initialquantity) => {
 export const getCartData = (uid) => {
   return async (dispatch) => {
     dispatch({ type: getCartDataConstants.GETCARTDATA_REQUEST });
-    const res = await axios.post(`/get-cart-data`,{
-        uid,
-    }).catch((err)=>{
+    const res = await axios.post(`/get-cart-data`, {
+      uid,
+    }).catch((err) => {
 
     })
     if (res.status === 200) {
@@ -46,13 +45,13 @@ export const getCartData = (uid) => {
 
 };
 
-export const quantityEdit = (cid,quantity)=>{
+export const quantityEdit = (cid, quantity) => {
   return async (dispatch) => {
     dispatch({ type: quantityEditConstants.QUANTITY_EDIT_REQUEST });
-    const res = await axios.post(`/quantity-edit`,{
-        cid,
-        quantity
-    }).catch((err)=>{
+    const res = await axios.post(`/quantity-edit`, {
+      cid,
+      quantity
+    }).catch((err) => {
       console.log(err)
     })
     if (res.status === 200) {
@@ -67,13 +66,13 @@ export const quantityEdit = (cid,quantity)=>{
   };
 }
 
-export const saveProductForLater = (pid,uid) => {
+export const saveProductForLater = (pid, uid) => {
   return async (dispatch) => {
-    dispatch({ type: saveConstants.SAVE_REQUEST});
-    const res = await axios.post(`/save-for-later`,{
-        pid,
-        uid
-    }).catch((err)=>{
+    dispatch({ type: saveConstants.SAVE_REQUEST });
+    const res = await axios.post(`/save-for-later`, {
+      pid,
+      uid
+    }).catch((err) => {
       console.log(err)
     })
     if (res.status === 200) {
@@ -92,10 +91,10 @@ export const saveProductForLater = (pid,uid) => {
 export const getSavedProducts = (uid) => {
   console.log(uid);
   return async (dispatch) => {
-    dispatch({ type: getSavedConstants.GET_SAVED_REQUEST});
-    const res = await axios.post(`/get-saved`,{
-        uid
-    }).catch((err)=>{
+    dispatch({ type: getSavedConstants.GET_SAVED_REQUEST });
+    const res = await axios.post(`/get-saved`, {
+      uid
+    }).catch((err) => {
       console.log(err)
     })
     if (res.status === 200) {
@@ -103,7 +102,7 @@ export const getSavedProducts = (uid) => {
       dispatch({
         type: getSavedConstants.GET_SAVED_SUCCESS,
         payload: {
-          savedproducts:savedProducts
+          savedproducts: savedProducts
         },
       });
     }
@@ -111,16 +110,35 @@ export const getSavedProducts = (uid) => {
 
 };
 
+export const removeSavedData = (sid) => {
+  console.log(sid)
+  return async (dispatch) => {
+    dispatch({ type: removeSavedDataConstants.REMOVE_SAVED_REQUEST });
+    const res = await axios.post(`/delete-saved-data`, {
+      sid
+    }).catch((err) => {
+      console.log(err)
+    })
+    if (res.status === 200) {
+      const { message } = res.data;
+      dispatch({
+        type: removeSavedDataConstants.REMOVE_SAVED_SUCCESS,
+        payload: {
+          message
+        },
+      });
+    }
+  }
+}
 
-
-export const removeCartData = (cid,initialquantity) => {
+export const removeCartData = (cid, initialquantity) => {
   console.log(cid);
   return async (dispatch) => {
     dispatch({ type: removeCartDataConstants.REMOVECARTDATA_REQUEST });
-    const res = await axios.post(`/delete-cart-data`,{
-        cid,
-        initialquantity
-    }).catch((err)=>{
+    const res = await axios.post(`/delete-cart-data`, {
+      cid,
+      initialquantity
+    }).catch((err) => {
       console.log(err)
     })
     if (res.status === 200) {

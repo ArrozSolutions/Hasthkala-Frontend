@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import Logo from '../../assets/logo.jpg';
-import { Link, useNavigate } from 'react-router-dom';
+import {  useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { login, loginWithOTP, sendEmailVerification, sendotp, signup } from '../../actions/User/UserAction';
 import Spinner from '../../components/Spinner/Spinner';
@@ -8,35 +8,20 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Header from '../../components/Header/Header';
 import Header2 from '../../components/Header2/Header2';
-import { BiSolidArrowToRight } from 'react-icons/bi'
 import Google from '../../assets/google.svg';
 import Apple from '../../assets/apple.svg';
-import { FiEye, FiEyeOff } from 'react-icons/fi';
+import { FiEyeOff } from 'react-icons/fi';
 
 const Login = () => {
 
-  const [error, setError] = useState(null);
   const auth = useSelector(state => state.user);
 
   useEffect(() => {
-    setError(auth?.error);
   }, [auth?.error])
 
 
   const successToast = () => {
     toast('Login Successfull', { position: toast.POSITION.TOP_CENTER })
-  }
-
-  const credentialsErrorToast = () => {
-    toast(`Invalid Credentials`, { position: toast.POSITION.TOP_CENTER })
-  }
-
-  const internalErrorToast = () => {
-    toast(`Internal Error`, { position: toast.POSITION.TOP_CENTER })
-  }
-
-  const invalidUserToast = () => {
-    toast(`User Not Registered`, { position: toast.POSITION.TOP_CENTER })
   }
 
   const errorToast = (err) => {
@@ -90,7 +75,7 @@ const Login = () => {
     if (auth?.authenticate) {
       navigate('/');
     }
-  }, [])
+  }, [auth?.authenticate,auth?.user,navigate])
 
   const loginUserWithMobileNumber = (e) => {
     e.preventDefault();
@@ -104,7 +89,6 @@ const Login = () => {
     dispatch(sendotp(phone, "login"))
       .then((sendOtpRes) => {
         if (!sendOtpRes) {
-          // Use the updated state variable
           setLoading(false);
           errorToast(auth?.error);
         } else {
@@ -114,8 +98,7 @@ const Login = () => {
       })
       .catch((error) => {
         setLoading(false);
-        console.log(error);
-        errorToast(auth?.error);
+        errorToast(error);
       });
   };
 
@@ -156,12 +139,13 @@ const Login = () => {
 
   const emailVerification = (e) => {
     e.preventDefault();
-    if (emailVerificationCode == auth?.otp) {
+    if (emailVerificationCode === auth?.otp) {
       const user = {
         email,
         password
       }
       dispatch(login(user)).then(() => {
+        successToast();
         navigate("/");
       }).catch((error) => {
         console.log("Error");
@@ -173,6 +157,7 @@ const Login = () => {
   const otpVerification = (e) => {
     e.preventDefault();
     if (verificationCode == auth?.otp) {
+      console.log(verificationCode)
       dispatch(loginWithOTP(phone)).then(() => {
         navigate("/", {
           state: {
@@ -180,19 +165,10 @@ const Login = () => {
         });
       })
         .catch((error) => {
-          const formData = {
-            phone: phone,
-            wrongOtp: error.toString(),
-          };
-          // navigate("/login", { state: formData });
+          console.log(error)
         });
     }
     else {
-      const formData = {
-        phone: phone,
-        wrongOtp: "Wrong OTP"
-      };
-      // navigate("/login", { state: formData });
     }
   }
 
@@ -202,7 +178,7 @@ const Login = () => {
       errorToast("Invalid Mobile Number");
       return;
     }
-    if (password == confirmPassword) {
+    if (password === confirmPassword) {
       setLoading(true);
       const user = {
         fullname,

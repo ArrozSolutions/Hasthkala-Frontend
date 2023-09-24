@@ -12,11 +12,13 @@ import Cart from "./pages/Cart/Cart";
 import Billing from "./pages/Billing/Billing";
 import { useDispatch } from "react-redux";
 import { useEffect } from "react";
-import { getAllProducts, getNewProducts, getTrendingProducts } from "./actions/Product/ProductAction";
+import { getAllProducts, getTrendingProducts } from "./actions/Product/ProductAction";
 import { getInitialData } from "./actions/InitialData/InitialDataAction";
 import FooterPages from "./pages/FooterPages/FooterPages";
 import ListingForCategories from "./pages/Listing/ListingForCategories";
 import Saved from "./pages/Saved/Saved";
+import Wishlist from "./pages/WishList/WishList";
+import AdminDashboard from "./pages/Admin/AdminDashboard";
 
 function App() {
 
@@ -24,15 +26,15 @@ function App() {
 
   useEffect(() => {
     dispatch(getInitialData());
-  }, []); 
+  }, [dispatch]); 
   
    useEffect(() => {
     dispatch(getAllProducts(1));
-  }, []);
+  }, [dispatch]);
 
   useEffect(() => {
     dispatch(getTrendingProducts());
-  }, []);
+  }, [dispatch]);
 
 
 
@@ -52,6 +54,8 @@ function App() {
         <Route exact path={"/billing"} element={<Billing />} />
         <Route exact path={"/footer-pages"} element={<FooterPages />} />
         <Route exact path={"/saved"} element={<Saved />} />
+        <Route exact path={"/wishlist"} element={<Wishlist />} />
+        <Route exact path={"/admin-dashboard"} element={<AdminDashboard />} />
       </Routes>
     </div>
   );

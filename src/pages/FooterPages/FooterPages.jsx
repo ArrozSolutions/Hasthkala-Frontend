@@ -23,7 +23,7 @@ const FooterPages = () => {
                 <Header2 />
                 <div className='w-full min-h-[200px] flex justify-center'>
                     <div className=' w-[950px] mt-5 shadow-xl border border-[#1a1a1d26] pl-24 pr-24 pt-10 pb-10 mb-10'>
-                        {pageType == "return&refund" &&
+                        {pageType === "return&refund" &&
                             <p className=''>
                                 <h1 className='font-dmsans uppercase text-xl font-semibold'>Returns & Refund</h1><br />
                                 Please read our Returns & Refund Policy here. <br /><br />
@@ -50,7 +50,7 @@ const FooterPages = () => {
                             </p>
                         }
                         {
-                            pageType == "faqs" &&
+                            pageType === "faqs" &&
                             <p>
                                 <h1 className='font-dmsans uppercase text-xl font-semibold'>FAQ'S</h1>
                                 Frequently Asked Questions <br /><br />
@@ -96,7 +96,7 @@ const FooterPages = () => {
                         }
 
                         {
-                            pageType == "privacypolicy" &&
+                            pageType === "privacypolicy" &&
                             <p>
                                 <h1 className='font-dmsans uppercase text-xl font-semibold'>
                                     Privacy Policy
@@ -128,7 +128,7 @@ const FooterPages = () => {
                         }
 
                         {
-                            pageType == "terms&condition" &&
+                            pageType === "terms&condition" &&
                             <p>
                                 <h1 className='font-dmsans uppercase text-xl font-semibold'>
                                     TERMS AND CONDITIONS
@@ -157,7 +157,7 @@ const FooterPages = () => {
                         }
 
 
-                        {pageType == "ourstory" &&
+                        {pageType === "ourstory" &&
                             <p>
                                  <h1 className='font-dmsans uppercase text-xl font-semibold'>
                                  OUR STORY

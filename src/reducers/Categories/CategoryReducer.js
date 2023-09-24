@@ -1,11 +1,11 @@
-import { categoryConstants} from "../../constant/constant";
+import { categoryConstants } from "../../constant/constant";
 
 const initState = {
     categories: [],
     error: [],
 };
 
-export default (state = initState, action) => {
+const CategoryReducer= (state = initState, action) => {
 
     switch (action.type) {
         case categoryConstants.CATEGORY_SUCCESS:
@@ -14,6 +14,13 @@ export default (state = initState, action) => {
                 categories: action.payload.categories
             }
             break;
+        default: {
+            state = {
+                ...state
+            }
+        }
     }
     return state;
 }
+
+export default CategoryReducer

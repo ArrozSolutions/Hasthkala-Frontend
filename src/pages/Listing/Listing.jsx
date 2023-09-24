@@ -4,15 +4,11 @@ import Header2 from '../../components/Header2/Header2';
 import ProductCard from '../../components/ProductCard/ProductCard';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
-import { getAllProducts, getFilteredProducts, getSearchedProducts } from '../../actions/Product/ProductAction';
+import { getAllProducts, getFilteredProducts } from '../../actions/Product/ProductAction';
 import Slider from '@material-ui/core/Slider';
 import './Listing.css';
-import { useLocation, useParams } from 'react-router-dom';
-import { BiLogoVisa } from 'react-icons/bi';
 
 const Listing = () => {
-    const location = useLocation();
-    const [categoryValue,setCategoryValue] = useState(null);
     const [checked, setChecked] = useState([]);
     const [value, setValue] = useState([0, 4999]);
     const dispatch = useDispatch();
@@ -37,13 +33,13 @@ const Listing = () => {
         if (value) {
             all.push(id)
         } else {
-            all = all.filter(c => c != id)
+            all = all.filter(c => c !== id)
         }
         setChecked(all);
     }
 
     useEffect(() => {
-        if (searchedProducts != "") {
+        if (searchedProducts !== "") {
             setPType(1)
         }
     }, [searchedProducts])
@@ -56,14 +52,14 @@ const Listing = () => {
         } else {
             setPType(0);
         }
-    }, [checked])
+    }, [checked,dispatch,pType,page,value])
     console.log(pType)
 
     const handlePage = () => {
         let newPage = page + 1;
         setPage(newPage);
         console.log(page);
-        if (pType == 0) {
+        if (pType === 0) {
             dispatch(getAllProducts(page));
         }
     }
@@ -106,15 +102,15 @@ const Listing = () => {
                         <p className='mt-10 h-5 w-full flex justify-end text-sm text-gray font-dmsans pr-10'><span>Sort by:&nbsp;</span><span className='font-dmsans text-[#000]'>New Arrivals</span></p>
                         <div className='flex flex-col justify-between'>
                             <div className='min-h-full pt-8 pl-14 max-w-full grid grid-cols-3 gap-y-8'>
-                                {pType == 0 && allproducts.map((product, key) => (
+                                {pType === 0 && allproducts.map((product, key) => (
                                     <ProductCard key={key} name={product?.name} img={product?.images[0].img} price={product?.price} slug={product.slug} />
                                 ))}
                                 {
-                                    pType == 1 && searchedProducts && searchedProducts.map((product, key) => (
+                                    pType === 1 && searchedProducts && searchedProducts.map((product, key) => (
                                         <ProductCard key={key} name={product?.name} img={product?.images[0].img} price={product?.price} slug={product.slug} />
                                     ))
                                 }                            {
-                                    pType == 2 && filteredProducts?.map((product, key) => (
+                                    pType === 2 && filteredProducts?.map((product, key) => (
                                         <ProductCard key={key} name={product?.name} img={product?.images[0].img} price={product?.price} slug={product.slug} />
                                     ))
                                 }

@@ -1,7 +1,5 @@
 import { Splide, SplideSlide } from '@splidejs/react-splide';
-import Logo from '../../assets/logo.jpg';
 import '@splidejs/react-splide/css';
-import Lamp from '../../assets/lamp.jpg';
 import './TrendingProducts.css';
 import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
@@ -31,7 +29,7 @@ const TrendingProducts = () => {
                             }}>
                                 <div className='flex flex-col w-full h-full'>
                                     <div className='w-full max-h-[120px] sm:max-h-[300px] overflow-hidden'>
-                                        <img className='h-full w-full rounded-tr-md rounded-tl-md hover:scale-110 transition-all duration-500' src={p?.images[0]?.img} alt="Image 1" />
+                                        <img className='h-full w-full rounded-tr-md rounded-tl-md hover:scale-110 transition-all duration-500' src={p?.images[0]?.img} alt="Image1" />
                                     </div>
                                     <div className='w-full flex flex-col sm:pl-5 sm:pr-5 pl-1 pr-1'>
                                         <p className='mb-2 mt-2 font-semibold font-alegreya text-sm sm:text-[16.5px]'>{p?.name}</p>

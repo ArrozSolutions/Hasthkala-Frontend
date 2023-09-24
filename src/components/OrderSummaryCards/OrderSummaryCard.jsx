@@ -1,5 +1,4 @@
 import React from 'react';
-import Img from '../../assets/cat1.jpg';
 
 const OrderSummaryCard = ({item}) => {
   console.log()

@@ -1,4 +1,3 @@
-import { useDispatch } from "react-redux";
 import {
   emailConstants,
   otpConstants,
@@ -99,6 +98,7 @@ export const signOut = () => {
 
 export const loginWithOTP = (phone) => {
   phone = parseInt(phone);
+  console.log("Phone"+phone)
   return async (dispatch) => {
     const res = await axios.post(`/signinotp`, {
       phone: phone,
@@ -186,6 +186,7 @@ export const sendotp = (phone, sendOtpType) => {
           payload: {
             otpsent: true,
             otp: otp,
+            message:message
           },
         });
         return true;

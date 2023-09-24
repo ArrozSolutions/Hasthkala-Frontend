@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { signOut, update } from '../../actions/User/UserAction';
+import { update } from '../../actions/User/UserAction';
 import { useNavigate } from 'react-router-dom';
 import SideBar from '../../components/SideBar/SideBar';
 import { BiSolidBell, BiSearch, BiSolidDownArrow} from 'react-icons/bi';
@@ -23,13 +23,12 @@ const UserProfile = () => {
       setState(auth.user?.state);
       setAddress(auth.user?.address);
     }
-  }, [])
+  }, [auth?.user])
 
   const [firstname, setFirstName] = useState(null);
   const [lastname, setLastName] = useState(null);
   const [email, setEmail] = useState(null);
   const [password, setPassword] = useState(null);
-  const [id, setId] = useState(null);
   const [city, setCity] = useState(null);
   const [state, setState] = useState(null);
   const [phone, setPhone] = useState(null);

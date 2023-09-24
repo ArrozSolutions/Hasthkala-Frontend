@@ -1,4 +1,3 @@
-import { useDispatch } from "react-redux";
 import axios from "../../helpers/axios";
 import { filterConstants, newProductConstants, productConstants, relatedConstants, searchConstants, trendingProductsConstants } from "../../constant/constant";
 
@@ -48,7 +47,7 @@ export const getFilteredProducts = (checked,value,page) => {
       value,
       page
     }).catch((err)=>{
-      if(err.response.status == 500){
+      if(err.response.status === 500){
         const {message} = err.response.data.message;
         dispatch({
           type:filterConstants.FILTER_FAILURE,
@@ -74,7 +73,7 @@ export const getTrendingProducts = () => {
   return async (dispatch) => {
     dispatch({ type: trendingProductsConstants.TRENDING_PRODUCTS_REQUEST })
     const res = await axios.get(`/trending-products`).catch((err)=>{
-      if(err.response.status == 500){
+      if(err.response.status === 500){
         const {message} = err.response.data.message;
         dispatch({
           type:trendingProductsConstants.TRENDING_PRODUCTS_FAILURE,
@@ -101,7 +100,7 @@ export const getRelatedProducts = (cid,pid) => {
   return async (dispatch) => {
     dispatch({ type: relatedConstants.RELATED_REQUEST })
     const res = await axios.get(`/related-products/${pid}/${cid}`).catch((err)=>{
-      if(err.response.status == 500){
+      if(err.response.status === 500){
         const {message} = err.response.data.message;
         dispatch({
           type:relatedConstants.RELATED_FAILURE,
@@ -129,7 +128,7 @@ export const getSearchedProducts = (keyword,page) => {
   return async (dispatch) => {
     dispatch({ type: searchConstants.SEARCH_REQUEST })
     const res = await axios.get(`/search-product/${keyword}/${page}`).catch((err)=>{
-      if(err.response.status == 500){
+      if(err.response.status === 500){
         const {message} = err.response.data.message;
         dispatch({
           type:searchConstants.SEARCH_FAILURE,

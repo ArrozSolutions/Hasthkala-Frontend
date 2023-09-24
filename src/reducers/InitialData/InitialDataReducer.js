@@ -1,4 +1,4 @@
-import { categoryConstants, emailConstants, newProductConstants, otpConstants, productConstants, userLoginConstants, userRegisterConstants, userUpdateConstants } from "../../constant/constant";
+import { categoryConstants, newProductConstants, productConstants} from "../../constant/constant";
 
 const initState = {
     products: [],
@@ -7,7 +7,7 @@ const initState = {
     error: [],
 };
 
-export default (state = initState, action) => {
+const InitialDataReducer= (state = initState, action) => {
 
     switch (action.type) {
         case productConstants.PRODUCT_SUCCESS:
@@ -28,6 +28,13 @@ export default (state = initState, action) => {
                 categories: action.payload.categories
             }
             break;
+        default:{
+            state={
+                ...state
+            }
+        }
     }
     return state;
 }
+
+export default InitialDataReducer

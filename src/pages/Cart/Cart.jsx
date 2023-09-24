@@ -17,7 +17,6 @@ const Cart = () => {
     const auth2 = useSelector(state => state.user);
     const cart = useSelector(state => state.cart.cart);
     const [cartTotal,setCartTotal] = useState(null);
-    const [discount,setDiscount] = useState(0);
 
     useEffect(() => {
         if (auth) {
@@ -25,7 +24,7 @@ const Cart = () => {
         }else{
             navigate('/login')
         }
-    },[])
+    },[auth,dispatch,navigate])
 
     useEffect(() => {
         if (cart) {
@@ -44,11 +43,12 @@ const Cart = () => {
             navigate('/billing',{
                 state:{
                     total:cartTotal,
-                    discount:discount
+                    discount:0
                 }
             })
         }
     }
+
 
     return (
         <div className='flex flex-col'>
@@ -86,7 +86,7 @@ const Cart = () => {
                                 <p>Price</p><p>₹{cartTotal}</p>
                             </div>
                             <div className='flex justify-between items-center w-full mt-2'>
-                                <p>Discount</p><p className='text-green font-semibold'>Na</p>
+                                <p>Discount</p><p className='text-[#00B517] font-semibold'>₹{0}</p>
                             </div>
                             {/* <div className='flex justify-between items-center w-full mt-2'>
                                 <p>Deliver Charges</p><p className='text-[#ff1818] font-semibold'>Na</p>
@@ -99,7 +99,7 @@ const Cart = () => {
                             <p className='text-xl font-semibold'>Rs {cartTotal}</p>
                         </div>
                         <div className='mt-5 mb-4'>
-                            <button className='text-white w-full flex items-center justify-center h-9 bg-green rounded-md' onClick={handleCheckout}>Checkout</button>
+                            <button className='text-white w-full flex items-center justify-center h-9 bg-[#00B517] rounded-md ' onClick={handleCheckout}>Checkout</button>
                         </div>
                     </div>
                 </div>

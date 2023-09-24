@@ -4,22 +4,13 @@ import Header2 from '../../components/Header2/Header2';
 import ProductCard from '../../components/ProductCard/ProductCard';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
-import { getAllProducts, getFilteredProducts, getSearchedProducts } from '../../actions/Product/ProductAction';
+import { getFilteredProducts } from '../../actions/Product/ProductAction';
 import Slider from '@material-ui/core/Slider';
 import './Listing.css';
-import { useLocation, useNavigate, useParams } from 'react-router-dom';
-import { BiLogoVisa } from 'react-icons/bi';
 
 const ListingForCategories = () => {
-    const [loadMore, setLoadMore] = useState(false);
-    const { keyword } = useParams();
-    const navigate = useNavigate();
-    const [categoryValue, setCategoryValue] = useState(null);
-    const [checked, setChecked] = useState([]);
     const [value, setValue] = useState([0, 4999]);
     const dispatch = useDispatch();
-    const allproducts = useSelector(state => state.initialData.products);
-    const allcategories = useSelector(state => state.initialData.categories);
     const searchedProducts = useSelector(state => state.products.searchedProducts);
     const filteredProducts = useSelector(state => state.products.filteredproducts);
     // 0 - all products
@@ -30,44 +21,20 @@ const ListingForCategories = () => {
 
     const rangeSelector = (event, newValue) => {
         setValue(newValue);
-        dispatch(getFilteredProducts(checked, value, page));
+        dispatch(getFilteredProducts([], value, page));
         setPType(2);
     }
 
-    function handleFilter(value, id) {
-        navigate('/listing')
-        let all = [...checked];
-        if (value) {
-            all.push(id)
-        } else {
-            all = all.filter(c => c != id)
-        }
-        setChecked(all);
-    }
-
     useEffect(() => {
-        if (searchedProducts != "") {
+        if (searchedProducts !== "") {
             setPType(1)
         }
     }, [searchedProducts])
 
-    useEffect(() => {
-        console.log(pType);
-        if (checked.length > 0) {
-            setPType(2);
-            navigate('/listing')
-
-            dispatch(getFilteredProducts(checked, value, page));
-        } else {
-            setPType(1);
-        }
-    }, [checked])
-    console.log(pType)
 
     const handlePage = () => {
         let newPage = page + 1;
         setPage(newPage);
-        console.log(page);
     }
 
     useEffect(() => {
@@ -108,16 +75,15 @@ const ListingForCategories = () => {
                         <div className='flex flex-col justify-between'>
                             <div className='min-h-full pt-8 pl-14 max-w-full grid grid-cols-3 gap-y-8'>
                                 {
-                                    pType == 1 && searchedProducts && searchedProducts.map((product, key) => (
+                                    pType === 1 && searchedProducts && searchedProducts.map((product, key) => (
                                         <ProductCard key={key} name={product?.name} img={product?.images[0].img} price={product?.price} slug={product.slug} />
                                     ))
                                 }                            {
-                                    pType == 2 && filteredProducts?.map((product, key) => (
+                                    pType === 2 && filteredProducts?.map((product, key) => (
                                         <ProductCard key={key} name={product?.name} img={product?.images[0].img} price={product?.price} slug={product.slug} />
                                     ))
                                 }
                             </div>{
-                                loadMore &&
                                 <div className='w-full h-20 flex justify-end items-start' onClick={handlePage}><button className='bg-red text-white w-[120px] h-[32px] font-dmsans mb-20'>Load More</button></div>
                             }
                         </div>

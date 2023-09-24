@@ -3,7 +3,7 @@ import SideBar from '../../components/SideBar/SideBar'
 import { BiSolidBell, BiSearch, BiSolidDownArrow} from 'react-icons/bi';
 import { useSelector } from 'react-redux';
 import UserImage from '../../assets/lamp.jpg';
-import { ToastContainer, toast } from 'react-toastify';
+import { ToastContainer } from 'react-toastify';
 import Map from '../../assets/map.jpg';
 
 const ContactUs = () => {

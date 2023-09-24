@@ -1,19 +1,8 @@
-import { Splide, SplideSlide } from '@splidejs/react-splide';
-import Logo from '../../assets/logo.jpg';
 import '@splidejs/react-splide/css';
-import Lamp from '../../assets/lamp.jpg';
-import ProdImage from '../../assets/prodimage.jpg';
 import './NewlyAddedCarousel.css';
-import { useSelector } from 'react-redux';
-import { api } from '../../helpers/baseUrl';
-import { Link } from 'react-router-dom';
-import { useState } from 'react';
 
 
 const SimilarProducts = () => {
-    const [products,setProducts] = useState(null);
-
-    const similarProducts = useSelector(state => state.products.similarproducts);
 
     return (
         <div className='flex flex-col lg:flex-row w-full pl-5 pr-5 sm:pl-20 sm:pr-20 justify-center '>

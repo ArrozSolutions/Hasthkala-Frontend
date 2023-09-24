@@ -1,18 +1,11 @@
 import React from 'react';
 import Header from '../../components/Header/Header';
 import Header2 from '../../components/Header2/Header2';
-import Img1 from '../../assets/cat1.jpg';
-import Img2 from '../../assets/lamp.jpg';
-import Img3 from '../../assets/map.jpg';
-import Img4 from '../../assets/prodimage.jpg';
 import { useState } from 'react';
 import { useEffect } from 'react';
-import { BiStar } from 'react-icons/bi';
 import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { getRelatedProducts, getSingleProduct } from '../../actions/Product/ProductAction';
 import axios from "../../helpers/axios";
-import { api } from '../../helpers/baseUrl';
 import SimilarProducts from '../../components/Carousel/SimilarProducts';
 import { ToastContainer, toast } from 'react-toastify';
 import { addItemToCart } from '../../actions/Cart/CartAction';
@@ -20,7 +13,6 @@ import GoldenStar from '../../assets/goldenstar.png';
 import GrayStar from '../../assets/graystar.png';
 const SingleProduct = () => {
 
-    var productImg;
     const auth = useSelector(state => state.user.user);
     const dispatch = useDispatch();
 
@@ -29,54 +21,32 @@ const SingleProduct = () => {
     }
 
     const [product, setProduct] = useState(null);
-    const [outOfStock, setOutofStock] = useState(false);
+    // const [outOfStock, setOutofStock] = useState(false);
     const params = useParams();
     const [quantity, setQuantity] = useState(1);
 
-    const getSingleProduct = async () => {
-        try {
-            const { data } = await axios.get(`/single-product/${params.slug}`)
-            setProduct(data?.product);
-        } catch (error) {
-            console.log(error);
-        }
-    }
+
 
 
     useEffect(() => {
+        const getSingleProduct = async () => {
+            try {
+                const { data } = await axios.get(`/single-product/${params.slug}`)
+                setProduct(data?.product);
+            } catch (error) {
+                console.log(error);
+            }
+        }
         if (params?.slug) {
             getSingleProduct();
         }
     }, [params])
 
-    // useEffect(()=>{
-    //     dispatch(getRelaedProducts());
-    // },[])
 
     useEffect(() => {
 
     }, [product])
 
-
-
-    const [showImg, setShowImg] = useState(null);
-
-    useEffect(() => {
-        setShowImg(Img1);
-    }, [])
-
-    const showImg1 = () => {
-        setShowImg(Img1);
-    }
-    const showImg2 = () => {
-        setShowImg(Img2);
-    }
-    const showImg3 = () => {
-        setShowImg(Img3);
-    }
-    const showImg4 = () => {
-        setShowImg(Img4);
-    }
 
     // console.log(product?.images[0]?.img)
 
@@ -106,7 +76,7 @@ const SingleProduct = () => {
                                 <div className='flex flex-col'>
                                     {
                                         product?.images.map((img, key) => (
-                                            <div onClick={showImg1} className='h-[85px] w-[85px] border border-[#1a1a1d30] shadow mb-8  active:border-red'><img className='h-full w-full' src={img.img} alt="" /></div>
+                                            <div className='h-[85px] w-[85px] border border-[#1a1a1d30] shadow mb-8  active:border-red'><img className='h-full w-full' src={img.img} alt="" /></div>
                                         ))
                                     }
                                 </div>

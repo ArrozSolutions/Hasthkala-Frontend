@@ -7,6 +7,7 @@ import { useState } from 'react';
 import { getSearchedProducts } from '../../actions/Product/ProductAction';
 
 const Header = () => {
+
     const dispatch = useDispatch();
     const [value, setValue] = useState(null);
 
@@ -32,7 +33,7 @@ const Header = () => {
         <>
             <div className='flex h-14 sm:h-20 items-center justify-between pl-4 sm:pl-20 sm:pr-20 pr-4' >
                 <div className='flex h-full w-[180px] sm:w-[200px] items-center justify-start'>
-                    <div className='mr-6 cursor-pointer'><BiMenu size={23} /></div>
+                    <div className='block sm:hidden mr-6 cursor-pointer'><BiMenu size={23} /></div>
                     <Link to={'/'}><div className='w-[175px] max-h-[46px]'><img className='h-full w-full' src={Logo} alt="" /></div></Link>
                 </div>
                 <div className='relative items-center hidden lg:flex'>
@@ -46,7 +47,7 @@ const Header = () => {
                     />
                 </div>
                 <div className='flex '>
-                    <span className='mr-6 cursor-pointer hover:scale-105 transition-all'><BiHeart size={23} /></span>
+                    <span className='mr-6 cursor-pointer hover:scale-105 transition-all'><Link to={'/wishlist'}><BiHeart size={23} /></Link></span>
                     <span className='mr-6 cursor-pointer hover:scale-105 transition-all'><Link to={'/cart'}><BiCart size={23} /></Link></span>
                     <span className=' cursor-pointer hover:scale-105 transition-all' onClick={userNav}><Link><BiUserCircle size={23} /></Link></span>
                 </div>

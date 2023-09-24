@@ -1,18 +1,9 @@
 import React, { useEffect } from 'react';
-import Logo from '../../assets/logo.jpg';
-import { BiHeart, BiCart, BiUserCircle, BiUser, BiMenu } from 'react-icons/bi';
-import GoldenBorder from '../../assets/goldenborder.jpg';
 import Heading1 from '../../assets/heading1.jpg';
 import { useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 import TrendingProducts from '../../components/Carousel/TrendingProducts';
 import Testimonials from '../../components/Carousel/Testimonials';
-import Cat1 from '../../assets/cat1.jpg';
-import Cat2 from '../../assets/cat2.jpg';
-import Cat3 from '../../assets/cat3.jpg';
-import Cat4 from '../../assets/cat4.jpg';
-import Cat5 from '../../assets/cat5.jpg';
-import Cat6 from '../../assets/cat6.jpg';
 import NewlyAddedProducts from '../../components/Carousel/NewlyAddedProducts';
 import GiftBoxes from '../../assets/gifboxes.jpg';
 import Header from '../../components/Header/Header';
@@ -37,6 +28,12 @@ const Home = () => {
       setCategory(allcategories);
     }
   }, [allcategories])
+
+  useEffect(()=>{
+    if(auth?.user?.isAdmin){
+      navigate('/admin-dashboard')
+    }
+  },[auth,navigate])
 
   return (
     <>

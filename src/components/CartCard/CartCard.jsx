@@ -1,17 +1,14 @@
-import React, { useId, useState } from 'react';
-import Img from '../../assets/cat1.jpg';
+import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { quantityEdit, removeCartData, saveProductForLater } from '../../actions/Cart/CartAction';
-import { toast } from 'react-toastify';
 import { useEffect } from 'react';
 
 const CartCard = ({ item }) => {
     const auth = useSelector(state => state.user.user);
     const [userId, setUserId] = useState(null);
-    const qtyMap = [];
     const [qm, setqm] = useState(null);
     const dispatch = useDispatch();
-
+    
     useEffect(() => {
         if (auth) {
             setUserId(auth?._id)
@@ -25,7 +22,6 @@ const CartCard = ({ item }) => {
         })
     }
     const saveForLater = () => {
-        const cid = item?._id;
         const pid = item?.productid?._id;
         const uid = userId;
         dispatch(saveProductForLater(pid, uid)).then((res) => {
@@ -35,6 +31,7 @@ const CartCard = ({ item }) => {
     }
 
     useEffect(() => {
+        const qtyMap = [];
         for (let i = 1; i <= item?.productid?.quantity; i++) {
             qtyMap.push(`Qty: ${i}`)
         }
@@ -68,7 +65,7 @@ const CartCard = ({ item }) => {
             </div>
             <div className='flex flex-col pr-5 items-end'>
                 <h1 className='text-xl font-semibold'>₹ {item?.productid?.price}</h1>
-                <p className='text-sm mt-[6px] mb-[6px]'><span className='line-through text-gray'>₹ 549</span><span className='text-green ml-1'>(36% off)</span></p>
+                <p className='text-sm mt-[6px] mb-[6px]'><span className='line-through text-gray'>₹ 549</span><span className='text-[#00B517] ml-1'>(36% off)</span></p>
                 <select name="" id="" className=' h-9 border border-[#1a1a1d5b] rounded w-[130px] pl-2 ' onChange={handleChange}>
                     <option value="default" selected disabled>Qty: {item?.quantity}</option>
                     {

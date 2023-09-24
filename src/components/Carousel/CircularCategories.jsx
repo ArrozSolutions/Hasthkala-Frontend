@@ -1,11 +1,5 @@
 import { Splide, SplideSlide } from '@splidejs/react-splide';
 import '@splidejs/react-splide/css';
-import Cat1 from '../../assets/cat1.jpg';
-import Cat2 from '../../assets/cat2.jpg';
-import Cat3 from '../../assets/cat3.jpg';
-import Cat4 from '../../assets/cat4.jpg';
-import Cat5 from '../../assets/cat5.jpg';
-import Cat6 from '../../assets/cat6.jpg';
 import './NewlyAddedCarousel.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';

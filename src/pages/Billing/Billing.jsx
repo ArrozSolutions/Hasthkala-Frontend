@@ -28,14 +28,9 @@ const Billing = () => {
     const [discount, setDiscount] = useState(null);
     const [shipping, setShipping] = useState(null);
 
-    const [nameoncard, setNameOnCart] = useState(null);
-    const [cardnumber, setCardNumber] = useState(null);
-    const [expirydata, setExpiryData] = useState(null);
-
     const [paymentMode, setPaymentMode] = useState(null);
     const [cod, setCod] = useState(false);
     const [cardPayment, setCardPayment] = useState(false);
-    const [buyPrice, setBuyPrice] = useState(null);
 
     const [cartdata, setCartData] = useState(null);
     const [cartItem, setCartItem] = useState(null);
@@ -67,7 +62,7 @@ const Billing = () => {
             setTax(tempTax);
             setDiscount(location.state.discount);
         }
-    }, [])
+    }, [auth,location])
 
     useEffect(() => {
         if (cod) {
@@ -120,42 +115,45 @@ const Billing = () => {
         }
     }
 
-    const initPayment = (amount, data) => {
+
+    const handleOpenRazorpay = (data) => {
+
         const options = {
-            key: "rzp_test_QjwunCBCAXXLPv",
-            amount: amount,
-            currency: "INR",
-            description: "Test Transaction",
+            key: 'rzp_test_QjwunCBCAXXLPv',
+            amount: Number(data.amount),
+            currency: data.currency,
             order_id: data.id,
-            handler: async (response) => {
-                console.log("Res = ",response);
-                const verifyUrl = `${api}/verify-payment`;
-                axios.post(verifyUrl, response).then((res) => {
-                    console.log(res);
-                }).catch((err) => {
-                    console.log(err)
-                })
+            name: 'HasthKala',
+            description: 'Test Transaction',
+            handler: function (response) {
+                console.log(response, "34")
+                axios.post(`${api}/verify-payment`, { response: response })
+                    .then(res => {
+                        console.log(res, "37")
+                    })
+                    .catch(err => {
+                        console.log(err)
+                    })
             }
+
         }
-        const rzp1 = new window.Razorpay(options);
-        rzp1.open();
+        const rzp = new window.Razorpay(options)
+        rzp.open()
+
     }
 
-    const handlePayment = async () => {
-        try {
-            const orderUrl = `${api}/checkout`
-            let amnt = parseFloat((totalPrice + tax + shipping) - discount).toFixed(2)
-            amnt = (amnt * 100);
-            axios.post(orderUrl, { amount: amnt }).then((res) => {
-                console.log(res)
-                initPayment(amnt, res.data);
-            }).catch((err) => {
+    const handlePayment = (amount) => {
+        const _data = { amount: amount }
+        axios.post(`${api}/checkout`, _data)
+            .then(res => {
+                console.log(res.data, "29")
+                handleOpenRazorpay(res.data.data)
+            })
+            .catch(err => {
                 console.log(err)
             })
-        } catch (error) {
-            console.log(error)
-        }
     }
+
 
     return (
         <div className='flex flex-col'>
@@ -249,35 +247,6 @@ const Billing = () => {
                                     <input type="radio" className='h-[14px] w-[14px]' onClick={handleCardPayment} checked={cardPayment ? true : false} />
                                 </div>
                             </div>
-
-                            <span className='h-5'></span>
-                            <div className={`h-full ${cod ? 'hidden' : 'flex'} flex-col`}>
-                                <div className='flex flex-col'>
-                                    <label htmlFor="" className='text-sm font-dmsans mb-[3px]'>Name on Card</label>
-                                    <input type="text" className='h-9 border rounded border-[#1a1a1d43]' />
-                                </div>
-
-                                <span className='h-4'></span>
-
-                                <div className='flex flex-col'>
-                                    <label htmlFor="" className='text-sm font-dmsans mb-[3px]'>Card Number</label>
-                                    <input type="text" className='h-9 border rounded border-[#1a1a1d43]' />
-                                </div>
-
-
-                                <span className='h-4'></span>
-
-                                <div className='flex w-full mb-5'>
-                                    <div className='flex flex-col mr-3 w-1/2'>
-                                        <label htmlFor="" className='text-sm font-dmsans mb-[3px]'>Expiry Date</label>
-                                        <input type="text" className='h-9 border rounded border-[#1a1a1d43]' />
-                                    </div>
-                                    <div className='flex flex-col mr-3 w-1/2'>
-                                        <label htmlFor="" className='text-sm font-dmsans mb-[3px] '>CVC</label>
-                                        <input type="text" className='h-9 border rounded border-[#1a1a1d43]' />
-                                    </div>
-                                </div>
-                            </div>
                         </form>
                     </div>
 
@@ -294,7 +263,7 @@ const Billing = () => {
                         </div>
                         <div className='flex justify-between text-[13px] font-dmsans'>
                             <p className=' text-gray '>Sub-total</p>
-                            <p>₹{totalPrice}</p>
+                            <p>₹{parseFloat(totalPrice - tax).toFixed(2)}</p>
                         </div>
                         <span className='h-1'></span>
                         <div className='flex justify-between text-[13px] font-dmsans'>
@@ -316,7 +285,7 @@ const Billing = () => {
                         </div>
                         <div className='flex justify-between text-[16px] font-dmsans'>
                             <p>Total</p>
-                            <p>₹{parseFloat((totalPrice + tax + shipping) - discount).toFixed(2)}</p>
+                            <p>₹{parseFloat((totalPrice + shipping) - discount).toFixed(2)}</p>
                         </div>
                         <div className='mt-4'>
                             <button className='bg-darkred text-white uppercase w-full h-10 rounded text-[14px] font-dmsans flex items-center justify-center' onClick={cod ? handlePlaceOrder : handlePayment}>Place order<AiOutlineArrowRight size={18} className='ml-2' /></button>

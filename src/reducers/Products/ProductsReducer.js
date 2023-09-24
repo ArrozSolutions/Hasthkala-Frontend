@@ -1,4 +1,4 @@
-import { filterConstants, newProductConstants, productConstants, relatedConstants, searchConstants, singleProductConstants, trendingProductsConstants } from "../../constant/constant";
+import { filterConstants, newProductConstants, productConstants, relatedConstants, searchConstants, trendingProductsConstants } from "../../constant/constant";
 
 const initState = {
     products: [],
@@ -9,7 +9,7 @@ const initState = {
     error: [],
 };
 
-export default (state = initState, action) => {
+const ProductsReducer = (state = initState, action) => {
 
     switch (action.type) {
         case trendingProductsConstants.TRENDING_PRODUCTS_SUCCESS:
@@ -61,6 +61,13 @@ export default (state = initState, action) => {
                 relatedproducts: action.payload.relatedproducts
             }
             break;
+        default:{
+            state={
+                ...state
+            }
+        }
     }
     return state;
 }
+
+export default ProductsReducer

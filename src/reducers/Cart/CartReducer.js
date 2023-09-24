@@ -1,4 +1,4 @@
-import { addToCartConstants, getCartDataConstants, getSavedConstants, quantityEditConstants, removeCartDataConstants, saveConstants } from "../../constant/constant";
+import { addToCartConstants, getCartDataConstants, getSavedConstants, quantityEditConstants, removeCartDataConstants, removeSavedDataConstants, saveConstants } from "../../constant/constant";
 
 const initState = {
     saved:[],
@@ -9,7 +9,7 @@ const initState = {
     message:''
 };
 
-export default (state = initState, action) => {
+const CartReducer = (state = initState, action) => {
 
     switch (action.type) {
         case getSavedConstants.GET_SAVED_SUCCESS:
@@ -42,11 +42,25 @@ export default (state = initState, action) => {
                 itemRemoved:true,
             }
             break;
+        case removeSavedDataConstants.REMOVE_SAVED_SUCCESS:
+            state={
+                ...state,
+                message:action.payload.message
+            }
+            break;
         case quantityEditConstants.QUANTITY_EDIT_SUCCESS:
             state={
                 ...state,
                 message:action.payload.message
             }
+            break;
+        default:{
+            state={
+                ...state
+            }
+        }
     }
     return state;
 }
+
+export default CartReducer
