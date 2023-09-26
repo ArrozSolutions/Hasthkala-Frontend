@@ -43,6 +43,8 @@ const Billing = () => {
     const [phone, setPhone] = useState(null);
     const [address, setAddress] = useState(null);
     const [zipcode, setZipCode] = useState(null);
+    const [uid, setUid] = useState(null);
+    const [status, setStatus] = useState(null);
 
     useEffect(() => {
         if (auth) {
@@ -55,14 +57,15 @@ const Billing = () => {
             setAddress(auth?.address);
             setCountry(auth?.country);
             setZipCode(auth?.zipcode);
+            setUid(auth?._id);
         }
         if (location) {
             setTotalPrice(location.state.total)
-            let tempTax = (location.state.total * 18) / 100
+            let tempTax = (totalPrice * 18)/100;
             setTax(tempTax);
             setDiscount(location.state.discount);
         }
-    }, [auth,location])
+    }, [auth, location])
 
     useEffect(() => {
         if (cod) {
@@ -83,29 +86,21 @@ const Billing = () => {
     const handleCod = () => {
         setCod(true);
         setCardPayment(false);
-        setPaymentMode("cod");
+        setPaymentMode("Cash");
+        setStatus("Pending");
     }
     const handleCardPayment = () => {
         setCardPayment(true);
         setCod(false);
-        setPaymentMode("online");
+        setPaymentMode("Online");
+        setStatus("Pending");
     }
     const dispatch = useDispatch();
     const handlePlaceOrder = () => {
         if (firstname && lastname && country && state && city && email && phone && address && zipcode) {
-            const orderby = {
-                fullname: firstname + " " + lastname,
-                country,
-                state,
-                city,
-                email,
-                phone,
-                address,
-                zipcode,
-            }
-            dispatch(orderItem(orderby, cartdata, paymentMode, parseFloat((totalPrice + tax + shipping) - discount).toFixed(2))).then(() => {
+            dispatch(orderItem(uid, status, cartdata, paymentMode, parseFloat((totalPrice + shipping) - discount).toFixed(2))).then(() => {
                 errorToast("Order Created Successfully");
-                navigate("/");
+                navigate("/orders");
             })
             // cartid:id,
             // paymentMode,

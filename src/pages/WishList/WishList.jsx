@@ -42,11 +42,11 @@ const Wishlist = () => {
       
 
         <div className='w-full h-full'>
-          <div className='pt-9 pl-20 pb-10 pr-20'>
+          <div className='pt-9 pl-5 sm:pl-20 pb-10 pr-5 sm:pr-20'>
             <h1 className='font-dmsans text-xl flex items-center'><BiHeart className='mr-2'/>WishList</h1>
             <div className='flex flex-col min-h-full'>
               <div className='flex flex-col justify-between'>
-                <div className='min-h-full pt-8 max-w-full grid grid-cols-5 gap-y-10'>
+                <div className='min-h-full pt-8 max-w-full grid grid-cols-2 lg:grid-cols-5 sm:gap-y-10'>
                   {
                     savedproducts?.map((product, key) => (
                     <SavedProductCard key={key} name={product?.pid.name} img={product?.pid.images[0].img} price={product?.pid.price} slug={product.pid.slug}  id={product?._id}/>

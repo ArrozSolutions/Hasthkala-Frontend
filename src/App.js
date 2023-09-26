@@ -19,6 +19,15 @@ import ListingForCategories from "./pages/Listing/ListingForCategories";
 import Saved from "./pages/Saved/Saved";
 import Wishlist from "./pages/WishList/WishList";
 import AdminDashboard from "./pages/Admin/AdminDashboard";
+import AdminSettings from "./pages/Admin/AdminSettings";
+import Inbox from "./pages/Admin/Inbox";
+import AdminCategory from "./pages/Admin/AdminCategory";
+import AdminProducts from "./pages/Admin/AdminProducts";
+import AdminOrders from "./pages/Admin/AdminOrders";
+import Customers from "./pages/Admin/Customers";
+import OurStaff from "./pages/Admin/OurStaff";
+import AddProducts from "./pages/Admin/AddProducts";
+import AddCategory from "./pages/Admin/AddCategory";
 
 function App() {
 
@@ -56,6 +65,15 @@ function App() {
         <Route exact path={"/saved"} element={<Saved />} />
         <Route exact path={"/wishlist"} element={<Wishlist />} />
         <Route exact path={"/admin-dashboard"} element={<AdminDashboard />} />
+        <Route exact path={"/admin-customers"} element={<Customers />} />
+        <Route exact path={"/admin-orders"} element={<AdminOrders />} />
+        <Route exact path={"/admin-products"} element={<AdminProducts />} />
+        <Route exact path={"/admin-categories"} element={<AdminCategory />} />
+        <Route exact path={"/admin-inbox"} element={<Inbox />} />
+        <Route exact path={"/admin-settings"} element={<AdminSettings />} />
+        <Route exact path={"/admin-staff"} element={<OurStaff />} />
+        <Route exact path={"/admin-add-product"} element={<AddProducts />} />
+        <Route exact path={"/admin-add-category"} element={<AddCategory />} />
       </Routes>
     </div>
   );

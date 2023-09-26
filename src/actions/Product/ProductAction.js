@@ -125,6 +125,7 @@ export const getRelatedProducts = (cid,pid) => {
 
 
 export const getSearchedProducts = (keyword,page) => {
+  console.log(keyword)
   return async (dispatch) => {
     dispatch({ type: searchConstants.SEARCH_REQUEST })
     const res = await axios.get(`/search-product/${keyword}/${page}`).catch((err)=>{

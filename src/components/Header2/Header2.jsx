@@ -5,11 +5,11 @@ import '@splidejs/react-splide/css';
 
 const Header2 = () => {
   return (
-    <div className='splide1 bg-darkred h-12 flex items-center justify-evenly'>
+    <div className='splide1 bg-darkred h-11 mt-1 sm:mt-0 sm:h-12 flex items-center justify-evenly z-50'>
       <Splide aria-label="Header 2 Carousel" className='pl-2 pr-2 sm:pl-20 sm:pr-20 h-full w-full flex items-center text-white font-alegreya'>
         {/* <div className='ml-4 block sm:hidden'></div> */}
         <SplideSlide className='min-w-[50px] max-w-[80px] sm:max-w-[160px] h-14 flex justify-center items-center'>
-          <div className='w-full h-full flex items-center justify-center'>
+          <div className='w-full h-full flex items-center justify-center cursor-pointer'>
             <Link to={'/'}>Home</Link>
           </div>
         </SplideSlide>

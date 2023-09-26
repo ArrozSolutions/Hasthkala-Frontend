@@ -9,7 +9,7 @@ import { signOut } from '../../actions/User/UserAction';
 import { useEffect } from 'react';
 import { getSavedProducts } from '../../actions/Cart/CartAction';
 
-const SideBar = ({ name }) => {
+const SideBar = ({ name,show }) => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const auth = useSelector(state => state.user.user);
@@ -41,7 +41,8 @@ const SideBar = ({ name }) => {
     }
 
     return (
-        <div className='flex flex-col bg-[#9b9ba714] h-screen min-w-[290px] max-w-[290px] pt-16 font-dmsans'>
+        <div className={`${show?'flex':'hidden'} lg:flex absolute sm:relative z-50  flex-col bg-[#f6f6f6] h-screen min-w-[290px] max-w-[290px] pt-16 font-dmsans sm:shadow-none shadow-2xl`}>
+        
             <div className='w-full flex justify-center items-center'>
                 <img className='w-[215px]' src={Logo} alt="" />
             </div>

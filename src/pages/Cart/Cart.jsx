@@ -54,8 +54,8 @@ const Cart = () => {
         <div className='flex flex-col'>
             <Header />
             <Header2 />
-            <div className='flex w-full h-screen'>
-                <div className='h-full w-full pl-10 pr-10 pt-10 pb-10'>
+            <div className='flex flex-col sm:flex-row w-full h-screen'>
+                <div className='h-full w-full sm:pl-10 sm:pr-10 sm:pt-10 pl-4 pr-4 pt-5 pb-10'>
                     <div className='h-full w-full border border-[#1a1a1d3f] rounded flex flex-col justify-between pt-5 pb-5'>
                         <div className='scrollbar flex flex-col max-w-full '>
                  {
@@ -65,12 +65,15 @@ const Cart = () => {
                  }
 
                         </div>
-                        <div className='pl-5 mt-5'>
+                        <div className='pl-5 mt-5 hidden sm:flex'>
                             <Link to={'/'}><button className='w-[150px] h-8 text-white text-sm bg-darkred rounded flex items-center justify-center'><AiOutlineArrowLeft className='mr-[3px] font-semibold' size={14} />&nbsp;Back to shop</button></Link>
+                        </div>                        
+                        <div className='pl-3 mt-5 flex sm:hidden'>
+                            <Link to={'/'}><button className='w-[45px] h-8 text-white text-sm bg-darkred rounded flex items-center justify-center'><AiOutlineArrowLeft className='mr-[3px] font-semibold' size={14} /></button></Link>
                         </div>
                     </div>
                 </div>
-                <div className='flex flex-col h-full min-w-[400px] max-w-[400px] pt-14 pr-20 pl-5'>
+                <div className='flex flex-col h-full sm:min-w-[400px] max-w-[400px] sm:pt-14 sm:pr-20 sm:pl-5 pl-3 pr-3'>
                     <div className='border w-full rounded border-[#1a1a1d37] pt-2 pl-4 pr-4 pb-3'>
                         <p >Have a coupon?</p>
                         <div className='flex justify-between items-center mt-2'>

@@ -1,14 +1,13 @@
 import axios from "../../helpers/axios";
 import { addToCartConstants, getCartDataConstants, getSavedConstants, quantityEditConstants, removeCartDataConstants, removeSavedDataConstants, saveConstants } from "../../constant/constant";
 
-export const addItemToCart = (pid, uid, quantity, initialquantity) => {
+export const addItemToCart = (pid, uid, quantity) => {
   return async (dispatch) => {
     dispatch({ type: addToCartConstants.ADDTOCART_REQUEST });
     const res = await axios.post(`/add-to-cart`, {
       pid,
       uid,
-      quantity,
-      initialquantity
+      quantity
     })
     if (res.status === 200) {
       const { cart } = res.data;

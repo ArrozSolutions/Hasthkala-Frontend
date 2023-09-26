@@ -1,4 +1,4 @@
-import { emailConstants, otpConstants, userLoginConstants, userRegisterConstants, userUpdateConstants } from "../../constant/constant";
+import { emailConstants, getUserOrdersConstant, otpConstants, userLoginConstants, userRegisterConstants, userUpdateConstants } from "../../constant/constant";
 
 const initState = {
     authenticate: false,
@@ -9,6 +9,7 @@ const initState = {
     user: [],
     getUser: [],
     error: [],
+    orders:[],
 };
 
 const UserReducer =(state = initState, action) => {
@@ -84,6 +85,12 @@ const UserReducer =(state = initState, action) => {
                 otp: null,
                 userAlreadyExistError: action.payload.error,
                 error:action.payload.error
+            }
+            break;
+        case getUserOrdersConstant.USER_ORDERS_SUCCESS:
+            state={
+                ...state,
+                orders:action.payload.orders,
             }
             break;
         case emailConstants.EMAIL_SUCCESS:

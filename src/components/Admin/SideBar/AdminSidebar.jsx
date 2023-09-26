@@ -1,12 +1,23 @@
 import React from 'react';
 import { useState } from 'react';
 import Logo from '../../../assets/logo.jpg'
-import { BiGridAlt, BiListUl, BiGroup, BiCompass, BiSolidInbox, BiUser, BiBullseye } from 'react-icons/bi'
-import { AiOutlineSetting} from 'react-icons/ai'
+import { BiGridAlt, BiListUl, BiGroup, BiCompass, BiSolidInbox, BiUser, BiBullseye, BiLogOut } from 'react-icons/bi'
+import { AiOutlineSetting } from 'react-icons/ai'
+import { Link, useNavigate } from 'react-router-dom';
+import { AiOutlineDown } from 'react-icons/ai'
+import { signOut } from '../../../actions/User/UserAction';
+import { useDispatch } from 'react-redux';
 
-const AdminSidebar = ({name}) => {
+const AdminSidebar = ({ name }) => {
 
     const [dropdown, setDropdown] = useState(false);
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+    const userSignOut = () => {
+        dispatch(signOut()).then((userSignedOut) => {
+            navigate('/login')
+        })
+    }
 
     const handleDropDown = () => {
         setDropdown(!dropdown);
@@ -15,7 +26,7 @@ const AdminSidebar = ({name}) => {
 
 
     return (
-        <div className='relative w-[305px]'>
+        <div className='relative w-[305px] transition-all duration-200'>
             <button data-drawer-target="sidebar-multi-level-sidebar" data-drawer-toggle="sidebar-multi-level-sidebar" aria-controls="sidebar-multi-level-sidebar" type="button" class="inline-flex items-center p-2 mt-2 ml-3 text-sm text-gray-500 rounded-lg sm:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600">
                 <span class="sr-only">Open sidebar</span>
                 <svg class="w-6 h-6" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
@@ -31,80 +42,74 @@ const AdminSidebar = ({name}) => {
                                 <span><img className='w-full h-full' src={Logo} alt="" /></span>
                             </li>
                         </div>
-                        <li className='relative pl-3'>
-                        <div className={`${name==='dashboard'?'block':'hidden'} absolute bg-darkred w-2 h-full left-0`}></div>
-                            <p class={`flex items-center p-2 text-gray-900 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group`}>
-                                <BiGridAlt size={20}/>
+                        <Link to={'/admin-dashboard'}><li className='relative pl-3'>
+                            <div className={`${name === 'dashboard' ? 'block' : 'hidden'} absolute bg-darkred w-1 h-full left-0`}></div>
+                            <p class={`flex items-center p-2 ${name == 'dashboard' ? 'text-darkred' : 'text-gray-700'} dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group `}>
+                                <BiGridAlt size={20} />
                                 <span class="ml-3 ">Dashboard</span>
                             </p>
-                        </li>
+                        </li></Link>
                         <li className='relative pl-3'>
-                        <div className={`${name==='catalog'?'block':'hidden'} absolute bg-darkred w-2 h-full left-0`}></div>
-
-                            <button type="button" class="flex items-center w-full p-2 text-base text-gray-900 transition duration-75 rounded-lg group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700" aria-controls="dropdown-example" data-collapse-toggle="dropdown-example">
-                                <p class={`flex items-center text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group ${name==='catalog'?'border-b-2':''}  border-darkred`}>
-                                    <BiListUl size={22} />
-                                    <span class="flex-1 ml-3 text-left whitespace-nowrap" onClick={handleDropDown}>Catalog</span>
+                            <div className={`${name === 'catalog' ? 'block' : 'hidden'} absolute bg-darkred w-1 h-full left-0`}></div>
+                            <button onClick={handleDropDown} type="button" class="flex items-center w-full p-2 text-base text-gray-900 transition duration-75 rounded-lg group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700" aria-controls="dropdown-example" data-collapse-toggle="dropdown-example">
+                                <p class={`flex items-center justify-between ${name == 'catalog' ? 'text-darkred' : 'text-gray-700'} rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group ${name === 'catalog' ? 'border-b-2' : ''}  border-darkred w-full pr-8`}>
+                                    <div className='flex'>
+                                        <BiListUl size={22} />
+                                        <span class="flex-1 ml-3 text-left whitespace-nowrap" >Catalog</span>
+                                    </div>
+                                    <div><AiOutlineDown size={14} className='w-5 scale-x-110 font-semibold'/></div>
                                 </p>
                             </button>
                             <ul id="dropdown-example" class={`${dropdown ? 'block' : 'hidden'} py-2 space-y-2`}>
-                                <li>
-                                    <p class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">Products</p>
-                                </li>
-                                <li>
-                                    <p class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">Billing</p>
-                                </li>
-                                <li>
-                                    <p class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">Invoice</p>
-                                </li>
+                                <Link to={'/admin-products'}><li>
+                                    <p class={`flex items-center w-full p-2 ${name == 'products' ? 'text-darkred' : 'text-gray-700'} transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700`}>Products</p>
+                                </li></Link>
+                                <Link to={'/admin-categories'}><li>
+                                    <p class={`flex items-center w-full p-2  ${name == 'categories' ? 'text-darkred' : 'text-gray-700'} transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700`}>Category</p>
+                                </li></Link>
+                                <Link><li>
+                                    <p class={`flex items-center w-full p-2  ${name == 'coupons' ? 'text-darkred' : 'text-gray-700'} transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700`}>Coupons</p>
+                                </li></Link>
                             </ul>
                         </li>
-                        <li  className='relative pl-3'>
-                        <div className={`${name==='customers'?'block':'hidden'} absolute bg-darkred w-2 h-full left-0`}></div>
-                            <p class={`flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group`}>
+                        <Link to={'/admin-customers'}><li className='relative pl-3'>
+                            <div className={`${name === 'customers' ? 'block' : 'hidden'} absolute bg-darkred w-1 h-full left-0`}></div>
+                            <p class={`flex items-center p-2 ${name == 'customers' ? 'text-darkred' : 'text-gray-700'} rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group`}>
                                 <BiGroup size={22} />
                                 <span class="flex-1 ml-3 whitespace-nowrap ">Customers</span>
                             </p>
-                        </li>
-                        <li  className='relative pl-3'>
-                        <div className={`${name==='orders'?'block':'hidden'} absolute bg-darkred w-2 h-full left-0`}></div>
+                        </li></Link>
+                        <Link to={'/admin-orders'}><li className='relative pl-3'>
+                            <div className={`${name === 'orders' ? 'block' : 'hidden'} absolute bg-darkred w-1 h-full left-0`}></div>
 
-                            <p class={`flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group`}>
+                            <p class={`flex items-center p-2 ${name == 'orders' ? 'text-darkred' : 'text-gray-700'} rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group`}>
                                 <BiCompass size={22} />
                                 <span class="flex-1 ml-3 whitespace-nowrap">Orders</span>
                             </p>
-                        </li>
-                        <li  className='relative pl-3'>
-                        <div className={`${name==='inbox'?'block':'hidden'} absolute bg-darkred w-2 h-full left-0`}></div>
+                        </li></Link>
 
-                            <p class={`flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group `}>
-                                <BiSolidInbox size={22} />
-                                <span class="flex-1 ml-3 whitespace-nowrap">Inbox</span>
-                                <span class="inline-flex items-center justify-center w-3 h-3 p-3 ml-3 text-sm font-medium text-blue-800 bg-blue-100 rounded-full dark:bg-blue-900 dark:text-blue-300">3</span>
-                            </p>
-                        </li>
-                        <li  className='relative pl-3'>
-                        <div className={`${name==='staff'?'block':'hidden'} absolute bg-darkred w-2 h-full left-0`}></div>
+                        <Link to={'/admin-settings'}><li className='relative pl-3'>
+                            <div className={`${name === 'settings' ? 'block' : 'hidden'} absolute bg-darkred w-1 h-full left-0`}></div>
 
-                            <p class={`flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group`}>
-                                <BiUser size={22} />
-                                <span class="flex-1 ml-3 whitespace-nowrap">Our Staff</span>
-                            </p>
-                        </li>
-                        <li  className='relative pl-3'>
-                        <div className={`${name==='settings'?'block':'hidden'} absolute bg-darkred w-2 h-full left-0`}></div>
-
-                            <p class={`flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group`}>
+                            <p class={`flex items-center p-2 ${name == 'settings' ? 'text-darkred' : 'text-gray-700'} rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group`}>
                                 <AiOutlineSetting size={22} />
                                 <span class="flex-1 ml-3 whitespace-nowrap">Settings</span>
                             </p>
                         </li>
-                        <li  className='relative pl-3'>
-                        <div className={`${name==='store'?'block':'hidden'} absolute bg-darkred w-2 h-full left-0`}></div>
+                        </Link>
+                        <li className='relative pl-3 cursor-pointer'>
+                            <div className={`${name === 'store' ? 'block' : 'hidden'} absolute bg-darkred w-1 h-full left-0`}></div>
 
-                            <p class={`flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group`}>
+                            <p class={`flex items-center p-2 ${name == 'store' ? 'text-darkred' : 'text-gray-700'} rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group`}>
                                 <BiBullseye size={22} />
                                 <span class="flex-1 ml-3 whitespace-nowrap">Online Store</span>
+                            </p>
+                        </li>                        
+                        <li className='relative pl-3 cursor-pointer' onClick={userSignOut}>
+
+                            <p class={`flex items-center p-2 text-black-700 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group`}>
+                                <BiLogOut  size={22}  />
+                                <span class="flex-1 ml-3 whitespace-nowrap">Logout</span>
                             </p>
                         </li>
 

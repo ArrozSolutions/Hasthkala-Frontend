@@ -69,47 +69,49 @@ const SingleProduct = () => {
             {product &&
                 <div className='flex flex-col'>
                     <Header />
+                    <div className='hidden sm:block'>
                     <Header2 />
-                    <div className='flex min-h-[800px]'>
-                        <div className='w-1/2 h-full'>
-                            <div className='flex items-center justify-center w-full h-[600px]'>
+                    </div>
+                    <div className='flex flex-col sm:flex-row min-h-[800px]'>
+                        <div className='w-full sm:w-1/2 h-full'>
+                            <div className='flex flex-col-reverse sm:flex-row items-center justify-center w-full h-[400px] sm:h-[600px]'>
                                 <div className='flex flex-col'>
                                     {
                                         product?.images.map((img, key) => (
-                                            <div className='h-[85px] w-[85px] border border-[#1a1a1d30] shadow mb-8  active:border-red'><img className='h-full w-full' src={img.img} alt="" /></div>
+                                            <div className='sm:h-[85px] h-[75px] w-[75-x] sm:w-[85px] border border-[#1a1a1d30] shadow mb-8  active:border-red'><img className='h-full w-full' src={img.img} alt="" /></div>
                                         ))
                                     }
                                 </div>
-                                <div className='h-[390px] w-[390px] ml-20'><img className='rounded h-full w-full' src={product?.images[0]?.img} alt="" /></div>
+                                <div className='h-[350px] mt-20 sm:mt-0 mb-3 sm:mb-0 sm:h-[390px] w-full sm:w-[390px] sm:ml-20'><img className='rounded h-full w-full' src={product?.images[0]?.img} alt="" /></div>
                             </div>
                         </div>
-                        <div className='w-1/2 h-full pl-20 pr-40 pt-14'>
-                            <div className='text-[31px] uppercase font-dmsans w-full font-semibold'>{product?.name}</div>
-                            <div className='flex mt-3 items-center'>
-                                <span className='w-4 h-4 mr-[4px]'><img className='w-full h-full' src={GoldenStar} alt="" /></span>
-                                <span className='w-4 h-4 mr-[4px]'><img className='w-full h-full' src={GoldenStar} alt="" /></span>
-                                <span className='w-4 h-4 mr-[4px]'><img className='w-full h-full' src={GoldenStar} alt="" /></span>
-                                <span className='w-4 h-4 mr-[4px]'><img className='w-full h-full' src={GoldenStar} alt="" /></span>
-                                <span className='w-4 h-4 mr-[4px]'><img className='w-full h-full' src={GrayStar} alt="" /></span>
-                                &nbsp;. 4 ratings</div>
+                        <div className='w-full sm:w-1/2 h-full pl-3 sm:pl-20 pr-5 sm:pr-40 pt-14 mt-5 sm:mt-0'>
+                            <div className='text-sm sm:text-[31px] uppercase font-dmsans w-full font-semibold'>{product?.name}</div>
+                            <div className='flex mt-1 sm:mt-3 items-center text-xs sm:text-sm'>
+                                <span className='sm:w-4 sm:h-4 w-3 h=3 mr-[1px]'><img className='w-full h-full' src={GoldenStar} alt="" /></span>
+                                <span className='sm:w-4 sm:h-4 w-3 h=3 mr-[1px]'><img className='w-full h-full' src={GoldenStar} alt="" /></span>
+                                <span className='sm:w-4 sm:h-4 w-3 h=3 mr-[1px]'><img className='w-full h-full' src={GoldenStar} alt="" /></span>
+                                <span className='sm:w-4 sm:h-4 w-3 h=3 mr-[1px]'><img className='w-full h-full' src={GoldenStar} alt="" /></span>
+                                <span className='sm:w-4 sm:h-4 w-3 h=3 mr-[1px]'><img className='w-full h-full' src={GrayStar} alt="" /></span>
+                                &nbsp; 4 ratings</div>
                             <div className='flex mt-5'>
-                                <div className='text-3xl font-dmsans font-semibold mr-2'>₹{product?.price}</div>
+                                <div className='text-2xl sm:text-3xl font-dmsans font-semibold mr-2'>₹{product?.price}</div>
                                 <div className='flex flex-col'>
-                                    <div className='flex text-sm'>
-                                        <p className=' line-through mr-1'>₹ 549</p>
-                                        <p className='text-[#20992c]'>36% off</p>
+                                    <div className='flex text-xs sm:text-sm'>
+                                        <p className=' line-through mr-1 font-dmsans'>₹ 549</p>
+                                        <p className='text-[#20992c] font-dmsans'>36% off</p>
                                     </div>
-                                    <p className='text-xs text-gray'>Inclusive of all taxes</p>
+                                    <p className='text-[11px] sm:text-xs text-gray'>Inclusive of all taxes</p>
                                 </div>
                             </div>
-                            <ul className='list-disc pl-7 mt-5 text-sm'>
+                            <ul className='list-disc pl-5 sm:pl-7 mt-5 sm:text-sm text-xs' >
                                 <li>This product will be shipped using our courier partners</li>
                                 <li>Products will be shipped within 5-6 days of order placement</li>
                             </ul>
-                            <div className='mt-5 text-lg'>Deliver To</div>
-                            <div className='flex justify-between mt-4'>
-                                <input type="text" placeholder='Pincode' className='h-9 w-[400px] pl-3 rounded border border-[#1a1a1d53]' />
-                                <button className='h-9 rounded w-24 font-dmsans text-s flex items-center justify-center bg-[#659ddc72]'>Check</button>
+                            <div className='mt-5 text-sm font-dmsans sm:text-lg'>Deliver To</div>
+                            <div className='flex justify-between sm:mt-4 mt-3'>
+                                <input type="text" placeholder='Pincode' className='h-8 sm:h-9 w-[250px] sm:w-[400px] pl-3 rounded border border-[#1a1a1d53] mr-1 sm:mr-0 text-sm' />
+                                <button className='h-8 sm:h-9 rounded w-24 font-dmsans text-sm flex items-center justify-center bg-[#659ddc72]'>Check</button>
                             </div>
                             {
                                 product?.quantity < 1 &&
@@ -123,8 +125,8 @@ const SingleProduct = () => {
                                     <div className='h-full flex w-1/3 justify-center items-center text-2xl pb-1 cursor-pointer' onClick={incQuantity}>+</div>
                                 </div>
                             }
-                            <div className='flex mt-5 justify-between'>
-                                <button className='w-[250px] h-8 rounded font-dmsans text-sm border border-[#1a1a1d43]' onClick={(e) => {
+                            <div className='flex mt-3 sm:mt-5 justify-between'>
+                                <button className=' w-[162px] sm:w-[250px] h-8 rounded font-dmsans text-sm border border-[#1a1a1d43]' onClick={(e) => {
                                     console.log("Add to cart");
                                     const uid = auth?._id;
                                     const pid = product?._id;
@@ -132,14 +134,14 @@ const SingleProduct = () => {
                                         successToast("Item Added To Cart");
                                     })
                                 }}>Add to Cart</button>
-                                <button className='w-[250px] h-8 rounded font-dmsans text-sm bg-darkred text-white'>Buy Now</button>
+                                <button className='w-[162px] sm:w-[250px] h-8 rounded font-dmsans text-sm bg-darkred text-white'>Buy Now</button>
                             </div>
-                            <div className='flex mt-5 flex-col text-[15px]'>
+                            <div className='flex mt-5 flex-col text-[13px] sm:text-[15px]'>
                                 <div className='flex uppercase'><p className='font-dmsans'>SKU:&nbsp;</p><p className='text-gray'> IUS000113_VC00099</p></div>
                                 <div className='flex uppercase'><p className='font-dmsans'>CATEGORIES:&nbsp;</p><p className='text-gray'>{product?.category?.name}</p></div>
                             </div>
                             <div className='mt-5'>
-                                <h1 className='font-dmsans text-lg'>Product Details</h1>
+                                <h1 className='font-dmsans text-[14px] sm:text-lg'>Product Details</h1>
                                 <h2 className='font-dmsans text-sm mt-5'>Product Description:</h2>
                                 <p className='text-gray text-xs'>{product?.description}</p>
                                 <h2 className='font-dmsans text-sm mt-5'>Dimensions:</h2>

@@ -22,10 +22,10 @@ const FooterPages = () => {
                 <Header />
                 <Header2 />
                 <div className='w-full min-h-[200px] flex justify-center'>
-                    <div className=' w-[950px] mt-5 shadow-xl border border-[#1a1a1d26] pl-24 pr-24 pt-10 pb-10 mb-10'>
+                    <div className=' sm:w-[950px] mt-5 shadow-xl border border-[#1a1a1d26] sm:pl-24 pl-3 pr-3 sm:pr-24 pt-10 pb-10 mb-10'>
                         {pageType === "return&refund" &&
-                            <p className=''>
-                                <h1 className='font-dmsans uppercase text-xl font-semibold'>Returns & Refund</h1><br />
+                            <p className='text-xs'>
+                                <h1 className='font-dmsans uppercase sm:text-xl text-sm font-semibold'>Returns & Refund</h1><br />
                                 Please read our Returns & Refund Policy here. <br /><br />
 
                                 <span className='font-semibold'>I have received a damaged product, what should I do?</span> <br /><br />
@@ -51,8 +51,8 @@ const FooterPages = () => {
                         }
                         {
                             pageType === "faqs" &&
-                            <p>
-                                <h1 className='font-dmsans uppercase text-xl font-semibold'>FAQ'S</h1>
+                            <p className='text-xs'>
+                                <h1 className='font-dmsans uppercase text-sm sm:text-xl font-semibold'>FAQ'S</h1>
                                 Frequently Asked Questions <br /><br />
 
                                 <span className='font-semibold'>What products does HARSH HASTHKALA sell?</span> <br /><br />
@@ -97,8 +97,8 @@ const FooterPages = () => {
 
                         {
                             pageType === "privacypolicy" &&
-                            <p>
-                                <h1 className='font-dmsans uppercase text-xl font-semibold'>
+                            <p className='text-xs'>
+                                <h1 className='font-dmsans uppercase text-sm  sm:text-xl font-semibold'>
                                     Privacy Policy
                                 </h1><br />
 
@@ -129,8 +129,8 @@ const FooterPages = () => {
 
                         {
                             pageType === "terms&condition" &&
-                            <p>
-                                <h1 className='font-dmsans uppercase text-xl font-semibold'>
+                            <p className='text-xs'>
+                                <h1 className='font-dmsans uppercase text-sm sm:text-xl font-semibold'>
                                     TERMS AND CONDITIONS
                                 </h1><br />
 
@@ -158,8 +158,8 @@ const FooterPages = () => {
 
 
                         {pageType === "ourstory" &&
-                            <p>
-                                 <h1 className='font-dmsans uppercase text-xl font-semibold'>
+                            <p className='text-xs'>
+                                 <h1 className='font-dmsans uppercase text-sm sm:text-xl font-semibold'>
                                  OUR STORY
                                 </h1><br />
                                 

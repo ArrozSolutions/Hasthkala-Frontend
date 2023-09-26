@@ -3,15 +3,20 @@ import { useDispatch, useSelector } from 'react-redux';
 import { update } from '../../actions/User/UserAction';
 import { useNavigate } from 'react-router-dom';
 import SideBar from '../../components/SideBar/SideBar';
-import { BiSolidBell, BiSearch, BiSolidDownArrow} from 'react-icons/bi';
+import { BiSolidBell, BiSearch, BiSolidDownArrow, BiMenu, BiCross, BiX} from 'react-icons/bi';
 import UserImage from '../../assets/lamp.jpg';
 
 const UserProfile = () => {
 
+  const [hamburger,setHamburger] = useState(false);
   const dispatch = useDispatch();
   const auth = useSelector(state => state.user);
 
   const navigate = useNavigate();
+
+  const toggleHamburger=()=>{
+    setHamburger(!hamburger);
+  }
 
   useEffect(() => {
     if (auth?.user) {
@@ -68,13 +73,18 @@ const UserProfile = () => {
   return (
     <div>
       <div className='flex'>
-        <SideBar name={"profile"}/>
+        <SideBar name={"profile"} show={hamburger}/>
 
-        <div className='flex flex-col w-full h-screen justify-start items-center pl-10 pr-5'>
+        <div className='flex flex-col w-full h-screen justify-start items-center sm:pl-10 pl-3 pr-5'>
 
-          <div className='flex justify-between w-full h-16 items-center'>
-            <div className='flex justify-between items-center w-full'>
-            <div className='relative flex items-center'>
+          <div className='flex justify-between w-full h-20 sm:h-16 items-center'>
+            <div className='flex mt-2 sm:mt-0 justify-between items-center w-full'>
+            <div className='z-50' onClick={toggleHamburger}>
+            {
+              hamburger?<BiX size={23}/>:<BiMenu size={23}/>
+            }
+            </div>
+            <div className='hidden relative sm:flex items-center'>
               <span className='absolute ml-3 mt-1'><BiSearch color='gray' size={20}/></span>
               <input className='bg-[#7a7a8314] h-10 pl-9 w-[300px] rounded-full' type="text" placeholder='Search' />
             </div>
@@ -91,20 +101,20 @@ const UserProfile = () => {
             </div>
           </div>
 
-          <div className='w-full pl-2 text-2xl font-semibold mt-3 mb-9'>Edit Profile</div>
+          <div className='w-full pl-2 text-lg sm:text-2xl font-semibold mt-8 sm:mt-3 mb-9'>Edit Profile</div>
 
           <form action="" className='w-full pl-2 pr-2' onSubmit={formSubmitHandler}>
-            <div className='flex w-[780px] flex-col'>
+            <div className='flex w-full sm:w-[780px] flex-col'>
 
               <div className='flex w-full justify-between'>
 
                 <div className='flex flex-col'>
-                  <label htmlFor="firstname" className='mb-2 font-semibold'>First Name</label>
-                  <input onChange={(e) => { setFirstName(e.target.value) }} type="text" placeholder={firstname} name='firstname' className=' h-[46px] w-[350px] border rounded pl-3 text-sm capitalize' />
+                  <label htmlFor="firstname" className='mb-2 font-semibold sm:text-[16px] text-sm'>First Name</label>
+                  <input onChange={(e) => { setFirstName(e.target.value) }} type="text" placeholder={firstname} name='firstname' className=' sm:h-[46px] w-[160px] sm:w-[350px] border rounded pl-3 text-xs sm:text-sm capitalize' />
                 </div>
                 <div className='flex flex-col'>
-                  <label htmlFor="lastname" className='mb-2 font-semibold'>Last Name</label>
-                  <input onChange={(e) => { setLastName(e.target.value) }} type="text" placeholder={lastname} name='lastname' className='h-[46px] w-[350px] border rounded pl-3 text-sm capitalize' />
+                  <label htmlFor="lastname" className='mb-2 font-semibold sm:text-[16px] text-sm'>Last Name</label>
+                  <input onChange={(e) => { setLastName(e.target.value) }} type="text" placeholder={lastname} name='lastname' className='sm:h-[46px] w-[160px] sm:w-[350px] border rounded pl-3 text-xs sm:text-sm capitalize' />
                 </div>
 
               </div>
@@ -113,8 +123,8 @@ const UserProfile = () => {
 
               <div className='flex w-full justify-between'>
                 <div className='flex flex-col w-full'>
-                  <label htmlFor="email" className='mb-2 font-semibold'>Email</label>
-                  <input disabled type="email" placeholder={email} name='email' className='h-[46px] w-full border rounded pl-3 text-sm' />
+                  <label htmlFor="email" className='mb-2 font-semibold sm:text-[16px] text-sm'>Email</label>
+                  <input disabled type="email" placeholder={email} name='email' className='sm:h-[46px] w-full border rounded pl-3 text-xs sm:text-sm' />
                 </div>
               </div>
 
@@ -122,8 +132,8 @@ const UserProfile = () => {
 
               <div className='flex w-full justify-between'>
                 <div className='flex flex-col w-full'>
-                  <label htmlFor="contactnumber" className='mb-2 font-semibold'>Contact Number</label>
-                  <input onChange={(e) => { setPhone(e.target.value) }} type="text" placeholder={phone} name='contactnumber' className='h-[46px] w-full border rounded pl-3 text-sm ' />
+                  <label htmlFor="contactnumber" className='mb-2 font-semibold sm:text-[16px] text-sm'>Contact Number</label>
+                  <input onChange={(e) => { setPhone(e.target.value) }} type="text" placeholder={phone} name='contactnumber' className='sm:h-[46px] w-full border rounded pl-3 text-xs sm:text-sm' />
                 </div>
               </div>
 
@@ -132,8 +142,8 @@ const UserProfile = () => {
               <div className='flex w-full justify-between'>
 
                 <div className='flex flex-col'>
-                  <label htmlFor="city" className='mb-2 font-semibold'>City</label>
-                  <select onChange={(e) => { setCity(e.target.value) }} className='w-[350px] h-[46px]  border rounded  pl-3 text-sm pr-2'>
+                  <label htmlFor="city" className='mb-2 font-semibold sm:text-[16px] text-sm'>City</label>
+                  <select onChange={(e) => { setCity(e.target.value) }} className='sm:w-[350px] w-[160px] sm:h-[46px]  border rounded  pl-3 text-xs sm:text-sm pr-2'>
                     {city == null ?
                       <option value="" defaultChecked hidden>Select City</option>:
                       <option value="" defaultChecked hidden>{city}</option>
@@ -144,8 +154,8 @@ const UserProfile = () => {
                   </select>
                 </div>
                 <div className='flex flex-col'>
-                  <label htmlFor="state" className='mb-2 font-semibold'>State</label>
-                  <select onChange={(e) => { setState(e.target.value) }} className='w-[350px] h-[46px]  border rounded  pl-3 text-sm pr-2'>
+                  <label htmlFor="state" className='mb-2 font-semibold sm:text-[16px] text-sm'>State</label>
+                  <select onChange={(e) => { setState(e.target.value) }} className='sm:w-[350px] w-[160px] sm:h-[46px]  border rounded  pl-3 text-xs sm:text-sm pr-2'>
                     {state == null ?
                       <option value="" defaultChecked hidden>Select State</option>:
                       <option value="" defaultChecked hidden>{state}</option>
@@ -162,8 +172,8 @@ const UserProfile = () => {
 
               <div className='flex w-full justify-between'>
                 <div className='flex flex-col w-full'>
-                  <label htmlFor="address" className='mb-2 font-semibold'>Address</label>
-                  <input onChange={(e) => { setAddress(e.target.value) }} type="text" placeholder={address} name='address' className='h-[46px] w-full border rounded  pl-3 text-sm ' />
+                  <label htmlFor="address" className='mb-2 font-semibold sm:text-[16px] text-sm'>Address</label>
+                  <input onChange={(e) => { setAddress(e.target.value) }} type="text" placeholder={address} name='address' className='sm:h-[46px] w-full border rounded  pl-3 text-xs sm:text-sm ' />
                 </div>
               </div>
 
@@ -171,18 +181,18 @@ const UserProfile = () => {
 
               <div className='flex w-full justify-between'>
                 <div className='flex flex-col w-full'>
-                  <label htmlFor="password" className='mb-2 font-semibold'>Password</label>
-                  <input onChange={(e) => { setPassword(e.target.value) }} type="password" placeholder='' name='password' className='h-[46px] w-full border rounded pl-3 text-sm ' required />
+                  <label htmlFor="password" className='mb-2 font-semibold sm:text-[16px] text-sm'>Password</label>
+                  <input onChange={(e) => { setPassword(e.target.value) }} type="password" placeholder='' name='password' className='sm:h-[46px] w-full border rounded pl-3 text-xs sm:text-sm' required />
                 </div>
               </div>
 
             </div>
 
-            <div className='flex mt-5'>
+            <div className='flex mt-5 mb-5'>
               <button className='w-[100px] h-8 flex justify-center items-center border border-blue rounded text-blue mr-6 hover:scale-105 transition-all' onClick={
                 ()=>{navigate('/')}
               }>Cancel</button>
-              <button className='w-[100px] h-9 flex justify-center items-center bg-blue rounded text-white hover:scale-105 transition-all' type='submit' >Save</button>
+              <button className='w-[100px] sm:h-9 flex justify-center items-center bg-darkred rounded text-white hover:scale-105 transition-all' type='submit' >Save</button>
             </div>
           </form>
 

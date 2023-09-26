@@ -139,7 +139,7 @@ const Login = () => {
 
   const emailVerification = (e) => {
     e.preventDefault();
-    if (emailVerificationCode === auth?.otp) {
+    if (emailVerificationCode == auth?.otp) {
       const user = {
         email,
         password
@@ -178,7 +178,7 @@ const Login = () => {
       errorToast("Invalid Mobile Number");
       return;
     }
-    if (password === confirmPassword) {
+    if (password == confirmPassword) {
       setLoading(true);
       const user = {
         fullname,

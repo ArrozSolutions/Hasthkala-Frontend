@@ -10,11 +10,11 @@ import Header from '../../components/Header/Header';
 import Header2 from '../../components/Header2/Header2';
 import CircularCategories from '../../components/Carousel/CircularCategories'
 import Footer from '../../components/Footer/Footer';
-import Banner from '../../assets/banner.jpg'
 import { useState } from 'react';
 import Blog1 from '../../assets/blog1.jpg'
 import Blog2 from '../../assets/blog2.png'
 import Blog3 from '../../assets/blog3.jpg'
+import Banner from '../../components/Carousel/Banner';
 
 const Home = () => {
 
@@ -29,11 +29,11 @@ const Home = () => {
     }
   }, [allcategories])
 
-  useEffect(()=>{
-    if(auth?.user?.isAdmin){
+  useEffect(() => {
+    if (auth?.user?.isAdmin) {
       navigate('/admin-dashboard')
     }
-  },[auth,navigate])
+  }, [auth, navigate])
 
   return (
     <>
@@ -43,8 +43,8 @@ const Home = () => {
         <Header2 />
 
         {/* GOLDEN BORDER  */}
-        <div className='w-full pl-5 pr-5 sm:pl-14 sm:pr-14 lg:pl-20 lg:pr-20 pt-6 sm:pt-5'>
-          <Link to={'/listing'}><img className='h-full max-w-full' src={Banner} alt="" /></Link>
+        <div className='w-full pl-1 pr-1 sm:pl-14 sm:pr-14 lg:pl-20 lg:pr-20 pt-6 sm:pt-5'>
+          <Banner />
         </div>
         {/* GOLDEN BORDER  */}
 
@@ -100,18 +100,18 @@ const Home = () => {
         {/* SEARCH  */}
         <div className='flex h-[50px] sm:h-[90px] w-full  sm:pl-20 sm:pr-20 pl-5 pr-5  sm:rounded relative items-center mt-10'>
           <div className='absolute w-full sm:w-[400px] hidden sm:flex justify-center items-center z-0 bottom-0 sm:right-[500px] '>
-            <img className='h-full w-[120px] ml-8 sm:ml-0 sm:w-[450px]' src={GiftBoxes} alt="" />
+            <img className='h-full w-[120px] ml-8 sm:ml-0 sm:w-[450px] z-40' src={GiftBoxes} alt="" />
           </div>
 
-          <div className='z-10 h-full w-full border border-red rounded-xl flex items-center justify-between'>
+          <div className='z-10 h-full w-full border border-[#DD2745] rounded-xl flex items-center justify-between'>
 
             <div className='flex flex-col pl-2 sm:pl-8'>
-              <p className='uppercase text-red font-semibold text-xs sm:text-xl font-noto '>Find The Perfect Gift</p>
-              <p className='text-[9px] sm:text-xs text-red'>Discover Gift by Recipent, Relationship & Occasions</p>
+              <p className='uppercase text-[#DD2745] font-semibold text-xs sm:text-xl font-noto '>Find The Perfect Gift</p>
+              <p className='text-[9px] sm:text-xs text-[#DD2745]'>Discover Gift by Recipent, Relationship & Occasions</p>
             </div>
 
             <div className='flex pr-2 sm:pr-8'>
-              <Link to={'/listing'}><button className='bg-red text-[#ffffff] text-[12px] sm:text-sm sm:w-[300px] h-[30px] w-[110px] sm:h-[65px] rounded sm:rounded-md'>Start Search</button></Link>
+              <Link to={'/listing'}><button className='bg-[#dd2745] text-[#ffffff] text-[12px] sm:text-sm sm:w-[300px] h-[30px] w-[110px] sm:h-[65px] rounded sm:rounded-md'>Start Search</button></Link>
             </div>
 
           </div>
@@ -133,7 +133,7 @@ const Home = () => {
 
               <div className='flex h-[160px] sm:h-[330px] sm:w-[700px] border shadow border-[#1a1a1d39] rounded-xl sm:mr-10'>
                 <div className='flex w-1/2 h-full p-2 mr-5 sm:mr-20'>
-                <div className='overflow-hidden h-full w-full'><img className='w-full h-full rounded-lg' src={category[0]?.images[0]?.img} alt="" /></div>
+                  <div className='overflow-hidden h-full w-full'><img className='w-full h-full rounded-lg' src={category[0]?.images[0]?.img} alt="" /></div>
 
                 </div>
                 <div className='flex flex-col sm:pt-8 pt-2 cursor-pointer'>
@@ -149,7 +149,7 @@ const Home = () => {
 
               <div className='flex h-[160px] sm:h-[330px] sm:w-[700px] border shadow border-[#1a1a1d39] rounded-xl sm:mr-10'>
                 <div className='flex w-1/2 h-full p-2 mr-5 sm:mr-20'>
-                <div className='overflow-hidden h-full w-full'><img className='w-full h-full rounded-lg' src={category[1]?.images[0]?.img} alt="" /></div>
+                  <div className='overflow-hidden h-full w-full'><img className='w-full h-full rounded-lg' src={category[1]?.images[0]?.img} alt="" /></div>
 
                 </div>
                 <div className='flex flex-col sm:pt-8 pt-2 cursor-pointer'>
@@ -168,7 +168,7 @@ const Home = () => {
 
               <div className='flex flex-col sm:flex-row  sm:h-[220px] w-[433px] border shadow border-[#1a1a1d39] rounded-xl mr-2 sm:mr-5 items-center'>
                 <div className='flex w-full sm:w-1/2 h-full p-2 sm:mr-5 justify-center items-center'>
-                <div className='overflow-hidden h-full w-full'><img className='w-full h-full rounded-lg' src={category[2]?.images[0]?.img} alt="" /></div>
+                  <div className='overflow-hidden h-full w-full'><img className='w-full h-full rounded-lg' src={category[2]?.images[0]?.img} alt="" /></div>
 
                 </div>
                 <div className='flex flex-col cursor-pointer'>
@@ -183,7 +183,7 @@ const Home = () => {
 
               <div className='flex flex-col sm:flex-row  sm:h-[220px] w-[433px] border shadow border-[#1a1a1d39] rounded-xl mr-2 sm:mr-5 items-center'>
                 <div className='flex w-full sm:w-1/2 h-full p-2 sm:mr-5 justify-center items-center '>
-                <div className='overflow-hidden h-full w-full'><img className='w-full h-full rounded-lg' src={category[3]?.images[0]?.img} alt="" /></div>
+                  <div className='overflow-hidden h-full w-full'><img className='w-full h-full rounded-lg' src={category[3]?.images[0]?.img} alt="" /></div>
                 </div>
                 <div className='flex flex-col cursor-pointer'>
                   <h1 className='font-semibold sm:text-lg font-alegreya text-[14px]'>{category[3]?.name}</h1>
@@ -261,6 +261,9 @@ const Home = () => {
           </div>
 
         </div>
+        <br />
+        <br />
+        <br />
 
         {/* BLOGS  */}
 
