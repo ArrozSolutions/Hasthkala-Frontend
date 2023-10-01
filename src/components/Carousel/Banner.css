@@ -1,0 +1,29 @@
+.splide-4 .splide__pagination{
+    display: none;
+    color: white;
+    width: 100%;
+}
+.splide-4 .splide__arrow{
+    background-color: white;
+    opacity: 1;
+    color: white;
+} 
+.splide-4 .splide__arrow--prev{
+    background-color: rgba(209, 204, 204, 0.597);
+    opacity: 0.8;
+    color: white!important;
+    left: -25px;
+}
+.splide-4 .splide__arrow--next{
+    background-color: rgba(209, 204, 204, 0.597);
+    opacity: 0.8;
+    color: white!important;
+    right: -20px;
+}
+
+
+@media screen and (max-width:400px) {
+    .splide-4 .splide__arrow{
+        display: none;
+    }    
+}
