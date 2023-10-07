@@ -206,7 +206,7 @@ const Login = () => {
 
   const googleLogin=()=>{
 		window.open(
-			`http://localhost:5000/auth/google/callback`,
+			`https://backend.hhkgifts.com/auth/google/callback`,
 			"_self"
 		);
   }
