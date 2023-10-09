@@ -4,17 +4,24 @@ import Header2 from '../../components/Header2/Header2';
 import { useLocation } from 'react-router-dom';
 import { useState } from 'react';
 import { useEffect } from 'react';
+import { BiCross, BiPlus, BiX } from 'react-icons/bi';
+import Footer from '../../components/Footer/Footer';
 
 const FooterPages = () => {
 
     const [pageType, setPageType] = useState(null);
     const location = useLocation();
 
-    useEffect(()=>{
-        if(location){
+    useEffect(() => {
+        if (location) {
             setPageType(location?.state?.type)
         }
-    },[location])
+    }, [location])
+
+    const [target, setTarget] = useState(null);
+    const toggleTarget = (id) => {
+        setTarget(id);
+    }
 
     return (
         <>
@@ -55,43 +62,71 @@ const FooterPages = () => {
                                 <h1 className='font-dmsans uppercase text-sm sm:text-xl font-semibold'>FAQ'S</h1>
                                 Frequently Asked Questions <br /><br />
 
-                                <span className='font-semibold'>What products does HARSH HASTHKALA sell?</span> <br /><br />
+                                <div className='flex pt-10 w-full items-center justify-between'>
+                                    <div className='flex'>
+                                        <div className='flex font-dmsans text-3xl font-bold text-[#383838] mr-8'>
+                                            01
+                                        </div>
+                                        <div className='flex flex-col pr-9'>
+                                            <p className='font-dmsans mb-2 text-xl font-semibold bg-white h-10 z-50'>Where can I watch?</p>
+                                            <p className={`text-[#484848] transition-all duration-300 relative ${target==1?'block':'hidden'} z-1`}>
+                                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempora, in veritatis? Quidem, sequi asperiores iure optio quasi ea itaque accusantium?
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div className='cursor-pointer' onClick={() => {
+                                        target == null ? toggleTarget(1) : toggleTarget(null);
+                                    }}>{
+                                        target == 1?
+                                        <BiX size={30}/>:
+                                        <BiPlus size={30} />
+                                    }
+                                    </div>
+                                </div>
 
-                                Harsh Hasthkala brand is known for its beautiful and affordable gifts. In this industry of gifts we are very different with our practice which includes “Perfect Gift with Perfect Craft” . We have created this brand with all the love we have for gifts and with a vision to spread love with our special gift hampers to your special ones. <br /><br />
+                                <div className='flex pt-10 w-full items-center justify-between'>
+                                    <div className='flex'>
+                                        <div className='flex font-dmsans text-3xl font-bold text-[#383838] mr-8'>
+                                            02
+                                        </div>
+                                        <div className='flex flex-col pr-9'>
+                                            <p className='font-dmsans mb-2 text-xl font-semibold bg-white h-10 z-50'>Where can I watch?</p>
+                                            <p className={`text-[#484848] transition-all duration-300 relative ${target==2?'block':'hidden'} z-1`}>
+                                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempora, in veritatis? Quidem, sequi asperiores iure optio quasi ea itaque accusantium?
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div className='cursor-pointer' onClick={() => {
+                                        target == null ? toggleTarget(2) : toggleTarget(null);
+                                    }}>{
+                                        target == 2?
+                                        <BiX size={30}/>:
+                                        <BiPlus size={30} />
+                                    }
+                                    </div>
+                                </div>
 
-                                <span className='font-semibold'>Why should I shop from Harsh Hasthkala?</span><br /><br />
-
-                                With affordable pricing, attractive offers, and 100% genuine products, we will leave you pleasantly surprised. Each product is unique and will make you go ‘wow’! <br /><br />
-
-                                ORDERS & DELIVERY <br /><br />
-                                <span className='font-semibold'>How will I know that my order is confirmed?</span> <br /><br />
-
-                                When you place your order, we know that you want to receive the item as fast as possible. We will make that happen. <br /><br />
-
-                                <span className='font-semibold'>When will you ship my order?</span> <br /><br />
-
-                                We normally ship all orders within 5 – 9 business days. Final delivery time will vary based on delivery location. For further details, please check Shipping & Delivery (plz add link of that page ) <br /><br />
-
-                                <span className='font-semibold'>When will my order get delivered?</span><br /><br />
-
-                                Transit and delivery time may vary depending on your location and the items ordered. We’ll send you a link to track the status of your order. <br /><br />
-
-                                <span className='font-semibold'>How much do you charge for delivery?</span> <br /><br />
-
-                                We offer free shipping on all orders. <br /><br />
-
-                                <span className='font-semibold'>How can I track my order?</span> <br /><br />
-
-                                An email is sent to you after the order is shipped. It contains the tracking number and details of the service provider. If you are having trouble reading the emails or if you haven’t received any updates, please get in touch with us immediately <br /><br />
-
-                                <span className='font-semibold'>How do I place bulk orders? </span><br /><br />
-
-                                Our products are simply awesome and buying one is just not enough! You can place bulk orders by contacting us at <span className='font-semibold'>sales@harshhasthkala.com</span> . We offer customization as well. <br /><br />
-
-                                I don’t want the package to carry an invoice / amount as it is a gift. Can this be done? <br /><br />
-
-                                Unfortunately, invoices are mandatory due to government regulations.
-
+                                <div className='flex pt-10 w-full items-center justify-between'>
+                                    <div className='flex'>
+                                        <div className='flex font-dmsans text-3xl font-bold text-[#383838] mr-8'>
+                                            03
+                                        </div>
+                                        <div className='flex flex-col pr-9'>
+                                            <p className='font-dmsans mb-2 text-xl font-semibold bg-white h-10 z-50'>Where can I watch?</p>
+                                            <p className={`text-[#484848] transition-all duration-300 relative ${target==3?'block':'hidden'} z-1`}>
+                                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempora, in veritatis? Quidem, sequi asperiores iure optio quasi ea itaque accusantium?
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div className='cursor-pointer' onClick={() => {
+                                        target == null ? toggleTarget(3) : toggleTarget(null);
+                                    }}>{
+                                        target == 3?
+                                        <BiX size={30}/>:
+                                        <BiPlus size={30} />
+                                    }
+                                    </div>
+                                </div>
                             </p>
                         }
 
@@ -159,10 +194,10 @@ const FooterPages = () => {
 
                         {pageType === "ourstory" &&
                             <p className='text-xs'>
-                                 <h1 className='font-dmsans uppercase text-sm sm:text-xl font-semibold'>
-                                 OUR STORY
+                                <h1 className='font-dmsans uppercase text-sm sm:text-xl font-semibold'>
+                                    OUR STORY
                                 </h1><br />
-                                
+
                                 Founded in 2022, Harsh hasthkala is a premier company specializing in providing both customized and standardized gifts that are guaranteed to bring joy and smiles to your loved ones' faces. Our mission is to help you find the perfect gift that truly reflects the uniqueness and individuality of your special someone. <br /><br />
 
                                 At Harsh hasthkala, we understand the struggle of finding the right gift, that’s what happened with Let me share with you the story of this incredibly talented founder who enjoys giving gifts to his loved ones. The most unique thing about him is that he always tried to add a personal touch to each gift he gave, and as a result, no girl ever learned about any other girl in his life (har ladki ke liye alag gift tha kyu ki). Jokes aside, he realised that this was a problem with our gift-giving custom, where our minds are trained just to give clothes and chocolates as gifts, let’s bring this new trend of personalized gifting, giving gifts with a special touch for your khass people, Since we are based in Madhya Pradesh, he also noticed how the state's art is diminishing and the art that was popular during those times is disappearing day by day. The talented artists were leaving their craft and taking jobs outside with extremely low pay, and the main problem is that there is no platform for them to sell this incredible art form. We have made a new platform for these skilful artists to promote and sell their art on our platform and we always wanted to add a touch of our tribal art as we have Mandana Painting, Pithora painting, Gond art etc. which are beautiful and deserves a social importance. <br /><br />
@@ -176,6 +211,7 @@ const FooterPages = () => {
                     </div>
                 </div>
             </div>
+            <Footer/>
         </>
     )
 }

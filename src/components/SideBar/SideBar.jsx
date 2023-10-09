@@ -24,7 +24,7 @@ const SideBar = ({ name,show }) => {
 
     const userSignOut = () => {
         if(logintype == "google"){
-            window.open(`https://backend.hhkgifts.com/auth/logout`,"_self");
+            window.open(`http://localhost:5000/auth/logout`,"_self");
         }
         dispatch(signOut()).then((userSignedOut) => {
             navigate('/login')

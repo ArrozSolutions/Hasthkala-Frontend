@@ -51,7 +51,7 @@ const CartCard = ({ item }) => {
     return (
         <div className='flex flex-col sm:flex-row w-full h-[140px] sm:h-[130px] pl-3 sm:pl-10 justify-between mb-20 sm:mb-10'>
             <div className='flex'>
-                <div className='h-[100px] w-[92px] sm:w-[130px] mr-3 sm:mr-6 border border-[#1a1a1d3c] p-2 sm:p-5 rounded'><img className='h-full w-full' src={item?.productid?.images[0]?.img} alt="" /></div>
+                <div className='h-[100px] w-[92px] sm:h-[130px] sm:w-[130px] mr-3 sm:mr-6 border border-[#1a1a1d3c] p-2 sm:p-2 rounded'><img className='h-full w-full' src={item?.productid?.images[0]?.img} alt="" /></div>
                 <div className='flex flex-col '>
                     <p className='font-semibold font-dmsans uppercase text-[#1a1a1d] text-[12px] sm:text-[15px]'>{item?.productid?.name}</p>
                     <p className='text-gray text-xs sm:text-sm'>Size: medium, <br /> Color:blue,<br /> Material:Plastic</p>

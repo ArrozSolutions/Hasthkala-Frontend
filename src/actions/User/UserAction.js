@@ -1,4 +1,5 @@
 import {
+  contactEmailConstants,
   emailConstants,
   getUserConstants,
   googleLoginConstant,
@@ -8,6 +9,25 @@ import {
   userUpdateConstants
 } from "../../constant/constant";
 import axios from "../../helpers/axios";
+
+export const contactUsMailAction = (post) => {
+  return async (dispatch) => {
+    dispatch({ type: contactEmailConstants.CONTACT_EMAIL_REQUEST });
+    const res = await axios.post('/contact-us-mail',{
+      ...post
+    });
+    if(res.status === 200){
+      const {message} =res.data;
+      dispatch({
+        type:contactEmailConstants.CONTACT_EMAIL_SUCCESS,
+        payload:{
+          message
+        }
+      })
+    }
+  }
+}
+
 
 export const loginWithGoogle = (user) => {
   return async (dispatch) => {

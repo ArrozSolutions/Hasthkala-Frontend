@@ -7,18 +7,19 @@ import { useEffect } from 'react';
 import { getAllProducts, getFilteredProducts, getSearchedProducts, setPageNumber } from '../../actions/Product/ProductAction';
 import Slider from '@material-ui/core/Slider';
 import './Listing.css';
-import { BiLoader, BiMenu, BiX } from 'react-icons/bi';
+import { BiLoader, BiMenu, BiMinus, BiPlus, BiX } from 'react-icons/bi';
 import Navbar from '../../components/Navbar/Navbar';
 
 const Listing = () => {
     const [checked, setChecked] = useState([]);
+    const [current, setCurrent] = useState(null);
     const [value, setValue] = useState([0, 4999]);
     const dispatch = useDispatch();
     const [totalProducts, setTotalProducts] = useState(null);
     const [shownProducts, setShownProducts] = useState(null);
     const [remainingProducts, setRemainingProducts] = useState(null);
     const allproducts = useSelector(state => state.initialData.products);
-    const allcategories = useSelector(state => state.initialData.categories);
+    const allcategories = useSelector(state => state.initialData.allcategory);
     const searchedProducts = useSelector(state => state.products.searchedProducts);
     const filteredProducts = useSelector(state => state.products.filteredproducts);
     const storePtype = useSelector(state => state.products.ptype);
@@ -28,6 +29,7 @@ const Listing = () => {
     // 1 - searched products
     // 2 - filtered products
     const [pType, setPType] = useState(null);
+    const [parentCategory, setParentCategory] = useState(null);
     const [page, setPage] = useState(1);
     const [hamburger, setHamburger] = useState(false);
 
@@ -35,9 +37,9 @@ const Listing = () => {
         setHamburger(!hamburger);
     }
 
-    useEffect(()=>{
-        window.scrollTo(0,0);
-    },[])
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, [])
 
     useEffect(() => {
         if (page_number) {
@@ -91,6 +93,19 @@ const Listing = () => {
         }
     }
 
+    useEffect(() => {
+        if (allcategories) {
+            const res = allcategories.filter(filterParent);
+            function filterParent(p) {
+                return p.parentid == undefined;
+            }
+            setParentCategory(res);
+        }
+    }, [allcategories])
+
+    const toggleCurrentParent = (id) => {
+        setCurrent(id);
+    }
 
 
     return (
@@ -100,7 +115,6 @@ const Listing = () => {
                     {
                         hamburger ? <BiX color='darkred' size={22} /> :
                             <BiMenu size={22} color='#1a1a1d' />
-
                     }
                 </div>
                 <Navbar show={hamburger} />
@@ -126,17 +140,51 @@ const Listing = () => {
                             </span>
                             <p className='font-semibold mb-4'>Filters</p>
                             {
-                                allcategories.map((category, key) => (
-                                    <div className='mb-2 flex items-center'><input className='h-[15px] w-[15px]' onChange={(e) => { handleFilter(e.target.checked, category._id) }} type="checkbox" /><p className='text-[13px] ml-3'>{category.name}</p></div>
+                                parentCategory?.map((category, key) => (
+                                    <div key={key} className='mb-2 flex items-center justify-between'>
+                                        <div className='flex flex-col w-full'>
+                                            <div className='flex w-full justify-between mb-1'>
+
+                                                <div className='flex'>
+                                                    <input className='h-[15px] w-[15px]' onChange={(e) => { handleFilter(e.target.checked, category._id) }} type="checkbox" />
+                                                    <p className='text-[13px] ml-3'>{category.name}</p>
+                                                </div>
+                                                {category?.children?.length > 0 &&
+                                                    <div className='cursor-pointer' onClick={() => {
+                                                        current == null ? toggleCurrentParent(category?._id) : toggleCurrentParent(null);
+                                                    }}>
+                                                        {(current == category?._id) ? <BiMinus size={18} /> :
+                                                            <BiPlus size={18} color='#787878' />
+                                                        }
+                                                    </div>
+                                                }
+
+                                            </div>
+                                            {(category?._id == current) && (category?.children?.length > 0) && <div className=' min-h-20 w-full'>
+                                                {
+                                                    category?.children?.map((child, key) => (
+                                                        <div key={key} className='flex'>
+                                                            <input className='h-[13px] w-[13px] ml-4' onChange={(e) => { handleFilter(e.target.checked, child._id) }} type="checkbox" />
+                                                            <p className='text-[12px] ml-2'>{child.name}</p>
+                                                        </div>
+                                                    ))
+                                                }
+                                            </div>}
+                                        </div>
+                                    </div>
                                 ))
                             }
                         </div>
                     </div>
 
-                    <div className='flex flex-col sm:min-h-full'>
-                        <p className='mt-10 h-5 w-full flex justify-end text-sm text-gray font-dmsans pr-10'>
+                    <div className='flex flex-col sm:min-h-full w-full'>
+                        <p className='mt-10 h-5 w-full flex justify-end text-sm text-gray font-dmsans pr-10 items-center'>
                             <span>Sort by:&nbsp;</span>
-                            <span className='font-dmsans text-[#000]'>New Arrivals</span>
+                            <select name="" id="" className='border rounded h-8 text-xs'>
+                                <option value="" defaultChecked={true}>Latest Arrival</option>
+                                <option value="">Price: Low to High</option>
+                                <option value="">Price: High to Low</option>
+                            </select>
                         </p>
                         <div className='flex flex-col justify-between'>
                             <div className=' sm:min-h-full pt-8 pl-2 pr-2 sm:pl-14 max-w-full grid grid-cols-2 sm:grid-cols-3 gap-y-8 mb-10'>

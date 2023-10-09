@@ -22,6 +22,7 @@ import { loginWithGoogle } from "./actions/User/UserAction";
 import axios from './helpers/axios';
 import {api} from './helpers/baseUrl'
 import BuyNow from "./pages/Billing/BuyNow";
+import ContactUsPage from "./pages/ContactUs/ContactUsPage";
 
 function App() {
 
@@ -30,8 +31,10 @@ function App() {
   const getUser = async()=>{
     try{
       // const url = `http://localhost:5000/auth/login/success`;
-      const url = `https://backend.hhkgifts.com/auth/login/success`;
-      const {data} = await axios.get(url,{withCredentials:true});
+      const url = `${process.env.REACT_APP_BACKEND_URL}/auth/login/success`;
+      const {data} = await axios.get(url,{withCredentials:true}).catch((err)=>{
+        console.log(err,24);
+      })
       setUser(data.user._json);
     }catch(err){
       console.log(err);
@@ -73,6 +76,7 @@ function App() {
   }, [dispatch]);
 
 
+
   return (
     <div className="App">
       <Routes>
@@ -91,6 +95,7 @@ function App() {
         <Route exact path={"/saved"} element={<Saved />} />
         <Route exact path={"/wishlist"} element={<Wishlist />} />
         <Route exact path={"/buy-now"} element={<BuyNow />} />
+        <Route exact path={"/contact-us-page"} element={<ContactUsPage />} />
       </Routes>
     </div>
   );

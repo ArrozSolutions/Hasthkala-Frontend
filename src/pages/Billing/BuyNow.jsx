@@ -64,14 +64,19 @@ const BuyNow = () => {
         }
         if (location) {
             setTotalPrice(location.state.total)
-            let tempTax = (totalPrice * 18) / 100;
-            setTax(tempTax);
             setDiscount(location.state.discount);
             setBuyNowData(location.state.data);
             setQuantity(location.state.quantity);
             setImg(location.state.data.images[0].img)
         }
     }, [auth, location])
+
+    useEffect(()=>{
+        if(totalPrice){
+            let temptax = (totalPrice*18)/100;
+            setTax(temptax)
+        }
+    },[totalPrice])
 
     useEffect(() => {
         if (cod) {

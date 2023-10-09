@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import Logo from '../../assets/logo.png'
-
+import {BiPhone, BiSolidEnvelope, BiSolidPhone} from 'react-icons/bi'
 const Footer = () => {
 
     const navigate = useNavigate();
@@ -49,23 +49,23 @@ const Footer = () => {
 
             <div className="mx-6 py-10 text-center md:text-left">
                 <div className="grid-1 grid gap-1 md:grid-cols-2 lg:grid-cols-5">
-                    <div className="">
+                    <div className="flex flex-col items-center mr-20">
                         <h6
                             className="mb-4 flex items-center justify-center font-semibold uppercase md:justify-start font-dmsans text-darkred">
                             <div className='w-20 h-20'><img className='h-full w-full' src={Logo} alt="" /></div>
                         </h6>
                         <div className='text-sm text-gray font-dmsans '>
-                            <p className='mt-2'>+91 8839270153</p>
-                            <p className='mt-2'>team@hasthkala.in</p>
+                            <p className='mt-2 flex items-center'><BiSolidPhone size={17} className='mr-1'/> +91 8839270153</p>
+                            <p className='mt-2 flex items-center'><BiSolidEnvelope size={17} className='mr-1'/> team@hasthkala.in</p>
                         </div>
                     </div>
 
-                    <div className='sm:ml-20 mt-5'>
+                    <div className='sm:ml-5 mt-5'>
                         <h6
                             className="mb-4 flex justify-center font-semibold uppercase md:justify-start font-dmsans">
                             Quick Links
                         </h6>
-                        <div className="mb-4 cursor-pointer hover:text-darkdarkred text-sm  " onClick={() => {
+                        <div className="mb-4 cursor-pointer hover:text-darkdarkred text-[13px]" onClick={() => {
                             navigate('/footer-pages', {
                                 state: {
                                     type: "ourstory"
@@ -76,7 +76,7 @@ const Footer = () => {
                             >ABOUT US</p>
                         </div>
 
-                        <div className="mb-4 cursor-pointer hover:text-darkdarkred text-sm  " onClick={() => {
+                        <div className="mb-4 cursor-pointer hover:text-darkdarkred  text-[13px] " onClick={() => {
                             navigate('/footer-pages', {
                                 state: {
                                     type: "ourstory"
@@ -87,12 +87,8 @@ const Footer = () => {
                             >BLOG</p>
                         </div>
 
-                        <div className="mb-4 cursor-pointer hover:text-darkdarkred text-sm  " onClick={() => {
-                            navigate('/footer-pages', {
-                                state: {
-                                    type: "ourstory"
-                                }
-                            })
+                        <div className="mb-4 cursor-pointer hover:text-darkdarkred  text-[13px] " onClick={() => {
+                            navigate('/contact-us-page')
                         }}>
                             <p className="text-neutral-600 dark:text-neutral-200"
                             >CONTACT US</p>
@@ -106,7 +102,7 @@ const Footer = () => {
                             className="mb-4 flex justify-center font-semibold uppercase md:justify-start font-dmsans">
                             More Info
                         </h6>
-                        <div className="mb-4 cursor-pointer text-sm  hover:text-darkred " onClick={() => {
+                        <div className="mb-4 cursor-pointer uppercase  text-[13px] hover:text-darkred " onClick={() => {
                             navigate('/footer-pages', {
                                 state: {
                                     type: "return&refund"
@@ -116,7 +112,7 @@ const Footer = () => {
                             <p className="text-neutral-600 dark:text-neutral-200"
                             >Return & Refund</p>
                         </div>
-                        <div className="mb-4 cursor-pointer text-sm hover:text-darkred " onClick={() => {
+                        <div className="mb-4 cursor-pointer uppercase text-[13px] hover:text-darkred " onClick={() => {
                             navigate('/footer-pages', {
                                 state: {
                                     type: "privacypolicy"
@@ -126,7 +122,7 @@ const Footer = () => {
                             <p className="text-neutral-600 dark:text-neutral-200"
                             >Privacy Poilcy</p>
                         </div>
-                        <div className="mb-4 cursor-pointer text-sm hover:text-darkred " onClick={() => {
+                        <div className="mb-4 cursor-pointer uppercase text-[13px] hover:text-darkred " onClick={() => {
                             navigate('/footer-pages', {
                                 state: {
                                     type: "terms&condition"
@@ -136,7 +132,7 @@ const Footer = () => {
                             <p className="text-neutral-600 dark:text-neutral-200"
                             >Terms & Condition</p>
                         </div>
-                        <div className=' cursor-pointer text-sm hover:text-darkred ' onClick={() => {
+                        <div className=' cursor-pointer text-[13px] uppercase hover:text-darkred ' onClick={() => {
                             navigate('/footer-pages', {
                                 state: {
                                     type: "faqs"
@@ -148,12 +144,11 @@ const Footer = () => {
                         </div>
 
                     </div>
-                    <div className='mt-5 '>
-                        <h6
-                            className="mb-4 flex justify-center font-semibold uppercase md:justify-start font-dmsans">
+                    <div className='mt-5'>
+                        <h6 className="mb-4 flex justify-center font-semibold uppercase md:justify-start font-dmsans">
                             SUBSCRIBE
                         </h6>
-                        <div className='flex justify-between items-center h-10 text-sm w-full pl-5 pr-5'>
+                        <div className='flex justify-start items-center h-10 text-sm w-full pr-5'>
                             <input type="text" placeholder='Enter Your Email Address' className='text-xs pl-3 h-full border rounded min-w-[200px] sm:min-w-[300px]' />
                             <button className='font-dmsans bg-darkred rounded text-white h-full min-w-[100px] ml-2'>Subscribe</button>
                         </div>

@@ -62,13 +62,19 @@ const Billing = () => {
             setZipCode(auth?.zipcode);
             setUid(auth?._id);
         }
-        if (location) {
+
+    }, [auth])
+    
+    useEffect(() => {
+        if(location?.state){
             setTotalPrice(location.state.total)
-            let tempTax = (totalPrice * 18) / 100;
-            setTax(tempTax);
             setDiscount(location.state.discount);
         }
-    }, [auth, location])
+        if(totalPrice){
+            let tempTax = (totalPrice * 18) / 100;
+            setTax(tempTax);
+        }
+    },[location?.state,totalPrice])
 
     useEffect(() => {
         dispatch(getCartData(auth._id))
@@ -151,10 +157,10 @@ const Billing = () => {
                 console.log(err)
             })
     }
-    const [hamburger,setHamburger] = useState(false);
+    const [hamburger, setHamburger] = useState(false);
 
-    const toggleHamburger=()=>{
-      setHamburger(!hamburger);
+    const toggleHamburger = () => {
+        setHamburger(!hamburger);
     }
 
     return (
