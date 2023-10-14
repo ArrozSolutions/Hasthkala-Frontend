@@ -9,7 +9,7 @@ import { signOut } from '../../actions/User/UserAction';
 import { useEffect } from 'react';
 import { getSavedProducts } from '../../actions/Cart/CartAction';
 
-const SideBar = ({ name,show }) => {
+const SideBar = ({ name, show }) => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const auth = useSelector(state => state.user.user);
@@ -23,8 +23,9 @@ const SideBar = ({ name,show }) => {
     }, [auth])
 
     const userSignOut = () => {
-        if(logintype == "google"){
-            window.open(`http://localhost:5000/auth/logout`,"_self");
+        if (logintype == "google") {
+            sessionStorage.clear();
+            window.open(`https://backend.hhkgifts.com/auth/logout`, "_self");
         }
         dispatch(signOut()).then((userSignedOut) => {
             navigate('/login')
@@ -39,8 +40,8 @@ const SideBar = ({ name,show }) => {
     }
 
     return (
-        <div className={`${show?'flex':'hidden'} lg:flex absolute sm:relative z-50  flex-col bg-[#f6f6f6] h-screen min-w-[290px] max-w-[290px] pt-16 font-dmsans sm:shadow-none shadow-2xl`}>
-        
+        <div className={`${show ? 'flex' : 'hidden'} lg:flex absolute sm:relative z-50  flex-col bg-[#f6f6f6] h-screen min-w-[290px] max-w-[290px] pt-16 font-dmsans sm:shadow-none shadow-2xl`}>
+
             <Link to={'/'}><div className='w-full flex  pl-3 items-center mb-3s'>
                 <img className='w-[80px]' src={Logo} alt="" />
                 <p className='font-alegreya text-2xl text-red-500'>HasthKala</p>

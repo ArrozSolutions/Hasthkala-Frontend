@@ -31,10 +31,13 @@ export const setPageNumber = (page,ptype) => {
   }
 }
 
-export const getAllProducts = (page) => {
+export const getAllProducts = (page,sort) => {
+  if(sort == null){
+    sort = "latest";
+  }
   return async (dispatch) => {
     dispatch({ type: productConstants.PRODUCT_REQUEST });
-    const res = await axios.get(`/get-products/${page}`)
+    const res = await axios.get(`/get-products/${page}/${sort}`)
     if (res.status === 200) {
       const { products, totalproducts } = res.data;
       var shownproducts;
@@ -60,13 +63,14 @@ export const getAllProducts = (page) => {
 }
 
 
-export const getFilteredProducts = (checked, value, page) => {
+export const getFilteredProducts = (checked, value, page,type) => {
   return async (dispatch) => {
     dispatch({ type: filterConstants.FILTER_REQUEST })
     const res = await axios.post(`/filter-product`, {
       checked,
       value,
-      page
+      page,
+      type
     }).catch((err) => {
       if (err.response.status === 500) {
         const { message } = err.response.data.message;

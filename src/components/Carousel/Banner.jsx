@@ -15,7 +15,7 @@ const Banner = () => {
 
     return (
         <div className='relative w-full splide-4'>
-            <Splide aria-label="My Favorite Images" className='pl-5 pr-5 pt-2 pb-2 h-full w-full flex justify-center'
+            <Splide aria-label="My Favorite Images" className='lg:pl-5 lg:pr-5 pt-2 pb-2 min-h-full scale-y-105 w-full flex justify-center'
                 options={{
                     autoplay: true,
                     rewind: true,

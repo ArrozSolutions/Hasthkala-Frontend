@@ -15,7 +15,7 @@ import { getCartData } from '../../actions/Cart/CartAction';
 import { BiMenu, BiX } from 'react-icons/bi';
 import Navbar from '../../components/Navbar/Navbar';
 
-const Billing = () => {
+const GiftBuyNow = () => {
     const navigate = useNavigate();
     const errorToast = (msg) => {
         toast(`${msg}`, { position: 'top-center' })
@@ -24,7 +24,6 @@ const Billing = () => {
     const location = useLocation();
 
     const auth = useSelector(state => state.user.user);
-    const cart = useSelector(state => state.cart.cart);
 
     const [totalPrice, setTotalPrice] = useState(null);
     const [tax, setTax] = useState(null);
@@ -35,9 +34,7 @@ const Billing = () => {
     const [cod, setCod] = useState(false);
     const [cardPayment, setCardPayment] = useState(false);
 
-    const [cartdata, setCartData] = useState(null);
-    const [cartItem, setCartItem] = useState(null);
-    const [firstname, setFirstName] = useState(null);
+    const [buynowdata, setBuyNowData] = useState(false);
     const [lastname, setLastName] = useState(null);
     const [email, setEmail] = useState(null);
     const [city, setCity] = useState(null);
@@ -48,11 +45,14 @@ const Billing = () => {
     const [zipcode, setZipCode] = useState(null);
     const [uid, setUid] = useState(null);
     const [status, setStatus] = useState(null);
+    const [quantity, setQuantity] = useState(null);
+    const [firstname, setFirstName] = useState(null);
+    const [img, setImg] = useState(null);
 
     useEffect(() => {
         if (auth) {
             setFirstName(auth?.fullname?.split(" ")[0]);
-            setLastName(auth?.fullname?.split(" ")[1] || auth?.fullname?.split("  ")[1]);
+            setLastName(auth?.fullname?.split(" ")[1]);
             setEmail(auth?.email);
             setPhone(auth?.phone);
             setCity(auth?.city);
@@ -62,22 +62,18 @@ const Billing = () => {
             setZipCode(auth?.zipcode);
             setUid(auth?._id);
         }
-    }, [auth])
+        if (location) {
+            setTotalPrice(location.state.price)
+            setBuyNowData(location.state.data);
+        }
+    }, [auth, location])
 
     useEffect(() => {
-        if (location?.state) {
-            setTotalPrice(location.state.total)
-            setDiscount(location.state.discount);
-        }
         if (totalPrice) {
-            let tempTax = (totalPrice * 18) / 100;
-            setTax(tempTax);
+            let temptax = (totalPrice * 18) / 100;
+            setTax(temptax)
         }
-    }, [location?.state, totalPrice])
-
-    useEffect(() => {
-        dispatch(getCartData(auth._id))
-    }, [auth?._id])
+    }, [totalPrice])
 
     useEffect(() => {
         if (cod) {
@@ -86,14 +82,6 @@ const Billing = () => {
             setShipping(0);
         }
     }, [cod])
-
-    useEffect(() => {
-        if (cart) {
-            setCartItem(cart)
-            setCartData(cart)
-        }
-    }, [cart])
-
 
     const handleCod = () => {
         setCod(true);
@@ -111,7 +99,7 @@ const Billing = () => {
     const handlePlaceOrder = () => {
         if (firstname && lastname && country && state && city && email && phone && address && zipcode) {
             var usertype = auth?.usertype;
-            dispatch(orderItem(firstname + "" + lastname, country, state, city, email, phone, address, zipcode, usertype, uid, status, cartdata, paymentMode, parseFloat((totalPrice + shipping) - discount).toFixed(2))).then(() => {
+            dispatch(orderItem(firstname + "" + lastname, country, state, city, email, phone, address, zipcode, usertype, uid, status, buynowdata, paymentMode, parseFloat((totalPrice + shipping) - discount).toFixed(2))).then(() => {
                 errorToast("Order Created Successfully");
                 navigate("/orders");
             })
@@ -147,25 +135,23 @@ const Billing = () => {
     }
 
     const handlePayment = (amount) => {
-        console.log(firstname,lastname,country,state,city,email,phone,address,zipcode);
-        if (firstname && lastname && country && state && city && email && phone && address && zipcode) {
-            const _data = { amount: amount }
-            axios.post(`${api}/checkout`, _data)
-                .then(res => {
-                    handleOpenRazorpay(res.data.data)
-                })
-                .catch(err => {
-                    console.log(err)
-                })
-        } else {
-            errorToast("Fill all the Marked Fields");
-        }
+        const _data = { amount: amount }
+        axios.post(`${api}/checkout`, _data)
+            .then(res => {
+                handleOpenRazorpay(res.data.data)
+            })
+            .catch(err => {
+                console.log(err)
+            })
     }
     const [hamburger, setHamburger] = useState(false);
 
     const toggleHamburger = () => {
         setHamburger(!hamburger);
     }
+
+    useEffect(() => {
+    }, [buynowdata])
 
     return (
         <div className='flex flex-col'>
@@ -286,9 +272,31 @@ const Billing = () => {
                         <h1 className='font-dmsans'>Order Summary</h1>
                         <div className='w-full min-h-[140px] overflow-y-scroll max-h-[140px] order-scrollbar mt-3 mb-4'>
                             {
-                                cartItem?.map((item, key) => (
-                                    <OrderSummaryCard key={key} item={item} />
-                                ))
+                                <div className='w-full h-12 flex mb-2'>
+                                    <div className='h-full w-12 p-[2px] mr-2'><img className='w-full h-full' src={buynowdata[0]?.box?.images[0]?.img} alt="" /></div>
+                                    <div className='flex flex-col'>
+                                        <p className='text-xs'>{buynowdata[0]?.box?.name} x {1}</p>
+                                        <p className='text-xs text-gray'>1 x ₹{buynowdata[0]?.box?.price}</p>
+                                    </div>
+                                </div>
+                            }
+                            {
+                                <div className='w-full h-12 flex mb-2'>
+                                    <div className='h-full w-12 p-[2px] mr-2'><img className='w-full h-full' src={buynowdata[1]?.product?.images[0]?.img} alt="" /></div>
+                                    <div className='flex flex-col'>
+                                        <p className='text-xs'>{buynowdata[1]?.product?.name} x {1}</p>
+                                        <p className='text-xs text-gray'>1 x ₹{buynowdata[1]?.product?.price}</p>
+                                    </div>
+                                </div>
+                            }
+                            {
+                                <div className='w-full h-12 flex mb-2'>
+                                    <div className='h-full w-12 p-[2px] mr-2'><img className='w-full h-full' src={buynowdata[2]?.card?.images[0]?.img} alt="" /></div>
+                                    <div className='flex flex-col'>
+                                        <p className='text-xs'>{buynowdata[2]?.card?.name} x {1}</p>
+                                        <p className='text-xs text-gray'>1 x ₹{buynowdata[2]?.card?.price}</p>
+                                    </div>
+                                </div>
                             }
                         </div>
                         <div className='flex justify-between text-[13px] font-dmsans'>
@@ -334,4 +342,4 @@ const Billing = () => {
     )
 }
 
-export default Billing
+export default GiftBuyNow

@@ -18,6 +18,7 @@ const MyOrders = () => {
   const auth = useSelector(state => state.user);
   const [hamburger, setHamburger] = useState(false);
   const userorders = useSelector(state => state.user.orders);
+  const [customimg,setCustomImg] = useState(false);
 
   useEffect(() => {
     if (auth) {
@@ -90,7 +91,7 @@ const MyOrders = () => {
           <div className='flex flex-col h-full w-full bg-gray-100 pt-2 pl-4 pr-4'>
             {/* ORDER CARD  */}
             {orders?.map((order, key) => (
-              <OrderCard cartdata={order?.cartdata} price={order?.totalprice} paymentmode={order?.paymentmode} />
+              <OrderCard cartdata={order?.cartdata[0]==undefined?order?.cartdata:order?.cartdata[0]?.productid} price={order?.totalprice} paymentmode={order?.paymentmode} customimg={order?.customimg?.length > 0?true:false} customtext={order?.customtext} customlink={order?.customlink} />
             ))
             }
             {/* ORDER CARD  */}

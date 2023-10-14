@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import Logo from '../../assets/logo.png';
+import Logo from '../../assets/contactus.gif';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { contactUsMailAction, login, loginWithGoogle, loginWithOTP, sendEmailVerification, sendotp, signup } from '../../actions/User/UserAction';
@@ -46,6 +46,10 @@ const ContactUsPage = () => {
         setHamburger(!hamburger);
     }
 
+    useEffect(()=>{
+        window.scrollTo(0,0);
+    },[])
+
     return (
         <div className='flex flex-col'>
             <div className='absolute block sm:hidden top-4 left-6 z-[60]' onClick={toggleHamburger}>
@@ -59,8 +63,8 @@ const ContactUsPage = () => {
             <Header />
             <Header2 />
             <div className='w-full h-screen flex justify-start items-start mt-[-60px]'>
-                <div className='hidden sm:flex w-1/2 h-full flex-col justify-center items-center scale-50 lg:scale-100 '>
-                    <div className='h-[200px] w-[200px] justify-center items-center ml-60'>
+                <div className='hidden pt-20 sm:flex w-1/2 h-full flex-col justify-center items-center scale-50 lg:scale-100 '>
+                    <div className='h-[400px] w-[400px] justify-center items-center ml-60'>
                         <img className='max-h-full max-w-full' src={Logo} alt="" />
                     </div>
                 </div>

@@ -8,14 +8,14 @@ import { useState } from 'react';
 import { useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
-import { orderItem } from '../../actions/Order/OrderAction';
+import { orderItem, orderPersonalizedItem } from '../../actions/Order/OrderAction';
 import { api } from '../../helpers/baseUrl'
 import axios from '../../helpers/axios';
 import { getCartData } from '../../actions/Cart/CartAction';
 import { BiMenu, BiX } from 'react-icons/bi';
 import Navbar from '../../components/Navbar/Navbar';
 
-const Billing = () => {
+const PersonalizeBuy = () => {
     const navigate = useNavigate();
     const errorToast = (msg) => {
         toast(`${msg}`, { position: 'top-center' })
@@ -24,20 +24,17 @@ const Billing = () => {
     const location = useLocation();
 
     const auth = useSelector(state => state.user.user);
-    const cart = useSelector(state => state.cart.cart);
 
     const [totalPrice, setTotalPrice] = useState(null);
     const [tax, setTax] = useState(null);
-    const [discount, setDiscount] = useState(null);
+    const [discount, setDiscount] = useState(0);
     const [shipping, setShipping] = useState(null);
 
     const [paymentMode, setPaymentMode] = useState(null);
     const [cod, setCod] = useState(false);
     const [cardPayment, setCardPayment] = useState(false);
 
-    const [cartdata, setCartData] = useState(null);
-    const [cartItem, setCartItem] = useState(null);
-    const [firstname, setFirstName] = useState(null);
+    const [buynowdata, setBuyNowData] = useState(false);
     const [lastname, setLastName] = useState(null);
     const [email, setEmail] = useState(null);
     const [city, setCity] = useState(null);
@@ -48,11 +45,18 @@ const Billing = () => {
     const [zipcode, setZipCode] = useState(null);
     const [uid, setUid] = useState(null);
     const [status, setStatus] = useState(null);
+    const [quantity,setQuantity] = useState(null);
+    const [firstname,setFirstName] = useState(null);
+    const [img,setImg] = useState(null);
+    const [customText,setCustomText] = useState(null);
+    const [customImage,setCustomImage] = useState(null);
+    const [customLink,setCustomLink] = useState(null);
+    const [blobImg,setblobImg] = useState(null);
 
     useEffect(() => {
         if (auth) {
             setFirstName(auth?.fullname?.split(" ")[0]);
-            setLastName(auth?.fullname?.split(" ")[1] || auth?.fullname?.split("  ")[1]);
+            setLastName(auth?.fullname?.split(" ")[1]);
             setEmail(auth?.email);
             setPhone(auth?.phone);
             setCity(auth?.city);
@@ -62,22 +66,26 @@ const Billing = () => {
             setZipCode(auth?.zipcode);
             setUid(auth?._id);
         }
-    }, [auth])
-
-    useEffect(() => {
-        if (location?.state) {
+        if (location) {
             setTotalPrice(location.state.total)
             setDiscount(location.state.discount);
-        }
-        if (totalPrice) {
-            let tempTax = (totalPrice * 18) / 100;
-            setTax(tempTax);
-        }
-    }, [location?.state, totalPrice])
+            setBuyNowData(location.state.data);
+            setQuantity(location.state.quantity);
+            setImg(location.state.data.images[0].img);
+            setCustomImage(location?.state?.customImage);
+            setCustomText(location?.state?.customText);
+            setCustomLink(location?.state?.customLink);
+            setblobImg(location?.state?.blobImg);
 
-    useEffect(() => {
-        dispatch(getCartData(auth._id))
-    }, [auth?._id])
+        }
+    }, [auth, location])
+
+    useEffect(()=>{
+        if(totalPrice){
+            let temptax = (totalPrice*18)/100;
+            setTax(temptax)
+        }
+    },[totalPrice])
 
     useEffect(() => {
         if (cod) {
@@ -87,13 +95,11 @@ const Billing = () => {
         }
     }, [cod])
 
-    useEffect(() => {
-        if (cart) {
-            setCartItem(cart)
-            setCartData(cart)
+    useEffect(()=>{
+        if(!location?.state){
+            navigate('/');
         }
-    }, [cart])
-
+    },[location?.state])
 
     const handleCod = () => {
         setCod(true);
@@ -111,7 +117,26 @@ const Billing = () => {
     const handlePlaceOrder = () => {
         if (firstname && lastname && country && state && city && email && phone && address && zipcode) {
             var usertype = auth?.usertype;
-            dispatch(orderItem(firstname + "" + lastname, country, state, city, email, phone, address, zipcode, usertype, uid, status, cartdata, paymentMode, parseFloat((totalPrice + shipping) - discount).toFixed(2))).then(() => {
+            const orderObj={
+                fullname:firstname + "" + lastname,
+                country,
+                state,
+                city,
+                email,
+                phone,
+                address,
+                zipcode,
+                usertype,
+                uid,
+                status,
+                cartdata:JSON.stringify(buynowdata),
+                paymentmode:paymentMode,
+                totalprice:parseFloat((totalPrice + shipping) - (discount || 0)).toFixed(2),
+                customText,
+                customLink,
+                images:customImage,
+            }
+            dispatch(orderPersonalizedItem(orderObj)).then(() => {
                 errorToast("Order Created Successfully");
                 navigate("/orders");
             })
@@ -147,19 +172,14 @@ const Billing = () => {
     }
 
     const handlePayment = (amount) => {
-        console.log(firstname,lastname,country,state,city,email,phone,address,zipcode);
-        if (firstname && lastname && country && state && city && email && phone && address && zipcode) {
-            const _data = { amount: amount }
-            axios.post(`${api}/checkout`, _data)
-                .then(res => {
-                    handleOpenRazorpay(res.data.data)
-                })
-                .catch(err => {
-                    console.log(err)
-                })
-        } else {
-            errorToast("Fill all the Marked Fields");
-        }
+        const _data = { amount: amount }
+        axios.post(`${api}/checkout`, _data)
+            .then(res => {
+                handleOpenRazorpay(res.data.data)
+            })
+            .catch(err => {
+                console.log(err)
+            })
     }
     const [hamburger, setHamburger] = useState(false);
 
@@ -285,11 +305,33 @@ const Billing = () => {
                     <div className='flex flex-col w-full h-[430px] border rounded border-[#1a1a1d47] pl-4 pt-3 pr-4'>
                         <h1 className='font-dmsans'>Order Summary</h1>
                         <div className='w-full min-h-[140px] overflow-y-scroll max-h-[140px] order-scrollbar mt-3 mb-4'>
-                            {
-                                cartItem?.map((item, key) => (
-                                    <OrderSummaryCard key={key} item={item} />
-                                ))
-                            }
+                            <div className='w-full h-12 flex mb-2'>
+                                <div className='h-full w-12 mr-2'><img className='w-full h-full' src={img} alt="" /></div>
+                                <div className='flex flex-col'>
+                                    <p className='text-xs'>{buynowdata?.name} x {quantity}</p>
+                                    <p className='text-xs text-gray'>1 x ₹{buynowdata.price}</p>
+                                </div>
+                            </div>
+
+                            <div>
+                                {customImage && (customText || customLink) && blobImg && 
+                                <div className='flex flex-col font-dmsans text-sm'>
+                                    <p className='mb-1'> - Custom Image and Text</p>
+                                    <div className='flex'>
+                                    <div className='h-12 w-12 flex items-center'><img className='h-full w-full' src={blobImg} alt="" /></div><div className='h-10 flex items-center font-dmsans font-bold text-2xl ml-2 mr-2'>:</div>
+                                    {
+                                        customText?<p className='h-10 flex items-center'>" {customText} "</p>:<p></p>
+                                    }
+                                    {
+                                        customLink?<p>Spotify Link</p>:<p></p>
+
+                                    }
+
+                                    </div>
+                                </div>
+
+                                }
+                            </div>
                         </div>
                         <div className='flex justify-between text-[13px] font-dmsans'>
                             <p className=' text-gray '>Sub-total</p>
@@ -303,7 +345,7 @@ const Billing = () => {
                         <span className='h-1'></span>
                         <div className='flex justify-between text-[13px] font-dmsans'>
                             <p className=' text-gray '>Discount</p>
-                            <p>₹{discount}</p>
+                            <p>₹{discount || 0}</p>
                         </div>
                         <span className='h-1'></span>
                         <div className='flex justify-between text-[13px] font-dmsans'>
@@ -315,7 +357,7 @@ const Billing = () => {
                         </div>
                         <div className='flex justify-between text-[16px] font-dmsans'>
                             <p>Total</p>
-                            <p>₹{parseFloat((totalPrice + shipping) - discount).toFixed(2)}</p>
+                            <p>₹{parseFloat((totalPrice + shipping) - (discount || 0)).toFixed(2)}</p>
                         </div>
                         <div className='mt-4'>
                             <button className='bg-darkred text-white uppercase w-full h-10 rounded text-[14px] font-dmsans flex items-center justify-center' onClick={() => {
@@ -334,4 +376,4 @@ const Billing = () => {
     )
 }
 
-export default Billing
+export default PersonalizeBuy

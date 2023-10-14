@@ -4,6 +4,8 @@ import ProductsReducer from "./Products/ProductsReducer";
 import InitialDataReducer from './InitialData/InitialDataReducer';
 import CartReducer from "./Cart/CartReducer";
 import CouponReducer from "./Coupon/CouponReducer";
+import GiftBoxReducer from './GiftBox/GiftBoxReducer';
+import GiftCardReducer from './GiftCard/GiftCardReducer';
 
 const rootReducer = combineReducers({
     user: UserReducer,
@@ -11,6 +13,8 @@ const rootReducer = combineReducers({
     initialData:InitialDataReducer,
     cart:CartReducer,
     coupon:CouponReducer,
+    giftbox:GiftBoxReducer,
+    giftcard:GiftCardReducer,
 });
 
 

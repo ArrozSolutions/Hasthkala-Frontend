@@ -22,8 +22,25 @@
 }
 
 
-@media screen and (max-width:400px) {
+@media screen and (max-width:800px) {
     .splide-4 .splide__arrow{
         display: none;
-    }    
+    }   
+}
+.splide5 .splide__pagination{
+    display: flex;
+    position: absolute;
+    bottom: -30px;
+}
+
+@media screen and (max-width:600px) {
+    .splide5 .splide__pagination{
+        bottom: -15px;
+        scale: 0.7;
+    }
+}
+
+.splide5{
+    background-color: rgba(128, 128, 128, 0.063);
+    margin-top: 5px!important;
 }

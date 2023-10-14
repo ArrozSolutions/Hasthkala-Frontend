@@ -14,6 +14,8 @@ import { FiEyeOff } from 'react-icons/fi';
 import {api} from '../../helpers/baseUrl';
 import Navbar from '../../components/Navbar/Navbar';
 import { BiMenu, BiX } from 'react-icons/bi';
+import LoginVector from '../../assets/login.jpg';
+import SignupVector from '../../assets/signup.jpg';
 
 const Login = () => {
 
@@ -53,6 +55,7 @@ const Login = () => {
   const [emailVerifyScreen, setEmailVerifyScreen] = useState(false);
 
   const toggleEmailSignIn = () => {
+    setloginpage(true);
     setSignInWithEmail(true);
     setSignInWithMobile(false);
     setSignUp(false);
@@ -60,7 +63,11 @@ const Login = () => {
     setEmailVerifyScreen(false);
   }
 
+
+  const [loginpage,setloginpage] = useState(true);
+
   const toggleMobileSignIn = () => {
+    setloginpage(true);
     setSignInWithMobile(true);
     setSignInWithEmail(false);
     setSignUp(false);
@@ -69,6 +76,7 @@ const Login = () => {
   }
 
   const toggleSignUp = () => {
+    setloginpage(false);
     setSignUp(true);
     setSignInWithEmail(false);
     setSignInWithMobile(false);
@@ -205,6 +213,7 @@ const Login = () => {
   };
 
   const googleLogin=()=>{
+    sessionStorage.setItem('google_login',true);
 		window.open(
 			`${process.env.REACT_APP_BACKEND_URL}/auth/google/callback`,
 			"_self"
@@ -225,8 +234,11 @@ const Login = () => {
       <Header2 />
       <div className='w-full h-screen flex justify-start items-start mt-[-60px]'>
         <div className='hidden sm:flex w-1/2 h-full flex-col justify-center items-center scale-50 lg:scale-100 '>
-          <div className='h-[200px] w-[200px] justify-center items-center ml-60'>
-            <img className='max-h-full max-w-full' src={Logo} alt="" />
+          <div className='h-[400px] w-[400px] justify-center items-center ml-60'>
+          { loginpage?
+            <img className='max-h-full max-w-full' src={LoginVector} alt="" />:
+            <img className='max-h-full max-w-full' src={SignupVector} alt="" />
+          }
           </div>
         </div>
 

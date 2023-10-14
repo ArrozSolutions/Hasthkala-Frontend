@@ -20,42 +20,46 @@ import Saved from "./pages/Saved/Saved";
 import Wishlist from "./pages/WishList/WishList";
 import { loginWithGoogle } from "./actions/User/UserAction";
 import axios from './helpers/axios';
-import {api} from './helpers/baseUrl'
+import { api } from './helpers/baseUrl'
 import BuyNow from "./pages/Billing/BuyNow";
 import ContactUsPage from "./pages/ContactUs/ContactUsPage";
+import GiftBox from "./pages/GiftBox/GiftBox";
+import GiftBuyNow from "./pages/Billing/GiftBuy";
+import PersonalizeBuy from "./pages/Billing/PersonalizeBuy";
 
 function App() {
 
-  const [user,setUser] = useState(null);
-  
-  const getUser = async()=>{
-    try{
-      // const url = `http://localhost:5000/auth/login/success`;
+  const [user, setUser] = useState(null);
+
+  const getUser = async () => {
+    try {
       const url = `${process.env.REACT_APP_BACKEND_URL}/auth/login/success`;
-      const {data} = await axios.get(url,{withCredentials:true}).catch((err)=>{
-        console.log(err,24);
+      const { data } = await axios.get(url, { withCredentials: true }).catch((err) => {
+        console.log(err, 24);
       })
       setUser(data.user._json);
-    }catch(err){
+    } catch (err) {
       console.log(err);
     }
   }
 
-  useEffect(()=>{
-    getUser();
-  },[])
+  useEffect(() => {
+    if(sessionStorage.getItem('google_login')){
+      getUser();
+    }
+  }, [sessionStorage.getItem('google_login')]);
 
-  useEffect(()=>{
-    if(user){
+  useEffect(() => {
+    if (user){
       const userObj = {
-        email:user.email,
-        fullname:user.name,
-        googleid:user.sub,
-        avatar:user.picture
+        email: user.email,
+        fullname: user.name,
+        googleid: user.sub,
+        avatar: user.picture
       }
       dispatch(loginWithGoogle(userObj));
     }
-  },[user])
+  }, [user])
 
   const dispatch = useDispatch();
 
@@ -64,7 +68,7 @@ function App() {
   }, [dispatch]);
 
   useEffect(() => {
-    dispatch(getAllProducts(1));
+    dispatch(getAllProducts(1,null));
   }, [dispatch]);
 
   useEffect(() => {
@@ -95,7 +99,10 @@ function App() {
         <Route exact path={"/saved"} element={<Saved />} />
         <Route exact path={"/wishlist"} element={<Wishlist />} />
         <Route exact path={"/buy-now"} element={<BuyNow />} />
+        <Route exact path={"/gift-buy-now"} element={<GiftBuyNow />} />
         <Route exact path={"/contact-us-page"} element={<ContactUsPage />} />
+        <Route exact path={"/gift-box"} element={<GiftBox />} />
+        <Route exact path={"/personalize-buy"} element={<PersonalizeBuy />} />
       </Routes>
     </div>
   );

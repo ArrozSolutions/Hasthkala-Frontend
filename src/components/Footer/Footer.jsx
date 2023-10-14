@@ -49,7 +49,7 @@ const Footer = () => {
 
             <div className="mx-6 py-10 text-center md:text-left">
                 <div className="grid-1 grid gap-1 md:grid-cols-2 lg:grid-cols-5">
-                    <div className="flex flex-col items-center mr-20">
+                    <div className="flex flex-col items-center sm:mr-20">
                         <h6
                             className="mb-4 flex items-center justify-center font-semibold uppercase md:justify-start font-dmsans text-darkred">
                             <div className='w-20 h-20'><img className='h-full w-full' src={Logo} alt="" /></div>

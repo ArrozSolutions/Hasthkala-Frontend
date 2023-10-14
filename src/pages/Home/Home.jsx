@@ -56,7 +56,7 @@ const Home = () => {
         {/* GOLDEN BORDER  */}
 
         {/* HEADING 1 */}
-        <div className='h-14 sm:h-28 mb-1 w-full flex items-end justify-center text-lg sm:text-3xl font-alegreya'>
+        <div className='h-10 sm:h-28 mb-1 w-full flex items-end justify-center text-lg sm:text-3xl font-alegreya'>
           Interiors Of Heritage
         </div>
         <div className='flex items-start justify-center'>

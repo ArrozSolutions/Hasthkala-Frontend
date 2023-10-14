@@ -26,19 +26,23 @@ const CircularCategories = () => {
 
 
     return (
-        <div className='splide1 '>
-            <Splide aria-label="My Favorite Images" className='pl-5 pr-5 sm:pl-20 sm:pr-20 pt-2 pb-2'>
+        <div className='splide5 relative'>
+            <Splide aria-label="My Favorite Images" className='pl-2 pr-2 sm:pl-20 sm:pr-20' options={{
+                arrows:false,
+                pagination:true,
+                perPage:4,
+            }}>
 
         {
             category?.map((c,key)=>(
-                <SplideSlide  key={key} className='h-[100px] max-w-[100px] sm:h-[270px] sm:max-w-[230px]  bg-[#ffffff]   pl-1 pr-1 pt-1 '>
+                <SplideSlide  key={key} className='h-[100px] max-w-[90px] sm:h-[270px] sm:max-w-[230px]  bg-transparent pl-1 pr-1'>
                     <div className='relative flex flex-col w-full h-[100px] sm:h-[280px] items-center justify-center hover:scale-95 cursor-pointer  transition-all duration-500'
                     onClick={()=>{handleCategoryClick(c?._id)}}>
                         <span className='bg-red h-[60px] w-[60px] sm:h-[190px] sm:w-[190px] rounded-full overflow-hidden'>
                             <img className='min-h-full w-full' src={c?.images[0]?.img} alt="" />
                         </span>
                         <br className='hidden sm:block' />
-                        <p className='text-xs sm:text-lg mt-1 sm:mt-0'>{c.name}</p>
+                        <p className='text-[10px] font-dmsans sm:text-lg mt-1 sm:mt-0'>{c.name}</p>
                     </div>
                 </SplideSlide>      
             ))
