@@ -5,11 +5,11 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { getFilteredProducts, getSearchedProducts } from '../../actions/Product/ProductAction';
-import Bday from '../../assets/bday.png';
-import Anniversary from '../../assets/anniversary.webp';
-import Wooden from '../../assets/wooden.jpg';
+import WalletCards from '../../assets/walletcards.png';
+import IllustrationFrames from '../../assets/frames.png';
+import AcrylicFrames from '../../assets/acrylicframes.png';
 import Keychains from '../../assets/key chains.jpg';
-import Diwali from '../../assets/diwali.jpeg';
+import Canvas from '../../assets/canvas.png';
 import Diary from '../../assets/diary.jpg';
 import Mugs from '../../assets/mugs.jpg';
 import Latest from '../../assets/latest.webp';
@@ -38,52 +38,52 @@ const CircularCategories = () => {
 
                 <SplideSlide className='h-[100px] max-w-[90px] sm:h-[270px] sm:max-w-[230px]  bg-transparent pl-1 pr-1'>
                     <div className='relative flex flex-col w-full h-[100px] sm:h-[280px] items-center justify-center hover:scale-95 cursor-pointer  transition-all duration-500'
-                        onClick={() => { handleCategoryClick('652012c79785c326409f4e0d','child') }}>
+                        onClick={() => { handleCategoryClick('65200f034c7ac010cd3ea839','child') }}>
                         <span className='bg-red h-[60px] w-[60px] sm:h-[190px] sm:w-[190px] rounded-full overflow-hidden'>
-                            <img className='min-h-full min-w-full scale-x-150' src={Bday} alt="" />
+                            <img className='min-h-full min-w-full ' src={WalletCards} alt="" />
                         </span>
                         <br className='hidden sm:block' />
-                        <p className='text-[10px] sm:text-[17px] mt-1 sm:mt-0'>{'Birthday Gifts'}</p>
+                        <p className='text-[10px] sm:text-[17px] mt-1 sm:mt-0'>{'Wallet Cards'}</p>
                     </div>
                 </SplideSlide>
                 <SplideSlide className='h-[100px] max-w-[90px] sm:h-[270px] sm:max-w-[230px]  bg-transparent pl-1 pr-1'>
                     <div className='relative flex flex-col w-full h-[100px] sm:h-[280px] items-center justify-center hover:scale-95 cursor-pointer  transition-all duration-500'
                         onClick={() => { handleCategoryClick('652012e19785c326409f4e10','child') }}>
                         <span className='bg-red h-[60px] w-[60px] sm:h-[190px] sm:w-[190px] rounded-full overflow-hidden'>
-                            <img className='min-h-full w-full scale-x-125 ' src={Anniversary} alt="" />
+                            <img className='min-h-full w-full scale-110' src={IllustrationFrames} alt="" />
                         </span>
                         <br className='hidden sm:block' />
-                        <p className='text-[10px] sm:text-[17px] mt-1 sm:mt-0'>{'Anniversary Gifts'}</p>
+                        <p className='text-[10px] sm:text-[17px] mt-1 sm:mt-0'>{'Illustration Frames'}</p>
                     </div>
                 </SplideSlide>
                 <SplideSlide className='h-[100px] max-w-[90px] sm:h-[270px] sm:max-w-[230px]  bg-transparent pl-1 pr-1'>
                     <div className='relative flex flex-col w-full h-[100px] sm:h-[280px] items-center justify-center hover:scale-95 cursor-pointer  transition-all duration-500'
-                        onClick={() => { handleCategoryClick('6520127d9785c326409f4e01','subchild') }}>
+                        onClick={() => { handleCategoryClick('652034e4524a1cc420ec0eab','child') }}>
                         <span className='bg-red h-[60px] w-[60px] sm:h-[190px] sm:w-[190px] rounded-full overflow-hidden'>
-                            <img className='min-h-full w-full relative bottom-[18px] sm:bottom-[58px]' src={Wooden} alt="" />
+                            <img className='min-h-full w-full relative' src={AcrylicFrames} alt="" />
                         </span>
                         <br className='hidden sm:block' />
-                        <p className='text-[10px] sm:text-[16px] mt-1 sm:mt-0'>{'Wooden Gifts'}</p>
+                        <p className='text-[10px] sm:text-[16px] mt-1 sm:mt-0'>{'Acrylic Frames'}</p>
                     </div>
                 </SplideSlide>
                 <SplideSlide className='h-[100px] max-w-[90px] sm:h-[270px] sm:max-w-[230px]  bg-transparent pl-1 pr-1'>
                     <div className='relative flex flex-col w-full h-[100px] sm:h-[280px] items-center justify-center hover:scale-95 cursor-pointer  transition-all duration-500'
-                        onClick={() => { handleCategoryClick('6520119941537efb120e647e','subchild') }}>
+                        onClick={() => { handleCategoryClick('6520119941537efb120e647e','child') }}>
                         <span className='bg-red h-[60px] w-[60px] sm:h-[190px] sm:w-[190px] rounded-full overflow-hidden'>
                             <img className='min-h-full w-full relative bottom-5' src={Diary} alt="" />
                         </span>
                         <br className='hidden sm:block' />
-                        <p className='text-[10px]  sm:text-[16px] mt-1 sm:mt-0'>{'Diary'}</p>
+                        <p className='text-[10px]  sm:text-[16px] mt-1 sm:mt-0'>{'Custom Diaries'}</p>
                     </div>
                 </SplideSlide>
                 <SplideSlide className='h-[100px] max-w-[90px] sm:h-[270px] sm:max-w-[230px]  bg-transparent pl-1 pr-1'>
                     <div className='relative flex flex-col w-full h-[100px] sm:h-[280px] items-center justify-center hover:scale-95 cursor-pointer  transition-all duration-500'
                         onClick={() => { handleCategoryClick('65203530524a1cc420ec0eb4','parent') }}>
                         <span className='bg-red h-[60px] w-[60px] sm:h-[190px] sm:w-[190px] rounded-full overflow-hidden'>
-                            <img className='min-h-full w-full' src={Diwali} alt="" />
+                            <img className='min-h-full w-full relative scale-125 bottom-3 sm:bottom-10' src={Latest} alt="" />
                         </span>
                         <br className='hidden sm:block' />
-                        <p className='text-[10px] sm:text-[16px] mt-1 sm:mt-0'>{'Diwali Special'}</p>
+                        <p className='text-[10px] sm:text-[16px] mt-1 sm:mt-0'>{'Diwali Hamper'}</p>
                     </div>
                 </SplideSlide>
                 <SplideSlide className='h-[100px] max-w-[90px] sm:h-[270px] sm:max-w-[230px]  bg-transparent pl-1 pr-1'>
@@ -103,7 +103,27 @@ const CircularCategories = () => {
                             <img className='min-h-full w-full scale-125' src={Mugs} alt="" />
                         </span>
                         <br className='hidden sm:block' />
-                        <p className='text-[10px]  sm:text-[16px] mt-1 sm:mt-0'>{'Mugs'}</p>
+                        <p className='text-[10px]  sm:text-[16px] mt-1 sm:mt-0'>{'Custom Mugs'}</p>
+                    </div>
+                </SplideSlide>
+                <SplideSlide className='h-[100px] max-w-[90px] sm:h-[270px] sm:max-w-[230px]  bg-transparent pl-1 pr-1'>
+                    <div className='relative flex flex-col w-full h-[100px] sm:h-[280px] items-center justify-center hover:scale-95 cursor-pointer  transition-all duration-500'
+                        onClick={() => { handleCategoryClick('6520128c9785c326409f4e07','subchild') }}>
+                        <span className='bg-red h-[60px] w-[60px] sm:h-[190px] sm:w-[190px] rounded-full overflow-hidden'>
+                            <img className='min-h-full w-full scale-125' src={Canvas} alt="" />
+                        </span>
+                        <br className='hidden sm:block' />
+                        <p className='text-[10px]  sm:text-[16px] mt-1 sm:mt-0'>{'Custom Canvas'}</p>
+                    </div>
+                </SplideSlide>
+                <SplideSlide className='h-[100px] max-w-[90px] sm:h-[270px] sm:max-w-[230px]  bg-transparent pl-1 pr-1'>
+                    <div className='relative flex flex-col w-full h-[100px] sm:h-[280px] items-center justify-center hover:scale-95 cursor-pointer  transition-all duration-500'
+                        onClick={() => { handleCategoryClick('6520128c9785c326409f4e07','subchild') }}>
+                        <span className='bg-red h-[60px] w-[60px] sm:h-[190px] sm:w-[190px] rounded-full overflow-hidden'>
+                            <img className='min-h-full w-full scale-125' src={Mugs} alt="" />
+                        </span>
+                        <br className='hidden sm:block' />
+                        <p className='text-[10px]  sm:text-[16px] mt-1 sm:mt-0'>{'MP Art Products'}</p>
                     </div>
                 </SplideSlide>
 

@@ -16,6 +16,11 @@ import Blog3 from '../../assets/blog3.jpg'
 import Banner from '../../components/Carousel/Banner';
 import Navbar from '../../components/Navbar/Navbar';
 import { BiCross, BiMenu, BiX } from 'react-icons/bi';
+import Blog_Flowers from '../../assets/flowers.webp';
+import Blog_Basket from '../../assets/basket.png';
+import Blog_Collage from '../../assets/collage.png';
+import Blog_jewelery from '../../assets/jewelery.png';
+import Blog_gifts from '../../assets/bloggifts.png';
 
 const Home = () => {
 
@@ -137,34 +142,40 @@ const Home = () => {
         <div className='flex flex-col min-h-[700px] items-center '>
 
           <div className='h-20 sm:h-32 font-alegreya flex items-center justify-center text-3xl font-semibold text-[#1a1a1d]'>Blogs</div>
-          <div className='flex flex-col lg:flex-row pl-5 pr-5 sm:pl-20 sm:pr-20 max-[600px]:w-full'>
+          <div className='flex flex-col lg:flex-row pl-5 pr-5 sm:pl-20 sm:pr-20 max-[600px]:w-full '>
 
             <div className='flex flex-col justify-center sm:justify-start items-center sm:mr-8  sm:w-[360px] w-full'>
-              <div className='w-[300px] sm:w-[360px] h-[220px] sm:h-[260px] mb-5'><img className='h-full w-full' src={Blog1} alt="" /></div>
+              <div className='w-[300px] sm:w-[360px] h-[220px] sm:h-[260px] mb-5'><img className='h-full w-full' src={Blog_Flowers} alt="" /></div>
               <div className='pl-5 pr-5 sm:pl-0 sm:pr-0'>
-                <p className='font-alegreya mb-2 text-[15px]'>The Enchanting Frescoes of Bundi, Rajasthan</p>
-                <p className='text-xs sm:text-sm text-gray leading-6 '>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Aliquam fugit dolorum placeat, voluptate dignissimos maxime sint sed magnam expedita eveniet minima doloremque ullam iure reiciendis molestiae, a quia sequi blanditiis?</p>
-                <p className='font-dmsans text-red text-sm font-semibold mt-3'>Learn more ></p>
+                <p className='font-semibold mb-2 text-[15px] uppercase font-dmsans'>5 Best Gifts for family and friends</p>
+                <p className='text-xs sm:text-sm text-gray leading-6 '>Gifts can be a way to express feelings of appreciation and
+                  gratitude towards someone. They symbolize love and
+                  devotion. People best communicate through the use of
+                  symbols like gifts...</p>
+                <p className='cursor-pointer font-dmsans text-red text-sm font-semibold mt-3 text-darkred' onClick={() => { navigate('/blog') }}>Learn more ></p>
               </div>
             </div>
 
 
-            <div className='flex flex-col w-full items-center justify-center sm:w-[360px] sm:mr-8 mt-4 sm:mt-0'>
-              <div className='sm:w-full bg-[#61616b22] rounded-md h-[90px] mr-5 sm:mr-0 ml-5 sm:ml-0 sm:h-[120px] font-alegreya flex items-center justify-center  text-[15px] sm:text-lg pl-2 pr-2 sm:pl-10 sm:pr-10'>Enchanting warli wall painting -- <br /> Western India's art form that cherishes nature</div>
-              <div className='w-[300px] sm:w-full mt-5 h-[150px]'>
-                <img src={Blog2} className='h-full w-full' alt="" />
+            <div className='flex flex-col w-full items-center justify-start sm:w-[360px] sm:mr-8 mt-4 sm:mt-0'>
+              <div className='sm:w-full bg-[#61616b22] rounded-md h-[90px] mr-5 sm:mr-0 ml-5 sm:ml-0 sm:h-[80px] font-alegreya flex items-center justify-center  text-[15px] sm:text-lg pl-2 pr-2 sm:pl-10 sm:pr-10'>Gift-giving is a universal way to show interest, appreciation,
+                and gratitude</div>
+              <div className='w-[300px] sm:w-full mt-5 h-[200px]'>
+                <img src={Blog_Basket} className='h-full w-full' alt="" />
               </div>
               <div className='mt-5 pl-5 pr-5 sm:pl-0 sm:pr-0'>
-                <p className='font-alegreya mb-2'>The Enchanting Frescoes of Bundi, Rajasthan</p>
-                <p className='text-xs sm:text-sm text-gray leading-6 '>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Aliquam fugit dolorum placeat, voluptate dignissimos Lorem ipsum dolor sit amet.</p>
-                <p className='font-dmsans text-red text-sm font-semibold mt-3'>Learn more ></p>
+                <p className='font-alegreya mb-2'></p>
+                <p className='text-xs sm:text-sm text-gray leading-6 '>It’s worth noting that the act of giving gifts is not just
+                  limited to humans, animals also give gifts as part of their
+                  mating rituals</p>
+                <p className='font-dmsans text-red text-sm font-semibold mt-3 text-darkred cursor-pointer' onClick={() => { navigate('/blog') }}>Learn more ></p>
               </div>
             </div>
 
 
-            <div className='lg:hidden xl:flex flex-col w-full sm:w-[360px] justify-center sm:justify-start items-center mt-8 sm:mt-0'>
-              <div className='w-[300px] h-[180px] sm:w-[360px] sm:h-[220px] mb-5'><img className='h-full w-full' src={Blog3} alt="" /></div>
-              <div className='w-[300px] h-[180px] sm:w-[360px] sm:h-[220px]'><img className='h-full w-full' src={Blog3} alt="" /></div>
+            <div className='lg:hidden xl:flex flex-col w-full sm:w-[360px] justify-center items-center mt-8 sm:mt-0'>
+              <div className='w-[300px] h-[180px] sm:w-[360px] sm:h-[220px] mb-5'><img className='h-full w-full' src={Blog_gifts} alt="" /></div>
+              <div className='w-[300px] h-[180px] sm:w-[360px] sm:h-[220px]'><img className='h-full w-full' src={Blog_jewelery} alt="" /></div>
             </div>
           </div>
 

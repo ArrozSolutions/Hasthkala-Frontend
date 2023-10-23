@@ -26,6 +26,7 @@ import ContactUsPage from "./pages/ContactUs/ContactUsPage";
 import GiftBox from "./pages/GiftBox/GiftBox";
 import GiftBuyNow from "./pages/Billing/GiftBuy";
 import PersonalizeBuy from "./pages/Billing/PersonalizeBuy";
+import Blogs from "./pages/Blogs/Blogs";
 
 function App() {
 
@@ -104,6 +105,7 @@ function App() {
         <Route exact path={"/contact-us-page"} element={<ContactUsPage />} />
         <Route exact path={"/gift-box"} element={<GiftBox />} />
         <Route exact path={"/personalize-buy"} element={<PersonalizeBuy />} />
+        <Route exact path={"/blog"} element={<Blogs />} />
       </Routes>
     </div>
   );

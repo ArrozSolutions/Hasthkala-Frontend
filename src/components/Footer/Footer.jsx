@@ -55,8 +55,8 @@ const Footer = () => {
                             <div className='w-20 h-20'><img className='h-full w-full' src={Logo} alt="" /></div>
                         </h6>
                         <div className='text-sm text-gray font-dmsans '>
-                            <p className='mt-2 flex items-center'><BiSolidPhone size={17} className='mr-1'/> +91 8839270153</p>
-                            <p className='mt-2 flex items-center'><BiSolidEnvelope size={17} className='mr-1'/> team@hasthkala.in</p>
+                            <p className='mt-2 flex items-center'><BiSolidPhone size={17} className='mr-1'/> +91 7987600654</p>
+                            <p className='mt-2 flex items-center'><BiSolidEnvelope size={17} className='mr-1'/> harshhasthkala@gmail.com</p>
                         </div>
                     </div>
 
@@ -77,11 +77,7 @@ const Footer = () => {
                         </div>
 
                         <div className="mb-4 cursor-pointer hover:text-darkdarkred  text-[13px] " onClick={() => {
-                            navigate('/footer-pages', {
-                                state: {
-                                    type: "ourstory"
-                                }
-                            })
+                            navigate('/blog');
                         }}>
                             <p className="text-neutral-600 dark:text-neutral-200"
                             >BLOG</p>
@@ -162,7 +158,7 @@ const Footer = () => {
                 <a
                     className="font-semibold text-neutral-600 dark:text-neutral-400"
                     href="https://tailwind-elements.com/"
-                >&nbsp;Hasthkala</a>
+                >&nbsp;Harsh Hasthkala</a>
             </div>
         </footer>
     )

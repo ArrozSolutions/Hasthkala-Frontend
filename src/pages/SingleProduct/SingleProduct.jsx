@@ -170,6 +170,21 @@ const SingleProduct = () => {
         }
     }
 
+
+    const [showImg, setShowImg] = useState(null);
+    const changeShowImg = (img) => {
+        setShowImg(img);
+    }
+
+
+    const [currentImg, setCurrentImg] = useState(null);
+    const changeCurrentImg = (img) => {
+        setCurrentImg(img);
+    }
+
+    const [variantPrice,setVariantPrice] = useState(null);
+    const [variant,setVariant] = useState(null);
+
     return (
         <>
 
@@ -224,7 +239,7 @@ const SingleProduct = () => {
                                     }
                                 </div>}
 
-                                <div className='absolute bottom-6 text-sm text-[#686868] flex justify-center w-full h-2 '>Note: Leave any one of the unwanted personalization</div>
+                            <div className='absolute bottom-6 text-sm text-[#686868] flex justify-center w-full h-2 '>Note: Leave any one of the unwanted personalization</div>
                         </div>
                     </div>}
                     <div className='w-full sm:w-1/2 h-full'>
@@ -233,14 +248,15 @@ const SingleProduct = () => {
                                 saved ? <BiSolidHeart size={30} color='darkred' /> : <BiHeart size={30} color='gray' />
                             }
                             </div>
-                            <div className='flex'>
+                            <div className='flex flex-row sm:flex-col '>
                                 {
                                     product?.images.map((img, key) => (
-                                        <div key={key} className='sm:h-[85px] h-[75px] w-[75px]  sm:w-[85px] border ml-3 border-[#1a1a1d30] shadow-lg mb-8  active:border-red'><img className='h-full w-full' src={img.img} alt="" /></div>
+                                        <div key={key} className={`${currentImg == img.img ? 'border-2 p-[2px] border-darkred':''} cursor-pointer sm:h-[85px] h-[75px] w-[75px]  sm:w-[85px] border ml-3 border-[#1a1a1d30] shadow-lg mb-8  active:border-red`}><img className='h-full w-full' src={img.img} onClick={() => { changeShowImg(img.img);
+                                        changeCurrentImg(img.img) }} alt="" /></div>
                                     ))
                                 }
                             </div>
-                            <div className='h-[350px] mt-20 sm:mt-0 mb-3 sm:mb-0 sm:h-[390px] w-full sm:w-[390px] sm:ml-20'><img className='rounded h-full w-full' src={product?.images[0]?.img} alt="" /></div>
+                            <div className='h-[350px] mt-20 sm:mt-0 mb-3 sm:mb-0 sm:h-[390px] w-full sm:w-[390px] sm:ml-20'><img className='rounded h-full w-full' src={showImg || product?.images[0]?.img} alt="" /></div>
                         </div>
                     </div>
                     <div className='w-full sm:w-1/2 h-full pl-3 sm:pl-20 pr-5 sm:pr-40 pt-14 mt-5 sm:mt-0 relative'>
@@ -272,11 +288,11 @@ const SingleProduct = () => {
                         </ul>
                         <div className='mt-5 text-sm font-dmsans sm:text-lg'>Deliver To</div>
                         <div className='flex justify-between sm:mt-4 mt-3'>
-                            <input onChange={(e)=>{setZipCode(e.target.value)}} type="text" placeholder='Pincode' className='h-8 sm:h-9 w-[250px] sm:w-[400px] pl-3 rounded border border-[#1a1a1d53] mr-1 sm:mr-0 text-sm' />
+                            <input onChange={(e) => { setZipCode(e.target.value) }} type="text" placeholder='Pincode' className='h-8 sm:h-9 w-[250px] sm:w-[400px] pl-3 rounded border border-[#1a1a1d53] mr-1 sm:mr-0 text-sm' />
                             <button onClick={checkZipCode} className='h-8 sm:h-9 rounded w-24 font-dmsans text-sm flex items-center justify-center bg-[#659ddc72]'>Check</button>
                         </div>
                         {checkPress && showZipCodeError && <div className='text-darkred text-sm font-dmsans mt-1'>Invalid Code</div>}
-                        { checkPress &&  showZipCodeSuccess && <div className='text-[#38bd41] text-sm font-dmsans mt-1'>Available!</div>}
+                        {checkPress && showZipCodeSuccess && <div className='text-[#38bd41] text-sm font-dmsans mt-1'>Available!</div>}
                         {
                             product?.quantity < 1 &&
                             <div className='mt-5 mb-2 text-lg'>Out of stock :(</div>
@@ -313,7 +329,7 @@ const SingleProduct = () => {
                                     <p className='font-dmsans mb-2'>Size </p>
                                     <div className='flex  cursor-pointer'>
                                         {product?.variants?.map((v, key) => (
-                                            v?.attribute == "size" && <div className='h-9 w-20 border rounded border-[#bebebe] font-dmsans flex justify-center items-center text-lg mr-2'>{v?.name}</div>
+                                            v?.attribute == "size" && <div className={`h-9 w-20 border rounded border-[#bebebe] font-dmsans flex justify-center items-center text-lg mr-2 ${variant == v?._id ? 'border-2 border-darkred p-2':''} cursor-pointer`} onClick={()=>{setPrice(v?.price);setVariant(v?._id)}}>{v?.name}</div>
                                         ))}
                                     </div>
                                     <p className='font-dmsans mb-2 mt-3'>Color </p>
@@ -335,10 +351,8 @@ const SingleProduct = () => {
                             <h1 className='font-dmsans text-[14px] sm:text-lg'>Product Details</h1>
                             <h2 className='font-dmsans text-sm mt-5'>Product Description:</h2>
                             <p className='text-gray text-xs'>{product?.description}</p>
-                            <h2 className='font-dmsans text-sm mt-5'>Product Summary:</h2>
-                            <p className='text-gray text-xs'>{product?.summary}</p>
                             <h2 className='font-dmsans text-sm mt-5'>Dimensions:</h2>
-                            <p className='text-gray text-xs'>{product?.dimension}</p>
+                            <p className='text-gray text-xs'>{product?.dimensions}</p>
                             <p className='text-gray text-xs mt-5'>Time required to dispatch 6-7 working days</p>
                             <h2 className='font-dmsans text-sm mt-5'>Additional Information:</h2>
                             <ul className='list-disc pl-5'>
@@ -348,7 +362,7 @@ const SingleProduct = () => {
                             <h2 className='font-dmsans text-sm mt-5'>Country of Origin: {product?.countryoforigin}</h2>
                         </div>
                     </div>
-                </div> : <Spinner />}
+                </div> : <div className='w-full h-full flex justify-center items-center'><Spinner /></div>}
 
 
                 <div className='mt-14 mb-10 font-alegreya text-xl sm:text-3xl font-semibold text-[#1a1a1d]  w-full h-10 flex justify-center items-center'>Recommended For You</div>

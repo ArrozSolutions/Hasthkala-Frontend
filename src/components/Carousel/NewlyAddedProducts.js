@@ -26,8 +26,8 @@ const NewlyAddedProducts = () => {
                                 <div className='h-3 w-3 mr-[2px]'><img className='h-full w-full' src={GoldenStar} alt="" /></div>
                                 <div className='h-3 w-3 mr-[2px]'><img className='h-full w-full' src={GrayStar} alt="" /></div>
                                 <div className='h-3 w-3 mr-[2px]'><img className='h-full w-full' src={GrayStar} alt="" /></div>
-                            </span><span className='flex justify-center w-[70px]  h-[15px] sm:h-[25px] sm:w-[120px] items-center text-[7px] sm:text-xs bg-[#087e1c] text-[#ffffff] sm:pl-2 sm:pt-1 sm:pb-1 rounded sm:pr-2 '>Same Day Delivery</span></div>
-                            <p className='mb-2 text-xs sm:text-sm'><span className='font-semibold mr-3 text-[#BD1818] '>₹ {products[1]?.price}</span><span className='text-xs line-through'>3200.00</span></p>
+                            </span></div>
+                            <p className='mb-2 text-xs sm:text-sm'><span className='font-semibold mr-3 text-[#BD1818] '>₹ {(products[0]?.discountprice != 'null')?products[0]?.discountprice : products[0]?.price}</span><span className='text-xs line-through'>{(products[0]?.discountprice) ? products[0]?.price : ''}</span></p>
                         </div>
                     </div>
                 </Link>
@@ -45,8 +45,8 @@ const NewlyAddedProducts = () => {
                                 <div className='h-3 w-3 mr-[2px]'><img className='h-full w-full' src={GoldenStar} alt="" /></div>
                                 <div className='h-3 w-3 mr-[2px]'><img className='h-full w-full' src={GrayStar} alt="" /></div>
                                 <div className='h-3 w-3 mr-[2px]'><img className='h-full w-full' src={GrayStar} alt="" /></div>
-                            </span><span className='flex justify-center w-[70px]  h-[15px] sm:h-[25px] sm:w-[120px] items-center text-[7px] sm:text-xs bg-[#087e1c] text-[#ffffff] sm:pl-2 sm:pt-1 sm:pb-1 rounded sm:pr-2 '>Same Day Delivery</span></div>
-                            <p className='mb-2 text-xs sm:text-sm'><span className='font-semibold mr-3 text-[#BD1818] '>₹ {products[1]?.price}</span><span className='text-xs line-through'>3200.00</span></p>
+                            </span></div>
+                            <p className='mb-2 text-xs sm:text-sm'><span className='font-semibold mr-3 text-[#BD1818] '>₹ {(products[1]?.discountprice != 'null') ? products[1]?.discountprice : products[1]?.price}</span><span className='text-xs line-through'>{(products[1]?.discountprice) ? products[1]?.price : ''}</span></p>
                         </div>
                     </div>
                 </Link>
@@ -68,8 +68,8 @@ const NewlyAddedProducts = () => {
                                 <div className='h-3 w-3 mr-[2px]'><img className='h-full w-full' src={GoldenStar} alt="" /></div>
                                 <div className='h-3 w-3 mr-[2px]'><img className='h-full w-full' src={GrayStar} alt="" /></div>
                                 <div className='h-3 w-3 mr-[2px]'><img className='h-full w-full' src={GrayStar} alt="" /></div>
-                            </span><span className='flex justify-center w-[70px]  h-[15px] sm:h-[25px] sm:w-[120px] items-center text-[7px] sm:text-xs bg-[#087e1c] text-[#ffffff] sm:pl-2 sm:pt-1 sm:pb-1 rounded sm:pr-2 '>Same Day Delivery</span></div>
-                            <p className='mb-2 text-xs sm:text-sm'><span className='font-semibold mr-3 text-[#BD1818] '>₹ {products[2]?.price}</span><span className='text-xs line-through'>3200.00</span></p>
+                            </span></div>
+                            <p className='mb-2 text-xs sm:text-sm'><span className='font-semibold mr-3 text-[#BD1818] '>₹ {(products[2]?.discountprice) ? products[2]?.discountprice : products[2]?.price}</span><span className='text-xs line-through'>{(products[2]?.discountprice) ? products[2]?.price : ''}</span></p>
                         </div>
                     </div>
                 </Link>
@@ -87,8 +87,8 @@ const NewlyAddedProducts = () => {
                                 <div className='h-3 w-3 mr-[2px]'><img className='h-full w-full' src={GoldenStar} alt="" /></div>
                                 <div className='h-3 w-3 mr-[2px]'><img className='h-full w-full' src={GrayStar} alt="" /></div>
                                 <div className='h-3 w-3 mr-[2px]'><img className='h-full w-full' src={GrayStar} alt="" /></div>
-                            </span><span className='flex justify-center w-[70px]  h-[15px] sm:h-[25px] sm:w-[120px] items-center text-[7px] sm:text-xs bg-[#087e1c] text-[#ffffff] sm:pl-2 sm:pt-1 sm:pb-1 rounded sm:pr-2 '>Same Day Delivery</span></div>
-                            <p className='mb-2 text-xs sm:text-sm'><span className='font-semibold mr-3 text-[#BD1818] '>₹ {products[3]?.price}</span><span className='text-xs line-through'>3200.00</span></p>
+                            </span></div>
+                            <p className='mb-2 text-xs sm:text-sm'><span className='font-semibold mr-3 text-[#BD1818] '>₹ {(products[3]?.discountprice) ? products[3]?.discountprice : products[3]?.price}</span><span className='text-xs line-through'>{(products[3]?.discountprice) ? products[3]?.price : ''}</span></p>
                         </div>
                     </div>
                 </Link>
