@@ -6,9 +6,9 @@ import GrayStar from '../../assets/graystar.png';
 const ProductCard = ({product}) => {
     return (
         <Link to={`/product/${product?.slug}`}>
-            <div className='flex flex-col w-[175px] sm:w-[300px] h-[250px] sm:min-h-[400px] shadow-xl  rounded sm:rounded-3xl  sm:rounded-bl-3xl sm:rounded-br-3xl mr-10 border border-[#1a1a1d2e]'>
+            <div className='flex flex-col max-[390px]:w-full w-[175px] sm:w-[300px] h-[250px] sm:min-h-[400px] shadow-xl sm:rounded-3xl  sm:rounded-bl-3xl sm:rounded-br-3xl mr-10 border border-[#1a1a1d2e]'>
                 <div className='w-full h-[145px] min[392px]:h-[140px] sm:h-[300px]'>
-                    <img className='h-full w-full rounded-tr rounded-tl sm:rounded-tr-3xl sm:rounded-tl-3xl' src={product?.images[0]?.img} alt="Image1" />
+                    <img className='h-full w-full sm:rounded-tr-3xl sm:rounded-tl-3xl' src={product?.images[0]?.img} alt="Image1" />
                 </div>
                 <div className='w-full flex flex-col sm:pl-5 sm:pr-5 pl-1 pr-1'>
                     <div className='sm:mb-2 mb-1 mt-2 font-semibold font-alegreya text-sm sm:text-[16.5px]'>{product?.name}</div>

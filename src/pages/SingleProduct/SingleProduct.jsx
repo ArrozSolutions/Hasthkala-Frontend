@@ -63,6 +63,7 @@ const SingleProduct = () => {
     useEffect(() => {
         if (product) {
             dispatch(getRelatedProducts(product?.name));
+            console.log(product,'pro');
         }
     }, [product])
 
@@ -182,8 +183,8 @@ const SingleProduct = () => {
         setCurrentImg(img);
     }
 
-    const [variantPrice,setVariantPrice] = useState(null);
-    const [variant,setVariant] = useState(null);
+    const [variantPrice, setVariantPrice] = useState(null);
+    const [variant, setVariant] = useState(null);
 
     return (
         <>
@@ -251,8 +252,10 @@ const SingleProduct = () => {
                             <div className='flex flex-row sm:flex-col '>
                                 {
                                     product?.images.map((img, key) => (
-                                        <div key={key} className={`${currentImg == img.img ? 'border-2 p-[2px] border-darkred':''} cursor-pointer sm:h-[85px] h-[75px] w-[75px]  sm:w-[85px] border ml-3 border-[#1a1a1d30] shadow-lg mb-8  active:border-red`}><img className='h-full w-full' src={img.img} onClick={() => { changeShowImg(img.img);
-                                        changeCurrentImg(img.img) }} alt="" /></div>
+                                        <div key={key} className={`${currentImg == img.img ? 'border-2 p-[2px] border-darkred' : ''} cursor-pointer sm:h-[85px] h-[75px] w-[75px]  sm:w-[85px] border ml-3 border-[#1a1a1d30] shadow-lg mb-8  active:border-red`}><img className='h-full w-full' src={img.img} onClick={() => {
+                                            changeShowImg(img.img);
+                                            changeCurrentImg(img.img)
+                                        }} alt="" /></div>
                                     ))
                                 }
                             </div>
@@ -329,7 +332,7 @@ const SingleProduct = () => {
                                     <p className='font-dmsans mb-2'>Size </p>
                                     <div className='flex  cursor-pointer'>
                                         {product?.variants?.map((v, key) => (
-                                            v?.attribute == "size" && <div className={`h-9 w-20 border rounded border-[#bebebe] font-dmsans flex justify-center items-center text-lg mr-2 ${variant == v?._id ? 'border-2 border-darkred p-2':''} cursor-pointer`} onClick={()=>{setPrice(v?.price);setVariant(v?._id)}}>{v?.name}</div>
+                                            v?.attribute == "size" && <div className={`h-9 w-20 border rounded border-[#bebebe] font-dmsans flex justify-center items-center text-lg mr-2 ${variant == v?._id ? 'border-2 border-darkred p-2' : ''} cursor-pointer`} onClick={() => { setPrice(v?.price); setVariant(v?._id) }}>{v?.name}</div>
                                         ))}
                                     </div>
                                     <p className='font-dmsans mb-2 mt-3'>Color </p>
@@ -356,10 +359,14 @@ const SingleProduct = () => {
                             <p className='text-gray text-xs mt-5'>Time required to dispatch 6-7 working days</p>
                             <h2 className='font-dmsans text-sm mt-5'>Additional Information:</h2>
                             <ul className='list-disc pl-5'>
-                                <li className='text-xs text-gray mt-1'>{product?.additionalinfo}</li>
+                                <li className='text-xs text-gray mt-1'>
+                                    {product?.additionalinfo}
+                                    {(product?.material)?`Material: ${product?.material}`:''}
+                                    {(product?.color)?`Color: ${product?.color}`:''}
+                                </li>
                                 {/* <li className='text-xs text-gray mt-1'>Art Forms - Thikri (Mirror in-lay)</li> */}
                             </ul>
-                            <h2 className='font-dmsans text-sm mt-5'>Country of Origin: {product?.countryoforigin}</h2>
+                            <h2 className='font-dmsans text-sm mt-5'>Country of Origin: {product?.countryoforigin || 'India'}</h2>
                         </div>
                     </div>
                 </div> : <div className='w-full h-full flex justify-center items-center'><Spinner /></div>}

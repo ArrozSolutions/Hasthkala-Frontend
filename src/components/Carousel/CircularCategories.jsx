@@ -53,7 +53,8 @@ const CircularCategories = () => {
                             <img className='min-h-full w-full scale-110' src={IllustrationFrames} alt="" />
                         </span>
                         <br className='hidden sm:block' />
-                        <p className='text-[10px] sm:text-[17px] mt-1 sm:mt-0'>{'Illustration Frames'}</p>
+                        <p className='hidden sm:block text-[10px] sm:text-[17px] mt-1 sm:mt-0'>{('Illustration Frames')}</p>
+                        <p className='sm:hidden block text-[10px] sm:text-[17px] mt-1 sm:mt-0'>{('Illustration Frames').slice(0,16)}</p>
                     </div>
                 </SplideSlide>
                 <SplideSlide className='h-[100px] max-w-[90px] sm:h-[270px] sm:max-w-[230px]  bg-transparent pl-1 pr-1'>

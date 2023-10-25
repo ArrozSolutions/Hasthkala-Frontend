@@ -284,7 +284,7 @@ const Listing = () => {
                             </div>
                         </div>
                         <div className='flex flex-col justify-between'>
-                            <div className=' sm:min-h-full pt-8 pl-2 pr-2 sm:pl-14 max-w-full grid grid-cols-2 sm:grid-cols-3 gap-y-8 mb-10'>
+                            <div className='sm:min-h-full pt-8 pl-0 pr-0 sm:pl-14 max-w-full grid grid-cols-2 sm:grid-cols-3 sm:gap-y-8 mb-10'>
                                 {(pType === 0 || location?.state?.from == "latest" ) && allproducts.map((product, key) => (
                                     <ProductCard key={key} product={product} />
                                 ))}
