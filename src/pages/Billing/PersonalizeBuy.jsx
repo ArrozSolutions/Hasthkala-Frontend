@@ -119,7 +119,7 @@ const PersonalizeBuy = () => {
         if (firstname && lastname && country && state && city && email && phone && address && zipcode) {
             var usertype = auth?.usertype;
             const orderObj = {
-                fullname: firstname + "" + lastname,
+                fullname: firstname + " " + lastname,
                 country,
                 state,
                 city,

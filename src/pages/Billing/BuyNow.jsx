@@ -104,7 +104,7 @@ const BuyNow = () => {
     const handlePlaceOrder = () => {
         if (firstname && lastname && country && state && city && email && phone && address && zipcode) {
             var usertype = auth?.usertype;
-            dispatch(orderItem(firstname + "" + lastname, country, state, city, email, phone, address, zipcode, usertype, uid, status, buynowdata, paymentMode, parseFloat((totalPrice + shipping) - discount).toFixed(2))).then(() => {
+            dispatch(orderItem(firstname + " " + lastname, country, state, city, email, phone, address, zipcode, usertype, uid, status, buynowdata, paymentMode, parseFloat((totalPrice + shipping) - discount).toFixed(2))).then(() => {
                 errorToast("Order Created Successfully");
                 setOrderPlaced(true);
                 setTimeout(() => {

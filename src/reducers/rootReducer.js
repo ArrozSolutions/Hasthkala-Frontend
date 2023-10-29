@@ -6,6 +6,7 @@ import CartReducer from "./Cart/CartReducer";
 import CouponReducer from "./Coupon/CouponReducer";
 import GiftBoxReducer from './GiftBox/GiftBoxReducer';
 import GiftCardReducer from './GiftCard/GiftCardReducer';
+import NotificationsReducer from './Notifications/NotificationsReducer'
 
 const rootReducer = combineReducers({
     user: UserReducer,
@@ -15,6 +16,7 @@ const rootReducer = combineReducers({
     coupon:CouponReducer,
     giftbox:GiftBoxReducer,
     giftcard:GiftCardReducer,
+    notification:NotificationsReducer,
 });
 
 

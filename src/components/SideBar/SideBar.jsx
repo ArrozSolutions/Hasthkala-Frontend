@@ -8,6 +8,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { signOut } from '../../actions/User/UserAction';
 import { useEffect } from 'react';
 import { getSavedProducts } from '../../actions/Cart/CartAction';
+import { getNotifications } from '../../actions/Notifications/Notifications';
 
 const SideBar = ({ name, show }) => {
     const dispatch = useDispatch();
@@ -21,6 +22,12 @@ const SideBar = ({ name, show }) => {
             setUserId(auth?._id);
         }
     }, [auth])
+
+    useEffect(()=>{
+        if(userId){
+            dispatch(getNotifications(userId));
+        }
+    },[userId])
 
     const userSignOut = () => {
         if (sessionStorage.getItem('googlelogin')) {
