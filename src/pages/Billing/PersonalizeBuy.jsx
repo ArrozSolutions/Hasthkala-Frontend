@@ -132,6 +132,7 @@ const PersonalizeBuy = () => {
                 status,
                 cartdata: JSON.stringify(buynowdata),
                 paymentmode: paymentMode,
+                orderName,
                 totalprice: parseFloat((totalPrice + shipping) - (discount || 0)).toFixed(2),
                 customText,
                 customLink,
@@ -173,6 +174,17 @@ const PersonalizeBuy = () => {
         const rzp = new window.Razorpay(options)
         rzp.open()
 
+    }
+
+    useEffect(()=>{
+        if(buynowdata){
+            handleCartData(buynowdata)
+        }
+    },[buynowdata])
+
+    const [orderName,setOrdername] = useState(null);
+    const handleCartData=(cart)=>{
+        setOrdername(cart.name);
     }
 
     const handlePayment = (amount) => {

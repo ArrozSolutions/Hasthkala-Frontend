@@ -343,7 +343,7 @@ const Login = () => {
                   Verify Your Email Address
                 </div>
                 <div className='text-[13px] text-gray pl-10 pr-10 text-center'>
-                  Lorem ipsum dolor sit amet, consectetur lorem epsum lorem adipisicing elit. Accusantium, maiores.
+                  Please enter your email verification code sent to {email}
                 </div>
                 <div className='pl-10 pr-10 pt-6'>
                   <label className='text-sm font-dmsans flex items-center justify-between mb-1' htmlFor="">

@@ -91,25 +91,28 @@ const UserProfile = () => {
     }
   }
 
-  const [notifications,setNotifications] = useState(null);
-  const [notificationsCount,setNotificationsCount] = useState(null);
+
+  const [notifications, setNotifications] = useState(null);
+  const [notificationsCount, setNotificationsCount] = useState(null);
   const allnotifications = useSelector(state => state.notification.notifications)
   const allnotificationscount = useSelector(state => state.notification.totalnotifications)
-  useEffect(()=>{
-    if(allnotifications){
+  useEffect(() => {
+    if (allnotifications) {
       setNotifications(allnotifications)
     }
-    if(allnotificationscount){
+    if (allnotificationscount) {
       setNotificationsCount(allnotificationscount)
     }
-  },[allnotifications,allnotificationscount])
+  }, [allnotifications, allnotificationscount])
+
+
 
   return (
     <div>
       <div className='flex'>
         <SideBar name={"profile"} show={hamburger} />
 
-        {(auth?.user?.usertype == "complete" || auth?.authenticate) && <div className='flex flex-col w-full h-screen justify-start items-center sm:pl-10 pl-3 pr-5'>
+        {((auth?.user?.usertype == "complete" && auth?.authenticate) || auth?.user?.usertype == "semi_incomplete") && <div className='flex flex-col w-full h-screen justify-start items-center sm:pl-10 pl-3 pr-5'>
 
           <div className='flex justify-between w-full h-20 sm:h-16 items-center  pt-3 pb-3 '>
             <div className='flex mt-2 sm:mt-0 justify-between items-center w-full'>
@@ -118,14 +121,17 @@ const UserProfile = () => {
                   hamburger ? <BiX size={23} /> : <BiMenu size={23} />
                 }
               </div>
-              <div className='hidden relative sm:flex items-center'>
+              {/* <div className='hidden relative sm:flex items-center'>
                 <span className='absolute ml-3 mt-1'><BiSearch color='gray' size={20} /></span>
                 <input className='bg-[#7a7a8314] h-10 pl-9 w-[300px] rounded-full' type="text" placeholder='Search' />
-              </div>
+              </div> */}
               <div className='flex justify-center items-center'>
-                <div className='cursor-pointer h-10 w-10 rounded-md flex items-center justify-center mr-4 bg-[#1a1a1d12] relative'>
+                <div className='relative cursor-pointer h-10 w-10 rounded-md flex items-center justify-center mr-4 bg-[#1a1a1d12]'>
                   {notifications && <div className='absolute w-3 h-3 bg-red-600 rounded-full right-0 top-0 flex justify-center items-center text-[9px] text-white'>{notificationsCount}</div>}
                   <BiSolidBell size={20} color='gray' />
+                  {/* <div className='absolute min-h-20 w-[300px] bg-white shadow-xl border rounded pl-2 pr-2 border-[#1a1a1d34] right-0 top-10'>
+                    a
+                  </div> */}
                 </div>
                 <div className='flex border border-[#1a1a1d32] rounded-md'>
                   <div className='h-10 w-10'><img className='h-full w-full rounded-bl-md rounded-tl-md p-[2px]' src={auth?.user?.avatar} alt="" /></div>

@@ -10,6 +10,7 @@ import './Listing.css';
 import { BiChevronDown, BiLoader, BiMenu, BiMinus, BiPlus, BiX } from 'react-icons/bi';
 import Navbar from '../../components/Navbar/Navbar';
 import { useLocation } from 'react-router-dom';
+import Footer from '../../components/Footer/Footer'
 
 const Listing = () => {
     const [checked, setChecked] = useState([]);
@@ -140,7 +141,7 @@ const Listing = () => {
 
     return (
         <>
-            <div className='flex flex-col relative'>
+            <div className='flex flex-col relative z-900'>
                 {/* navbar filter  */}
                 <div className={`${showFilter ? 'left-0' : 'left-[-380px]'} transition-all duration-200 block sm:hidden fixed top-[-25px] left-0 z-[1000] pt-4 pl-4 pr-4 bg-white w-[320px] shadow-2xl min-h-full mt-6  rounded`}>
                     <div className='h-10 flex' onClick={toggleShowFilter}>
@@ -305,6 +306,9 @@ const Listing = () => {
                     </div>
                 </div>
             </div>
+            <div className='h-40'></div>
+            <div className='h-20'></div>
+                <Footer/>
         </>
     )
 }

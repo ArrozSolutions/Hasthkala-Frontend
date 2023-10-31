@@ -19,7 +19,7 @@ export const getOrders = (uid) => {
   };
 }
 
-export const orderItem = (fullname, country, state, city, email, phone, address, zipcode, usertype, uid, status, cartdata, paymentmode, totalprice) => {
+export const orderItem = (fullname, country, state, city, email, phone, address, zipcode, usertype, uid, status, cartdata, paymentmode, orderName,totalprice) => {
   return async (dispatch) => {
     dispatch({ type: orderConstants.ORDER_REQUEST });
     const res = await axios.post(`/create-order`, {
@@ -27,6 +27,7 @@ export const orderItem = (fullname, country, state, city, email, phone, address,
       status,
       cartdata,
       paymentmode,
+      orderName,
       totalprice,
       fullname,
       country,

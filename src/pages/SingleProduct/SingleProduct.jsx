@@ -276,11 +276,11 @@ const SingleProduct = () => {
                             <span className='sm:w-4 sm:h-4 w-3 h=3 mr-[1px]'><img className='w-full h-full' src={GrayStar} alt="" /></span>
                             &nbsp; 4 ratings</div>
                         <div className='flex mt-5'>
-                            <div className='text-2xl sm:text-3xl font-dmsans font-semibold mr-2'>₹{price ? price : (product?.price)}</div>
+                            <div className='text-2xl sm:text-3xl font-dmsans font-semibold mr-2'>₹{(product?.discountprice != 'null' && product?.discountprice != undefined)?product?.discountprice:product?.price}</div>
                             <div className='flex flex-col'>
                                 <div className='flex text-xs sm:text-sm'>
-                                    <p className=' line-through mr-1 font-dmsans'>₹ 549</p>
-                                    <p className='text-[#20992c] font-dmsans'>36% off</p>
+                                    <p className=' line-through mr-1 font-dmsans'>₹{(product?.discountprice != 'null' && product?.discountprice != undefined)?product?.price:''}</p>
+                                    <p className='text-[#20992c] font-dmsans'>{(product?.discountprice != null && product?.discountprice != undefined)?`${parseInt(((product.price - product.discountprice)*100)/product.price)}% off`:''}</p>
                                 </div>
                                 <p className='text-[11px] sm:text-xs text-gray'>Inclusive of all taxes</p>
                             </div>

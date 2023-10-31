@@ -99,7 +99,7 @@ const MyOrders = () => {
             {/* ORDER CARD  */}
             {orders?.map((order, key) => (
               <div>
-                <OrderCard cartdata={order?.cartdata} price={order?.totalprice} paymentmode={order?.paymentmode} customimg={order?.customimg?.length > 0 ? true : false} customtext={order?.customtext} customlink={order?.customlink} />
+                <OrderCard cartdata={order?.cartdata} price={order?.totalprice} paymentmode={order?.paymentmode} customimg={order?.customimg?.length > 0 ? true : false} customtext={order?.customtext} customlink={order?.customlink} status={order?.status} />
                 <br />
               </div>
 

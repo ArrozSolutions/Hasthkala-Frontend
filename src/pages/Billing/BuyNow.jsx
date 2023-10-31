@@ -49,7 +49,7 @@ const BuyNow = () => {
     const [firstname, setFirstName] = useState(null);
     const [img, setImg] = useState(null);
 
-    const [orderPlaced,setOrderPlaced] = useState(false);
+    const [orderPlaced, setOrderPlaced] = useState(false);
 
     useEffect(() => {
         if (auth) {
@@ -72,6 +72,19 @@ const BuyNow = () => {
             setImg(location.state.data.images[0].img)
         }
     }, [auth, location])
+
+    useEffect(() => {
+        if (buynowdata) {
+            handleCartData(buynowdata);
+        }
+    }, [buynowdata])
+
+    const [orderName, setOrderName] = useState(null);
+    const [orderPrice, setOrderPrice] = useState(null);
+    const handleCartData = (cart) => {
+        setOrderName(cart.name);
+    }
+
 
     useEffect(() => {
         if (totalPrice) {
@@ -104,7 +117,7 @@ const BuyNow = () => {
     const handlePlaceOrder = () => {
         if (firstname && lastname && country && state && city && email && phone && address && zipcode) {
             var usertype = auth?.usertype;
-            dispatch(orderItem(firstname + " " + lastname, country, state, city, email, phone, address, zipcode, usertype, uid, status, buynowdata, paymentMode, parseFloat((totalPrice + shipping) - discount).toFixed(2))).then(() => {
+            dispatch(orderItem(firstname + " " + lastname, country, state, city, email, phone, address, zipcode, usertype, uid, status, buynowdata, paymentMode,orderName, parseFloat((totalPrice + shipping) - discount).toFixed(2))).then(() => {
                 errorToast("Order Created Successfully");
                 setOrderPlaced(true);
                 setTimeout(() => {
@@ -317,7 +330,7 @@ const BuyNow = () => {
                         </div>
                         <div className='flex justify-between text-[16px] font-dmsans'>
                             <p>Total</p>
-                            <p>₹{parseFloat((totalPrice + shipping) - discount).toFixed(2)}</p>
+                            <p>₹{parseFloat(totalPrice - discount).toFixed(2)}</p>
                         </div>
                         <div className='mt-4'>
                             <button className='bg-darkred text-white uppercase w-full h-10 rounded text-[14px] font-dmsans flex items-center justify-center' onClick={() => {

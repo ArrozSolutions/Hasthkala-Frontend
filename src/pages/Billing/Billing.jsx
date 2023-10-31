@@ -92,8 +92,26 @@ const Billing = () => {
         if (cart) {
             setCartItem(cart)
             setCartData(cart)
+            handleCartData(cart);
         }
     }, [cart])
+
+    const [orderName,setOrderName] = useState(null);
+    const [orderPrice,setOrderPrice] = useState(null);
+    const handleCartData = (cart)=>{
+        if(cart.length < 2){
+            setOrderName(cart[0].productid.name);
+        }else{
+            let n = '';
+            for(let i=0;i<cart.length;i++){
+                n = n + cart[i].productid.name;
+                if(i<cart.length-1){
+                    n= n + ' & '
+                }
+            }
+            setOrderName(n);
+        }
+    }
 
 
     const handleCod = () => {
@@ -112,7 +130,7 @@ const Billing = () => {
     const handlePlaceOrder = () => {
         if (firstname && lastname && country && state && city && email && phone && address && zipcode) {
             var usertype = auth?.usertype;
-            dispatch(orderItem(firstname + " " + lastname, country, state, city, email, phone, address, zipcode, usertype, uid, status, cartdata, paymentMode, parseFloat((totalPrice + shipping) - discount).toFixed(2))).then(() => {
+            dispatch(orderItem(firstname + " " + lastname, country, state, city, email, phone, address, zipcode, usertype, uid, status, cartdata, paymentMode,orderName, parseFloat((totalPrice + shipping) - discount).toFixed(2))).then(() => {
                 errorToast("Order Created Successfully");
                 setOrderPlaced(true);
                 setTimeout(() => {
@@ -334,7 +352,8 @@ const Billing = () => {
                                 if (cod) {
                                     handlePlaceOrder();
                                 } else {
-                                    handlePayment(totalPrice);
+                                    let disc = discount || 0;
+                                    handlePayment(totalPrice-disc);
                                 }
                             }}>Place order<AiOutlineArrowRight size={18} className='ml-2' /></button>
                         </div>

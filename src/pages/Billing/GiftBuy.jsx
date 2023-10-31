@@ -68,6 +68,14 @@ const GiftBuyNow = () => {
         }
     }, [auth, location])
 
+    const [orderName,setOrderName] = useState(null);
+    useEffect(()=>{
+        if(buynowdata){
+            let n = `${buynowdata[0].box.name} & ${buynowdata[1].product.name} & ${buynowdata[2].card.name}`
+            setOrderName(n);
+        }
+    },[buynowdata])
+
     useEffect(() => {
         if (totalPrice) {
             let temptax = (totalPrice * 18) / 100;
@@ -101,7 +109,7 @@ const GiftBuyNow = () => {
         console.log(firstname, country, state, city, email, phone, address, zipcode);
         if (firstname && country && state && city && email && phone && address && zipcode) {
             var usertype = auth?.usertype;
-            dispatch(orderItem(firstname + "" + lastname, country, state, city, email, phone, address, zipcode, usertype, uid, status, buynowdata, paymentMode, parseFloat((totalPrice + shipping) - discount || 0).toFixed(2))).then(() => {
+            dispatch(orderItem(firstname + "" + lastname, country, state, city, email, phone, address, zipcode, usertype, uid, status, buynowdata, paymentMode,orderName, parseFloat((totalPrice + shipping) - discount || 0).toFixed(2))).then(() => {
                 errorToast("Order Created Successfully");
                 setOrderPlaced(true);
                 setTimeout(() => {

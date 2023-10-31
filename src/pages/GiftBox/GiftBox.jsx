@@ -170,7 +170,7 @@ const GiftBox = () => {
             <div className='w-full grid grid-cols-2 xl:grid-cols-3 gap-x-2 pl-2 pr-2'>
               {
                 products?.map((product, key) => (
-                  <div key={key} className='h-[230px] sm:h-[320px] cursor-pointer shadow-xl sm:w-[270px] sm:min-w-[270px] max-w-[200px] border rounded-lg flex flex-col justify-start pb-3 relative mb-4' onClick={() => { selectProduct(product) }}>
+                  <div key={key} className='h-[230px] sm:h-[330px] cursor-pointer shadow-xl sm:w-[260px] sm:min-w-[260px] max-w-[200px] border rounded-lg flex flex-col justify-start pb-3 relative mb-4' onClick={() => { selectProduct(product) }}>
                     <div className='absolute right-3 top-3'>
                       {
                         (selectedProduct?._id == product?._id) ?
@@ -178,7 +178,7 @@ const GiftBox = () => {
                           <BiCheckCircle size={23} color="gray" />
                       }
                     </div>
-                    <div className='h-[130px] sm:h-[200px] rounded-t-xl w-full'><img className='h-full w-full rounded-t-lg' src={product?.images[0]?.img} alt="" /></div>
+                    <div className='h-[130px] sm:h-[230px] rounded-t-xl w-full'><img className='h-full w-full rounded-t-lg' src={product?.images[0]?.img} alt="" /></div>
                     <div>
                       <p className='pl-1 sm:pl-3 pr-3  text-xs sm:text-[15px] font-dmsans pt-2'>{product?.name}</p>
                       <p className='pl-1 sm:pl-3 pr-3  text-[10px] sm:text-xs pb-2 text-[#888888]'>{product?.description?.slice(0, 50)}...</p>

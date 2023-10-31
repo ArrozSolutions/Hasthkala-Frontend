@@ -1,13 +1,35 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { BiCheckCircle } from 'react-icons/bi';
 import { useNavigate } from 'react-router-dom'
 
-const OrderCard = ({ cartdata, price, paymentmode, customtext, customlink, customimg }) => {
+const OrderCard = ({ cartdata, price, paymentmode, customtext, customlink, customimg,status }) => {
     const navigate = useNavigate();
 
+    const months = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"]
+
+    const statusModes = [
+        "Your Order Is Processing",
+        "Delivered!",
+        "Order Cannot Be Delivered",
+    ]
+    const [statusforcustomer,setstatusforcustomer] = useState(null);
+
     useEffect(()=>{
-        console.log(cartdata[0]?.box?.images[0]?.img,'cartdata2');
-    })
+        const date = new Date();
+        var todayDate = date.getDate() + 10;
+        var currentMonth = date.getMonth();
+        if(todayDate > 31){
+            todayDate = todayDate - 31
+            currentMonth = currentMonth + 1;
+        }
+        if(status == "Delivered"){
+            setstatusforcustomer(statusModes[1]);
+        }else if(status == "Pending"){
+            setstatusforcustomer(statusModes[0]);
+        }else{
+            setstatusforcustomer(`Delivered On ${todayDate} ${months[currentMonth]}`)
+        }
+    },[status])
 
     return (
         <>
@@ -23,7 +45,11 @@ const OrderCard = ({ cartdata, price, paymentmode, customtext, customlink, custo
                             <div className='flex flex-col'>
                                 <h1 className='font-dmsans block sm:hidden text-[13px] mb-[5px] sm:mb-0 sm:text-[16px]'>Deliverd on Sep 15</h1>
                                 <h1 className='text-[#333337]  text-[14px] sm:text-[16px]'>{c?.productid?.name}</h1>
-                                <p className='text-[#787878] text-[11px] sm:text-xs'>Color: Cream Size: 22x24cm</p>
+                                <p className='text-[#787878] text-[11px] sm:text-[11px] flex'>
+                                    {(c?.productid?.dimensions)?<p className='mr-1'>{`Size: ${c.productid.dimensions}`}</p>:''}
+                                    {(c?.productid?.material)?<p className='mr-1'>{` Material: ${c.productid.material}`}</p>:''}
+                                    {(c?.productid?.color)?<p className='mr-1'>{`Color: ${c.productid.color}`}</p>:''}
+                                </p>
                             </div>
                         </div>
                         <div className='h-full pt-10'>
@@ -31,7 +57,9 @@ const OrderCard = ({ cartdata, price, paymentmode, customtext, customlink, custo
                             <p className='font-dmsans'>₹ {price}</p>
                         </div>
                         <div className='hidden sm:flex flex-col items-end h-full pt-8'>
-                            <h1 className='font-dmsans'>Deliverd on Sep 15</h1>
+                            <h1 className='font-dmsans'>
+                                {statusforcustomer}
+                            </h1>
                         </div>
                     </div>
                 ))

@@ -6,7 +6,7 @@ const Footer = () => {
 
     const navigate = useNavigate();
     return (
-        <footer className="bg-neutral-100 text-center text-neutral-600 dark:bg-neutral-600 dark:text-neutral-200 lg:text-left">
+        <footer className="z-1000 bg-white text-center text-neutral-600 dark:bg-white dark:text-neutral-200 lg:text-left">
             <div
                 className="flex flex-col sm:flex-row items-center justify-center border-b-1 border-neutral-200 sm:p-6 pt-4 pb-4 dark:border-neutral-500 lg:justify-between bg-darkred text-white">
                 <div className="mr-5 sm:mr-12 lg:block mb-3 sm:mb-0">
@@ -158,7 +158,7 @@ const Footer = () => {
                 <a
                     className="font-semibold text-neutral-600 dark:text-neutral-400"
                     href="https://tailwind-elements.com/"
-                >&nbsp;Harsh Hasthkala</a>
+                >&nbsp;Harsh Hasthkala Pvt Ltd.</a>
             </div>
         </footer>
     )

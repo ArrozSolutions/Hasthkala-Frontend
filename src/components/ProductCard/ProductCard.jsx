@@ -18,8 +18,8 @@ const ProductCard = ({product}) => {
                         <div className='h-[10px] w-[11px] mr-[1px]'><img className='h-full w-full' src={GoldenStar} alt="" /></div>
                         <div className='h-[10px] w-[11px] mr-[1px]'><img className='h-full w-full' src={GrayStar} alt="" /></div>
                         <div className='h-[10px] w-[11px] mr-[1px]'><img className='h-full w-full' src={GrayStar} alt="" /></div>
-                    </span><span className='flex justify-center w-[70px]  h-[15px] sm:h-[25px] sm:w-[120px] items-center text-[7px] sm:text-xs bg-[#087e1c] text-[#ffffff] sm:pl-2 sm:pt-1 sm:pb-1 rounded sm:pr-2 '>Same Day Delivery</span></div>
-                    <p className='mb-2 text-xs sm:text-sm'><span className='font-semibold mr-1 sm:mr-3 text-darkred '>₹ {product?.price}.00</span><span className='text-[11px] sm:text-xs line-through'>3200.00</span></p>
+                    </span><span className='flex justify-center w-[70px]  h-[15px] sm:h-[25px] sm:w-[100px] items-center text-[7px] sm:text-xs bg-[#087e1c] text-[#ffffff] sm:pl-2 sm:pt-1 sm:pb-1 rounded sm:pr-2 '>Quick Delivery</span></div>
+                    <p className='mb-2 text-xs sm:text-sm'><span className='font-semibold mr-1 sm:mr-3 text-darkred '>₹ {(product?.discountprice == 'null' || product?.discountprice == undefined)?product?.price:product.discountprice}</span><span className='text-[11px] sm:text-xs line-through'>{(product?.discountprice == 'null' || product?.discountprice == undefined)?'':'₹ '+product?.price}</span></p>
                 </div>
             </div>
         </Link>

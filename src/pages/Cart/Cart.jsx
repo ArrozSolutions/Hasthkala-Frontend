@@ -101,17 +101,15 @@ const Cart = () => {
     const handleCoupons = () => {
         setDiscountApplied(true);
         const coupon = {
-            name: couponCode,
+            name: couponCode.toLowerCase(),
             price: cartTotal,
             items: cartItems.length,
         }
         dispatch(getCoupon(coupon)).then(() => {
-            console.log(ce,'ce');
             if (ce) {
                 couponErrorToast(ce);
             }
         }).catch((err) => {
-            console.log(ce,'ce');
             if (ce) {
                 couponErrorToast(ce);
             }
@@ -161,6 +159,9 @@ const Cart = () => {
                             <input onChange={(e) => { setCouponCode(e.target.value) }} type="text" placeholder='Add coupon' className='border uppercase  border-[#1a1a1d37] rounded-tl rounded-bl text-sm pl-3 h-9' />
                             <button onClick={handleCoupons} className='flex items-center justify-center text-red font-semibold h-9 border  border-[#1a1a1d37] w-full border-l-0 rounded-tr rounded-br'>Apply</button>
                         </div>
+                        {/* <div className='flex'>
+                            <p>50% off on 2 orders</p>
+                        </div> */}
                     </div>
                     <div className='h-4'></div>
                     <div className='border w-full rounded border-[#1a1a1d37] pt-5 pl-4 pr-4 pb-3'>
