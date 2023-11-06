@@ -88,7 +88,7 @@ const NewlyAddedProducts = () => {
                                 <div className='h-3 w-3 mr-[2px]'><img className='h-full w-full' src={GrayStar} alt="" /></div>
                                 <div className='h-3 w-3 mr-[2px]'><img className='h-full w-full' src={GrayStar} alt="" /></div>
                             </span></div>
-                            <p className='mb-2 text-xs sm:text-sm'><span className='font-semibold mr-3 text-[#BD1818] '>₹ {(products[3]?.discountprice) ? products[3]?.discountprice : products[3]?.price}</span><span className='text-xs line-through'>{(products[3]?.discountprice) ? products[3]?.price : ''}</span></p>
+                            <p className='mb-2 text-xs sm:text-sm'><span className='font-semibold mr-3 text-[#BD1818] '>₹ {(products[3]?.discountprice == "null" || products[3]?.discountprice == undefined)?products[3]?.price : products[3]?.discountprice}</span><span className='text-xs line-through'>{(products[3]?.discountprice == "null")?'':products[3]?.price}</span></p>
                         </div>
                     </div>
                 </Link>

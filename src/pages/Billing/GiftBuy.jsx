@@ -259,11 +259,7 @@ const GiftBuyNow = () => {
                                     <input type="text" className='h-8 sm:h-9 border rounded border-[#1a1a1d43] text-xs pl-2' onChange={(e) => { setPhone(e.target.value) }} placeholder={phone ? phone : ''} />
                                 </div>
                             </div>
-                            <div className='flex mt-3'>
-                                <input type="checkbox" className='mr-2'
-                                />
-                                <p className='text-xs'>Ship into different address</p>
-                            </div>
+                          
                         </form>
                     </div>
 

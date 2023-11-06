@@ -141,7 +141,7 @@ const Listing = () => {
 
     return (
         <>
-            <div className='flex flex-col relative z-900'>
+            <div className='flex flex-col relative z-900 min-h-full'>
                 {/* navbar filter  */}
                 <div className={`${showFilter ? 'left-0' : 'left-[-380px]'} transition-all duration-200 block sm:hidden fixed top-[-25px] left-0 z-[1000] pt-4 pl-4 pr-4 bg-white w-[320px] shadow-2xl min-h-full mt-6  rounded`}>
                     <div className='h-10 flex' onClick={toggleShowFilter}>
@@ -212,7 +212,7 @@ const Listing = () => {
 
 
 
-                <div className='flex min-h-screen sm:min-h-full h-[1400px] relative'>
+                <div className='flex min-h-screen sm:min-h-full  relative'>
 
                     <div className='hidden sm:flex flex-col items-end min-h-full min-w-[340px] max-w-[340px] pt-10 '>
                         <p className='text-sm font-semibold tracking-wide'>Showing 1-{shownProducts} <span className='text-gray font-normal '>out of {totalProducts} products</span></p>

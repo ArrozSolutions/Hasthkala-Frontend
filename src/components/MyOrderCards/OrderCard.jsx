@@ -84,7 +84,7 @@ const OrderCard = ({ cartdata, price, paymentmode, customtext, customlink, custo
                         <p className='font-dmsans'>₹ {price}</p>
                     </div>
                     <div className='hidden sm:flex flex-col items-end h-full pt-8'>
-                        <h1 className='font-dmsans'>Deliverd on Sep 15</h1>
+                        <h1 className='font-dmsans'>{statusforcustomer}</h1>
                     </div>
                 </div>)}
         </>
