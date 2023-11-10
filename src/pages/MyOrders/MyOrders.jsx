@@ -77,18 +77,12 @@ const MyOrders = () => {
               <div className='hidden sm:block' onClick={() => { navigate('/') }}>
                 <BiLeftArrowAlt size={28} />
               </div>
-              <div className='hidden relative sm:flex items-center'>
-                <span className='absolute ml-3 mt-1'><BiSearch color='gray' size={20} /></span>
-                <input className='bg-[#7a7a8314] h-10 pl-9 w-[300px] rounded-full' type="text" placeholder='Search' />
-              </div>
-              <div className='flex justify-center items-center'>
-                <div className='h-10 w-10 rounded-md flex items-center justify-center mr-4 bg-[#1a1a1d12]'><BiSolidBell size={20} color='gray' /></div>
-                <div className='flex border border-[#1a1a1d32] rounded-md'>
-                  <div className='h-10 w-10'><img className='h-full w-full rounded-bl-md rounded-tl-md' src={UserImage} alt="" /></div>
-                  <div className='flex flex-col text-xs font-semibold ml-3 mt-1'>
+              <div className='flex justify-center items-center flex-row-reverse'>
+                <div className='h-10 w-10 rounded-full flex items-center justify-center mr-4 bg-[#1a1a1d12]'><BiSolidBell size={20} color='gray' /></div>
+                <div className='flex rounded-md'>
+                  <div className='flex flex-col text-xs font-semibold mr-2'>
                     <p>{auth.user?.fullname}</p>
                   </div>
-                  <div className='flex justify-center items-center ml-5 mr-2 mb-1 text-gray '><BiSolidDownArrow size={13} /></div>
                 </div>
               </div>
             </div>

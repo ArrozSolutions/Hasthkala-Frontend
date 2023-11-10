@@ -253,10 +253,10 @@ const Login = () => {
                 </div>
                 <div className='pl-10 pr-10 pt-6'>
                   <label className='text-sm font-dmsans' htmlFor="">Email Address</label>
-                  <input type="text" className='border border-[#1a1a1d52] w-full h-11 mt-1 mb-4 text-sm text-gray pl-5 rounded' onChange={(e) => { setEmail(e.target.value) }} required />
+                  <input type="text" className='border border-[#1a1a1d52] w-full h-11 mt-1 mb-4 text-sm text-gray pl-5 rounded-full' onChange={(e) => { setEmail(e.target.value) }} required />
                   <label className='text-sm font-dmsans' htmlFor="">Password</label>
-                  <input type="password" className='border border-[#1a1a1d52] w-full h-11 mt-1 text-sm text-gray pl-5 rounded' onChange={(e) => { setPassword(e.target.value) }} required />
-                  <button className='w-full h-11 bg-darkred font-dmsans uppercase text-[#ffffff] mt-5 rounded flex items-center justify-center' type='submit'>{loading ? <Spinner /> : `Sign In`}</button>
+                  <input type="password" className='border border-[#1a1a1d52] w-full h-11 mt-1 text-sm text-gray pl-5 rounded-full' onChange={(e) => { setPassword(e.target.value) }} required />
+                  <button className='w-full h-11 bg-darkred font-dmsans uppercase text-[#ffffff] mt-5 rounded-full flex items-center justify-center' type='submit'>{loading ? <Spinner /> : `Sign In`}</button>
                   <div className='text-xs flex items-center justify-center mt-4 mb-4'>
                     <span className='h-[1px] w-full bg-gray mr-1'></span>
                     or
@@ -265,7 +265,7 @@ const Login = () => {
                 </div>
               </form>
               <div className='w-full pl-10 pr-10'>
-              <button className='mb-4 w-full h-11 border border-[#1a1a1d38] text-sm rounded relative flex items-center justify-center '>
+              <button className='mb-4 w-full h-11 border border-[#1a1a1d38] text-sm rounded-full relative flex items-center justify-center '>
                 <span className='left-2 h-full absolute flex justify-center items-center'><img className='flex items-center justify-center p-2 h-full w-full' src={Google} alt="" /></span>
                 Login with Google
               </button></div>
@@ -289,16 +289,16 @@ const Login = () => {
                   <label className='text-sm font-dmsans' htmlFor="">Mobile Number</label>
                   <div className='relative items-center justify-start'>
                     <p className='absolute text-gray flex h-12 text-[16px] pl-2 items-center'>+91</p>
-                    <input type="text" className='border border-[#1a1a1d52] w-full h-12 mt-1 mb-4  text-gray pl-10 rounded flex items-center' maxLength={10} onChange={(e) => { setPhone(e.target.value) }} />
+                    <input type="text" className='border border-[#1a1a1d52] w-full h-12 mt-1 mb-4  text-gray pl-10 rounded-full flex items-center' maxLength={10} onChange={(e) => { setPhone(e.target.value) }} />
                   </div>
-                  <button className='w-full h-11 bg-darkred font-dmsans uppercase text-[#ffffff] mt-5 rounded flex items-center justify-center' onClick={loginUserWithMobileNumber} type='submit'>{loading ? <Spinner /> : `Sign In`}</button>
+                  <button className='w-full h-11 bg-darkred font-dmsans uppercase text-[#ffffff] mt-5 rounded-full flex items-center justify-center' onClick={loginUserWithMobileNumber} type='submit'>{loading ? <Spinner /> : `Sign In`}</button>
                   <div className='text-[13px] font-dmsans mt-3'>Login using <span onClick={toggleEmailSignIn} className='text-[#25baff] cursor-pointer'>Password</span></div>
                   <div className='text-xs flex items-center justify-center mt-4 mb-4'>
                     <span className='h-[1px] w-full bg-gray mr-1'></span>
                     or
                     <span className='h-[1px] w-full bg-gray ml-1'></span>
                   </div>
-                  <button className='mb-4 w-full h-11 border border-[#1a1a1d38] text-sm rounded relative flex items-center justify-center' onClick={googleLogin}>
+                  <button className='mb-4 w-full h-11 border border-[#1a1a1d38] text-sm rounded-full relative flex items-center justify-center' onClick={googleLogin}>
                     <span className='left-2 h-full absolute flex justify-center items-center'><img className='flex items-center justify-center p-2 h-full w-full' src={Google} alt="" /></span>
                     Login with Google
                   </button>
@@ -326,8 +326,8 @@ const Login = () => {
                     <span>Verification Code</span>
                     <span className='text-[#379bff] cursor-pointer'>Resend Code</span>
                   </label>
-                  <input type="text" className='border border-[#1a1a1d52] w-full h-11 mt-1 text-sm text-gray pl-5 rounded' onChange={(e) => { setVerificationCode(e.target.value) }} required />
-                  <button className='w-full h-11 bg-darkred font-dmsans uppercase text-[#ffffff] mt-5 rounded flex items-center justify-center' type='submit'>{loading ? <Spinner /> : `Verify me`}</button>
+                  <input type="text" className='border border-[#1a1a1d52] w-full h-11 mt-1 text-sm text-gray pl-5 rounded-full' onChange={(e) => { setVerificationCode(e.target.value) }} required />
+                  <button className='w-full h-11 bg-darkred font-dmsans uppercase text-[#ffffff] mt-5 rounded-full flex items-center justify-center' type='submit'>{loading ? <Spinner /> : `Verify me`}</button>
                 </div>
               </form>
 
@@ -350,8 +350,8 @@ const Login = () => {
                     <span>Verification Code</span>
                     <span className='text-[#379bff] cursor-pointer'>Resend Code</span>
                   </label>
-                  <input type="text" className='border border-[#1a1a1d52] w-full h-11 mt-1 text-sm text-gray pl-5 rounded' onChange={(e) => { setEmailVerificationCode(e.target.value) }} required />
-                  <button className='w-full h-11 bg-darkred font-dmsans uppercase text-[#ffffff] mt-5 rounded flex items-center justify-center' type='submit'>{loading ? <Spinner /> : `Verify me`}</button>
+                  <input type="text" className='border border-[#1a1a1d52] w-full h-11 mt-1 text-sm text-gray pl-5 rounded-full' onChange={(e) => { setEmailVerificationCode(e.target.value) }} required />
+                  <button className='w-full h-11 bg-darkred font-dmsans uppercase text-[#ffffff] mt-5 rounded-full flex items-center justify-center' type='submit'>{loading ? <Spinner /> : `Verify me`}</button>
                 </div>
               </form>
 
@@ -374,36 +374,36 @@ const Login = () => {
 
                 <div className='pl-10 pr-10 pt-6'>
                   <label className='text-sm font-dmsans' htmlFor="">Name</label>
-                  <input type="text" className='border border-[#1a1a1d52] w-full h-10 mt-1 mb-4 text-sm text-gray pl-5 rounded' onChange={(e) => { setFullName(e.target.value) }} required />
+                  <input type="text" className='border border-[#1a1a1d52] w-full h-10 mt-1 mb-4 text-sm text-gray pl-5 rounded-full' onChange={(e) => { setFullName(e.target.value) }} required />
                   <label className='text-sm font-dmsans' htmlFor="">Mobile Number</label>
                   <div className='relative flex items-center h-10 mt-2'>
                     <p className='absolute text-gray h-full flex left-2 text-[16px]'>+91</p>
-                    <input type="text" maxLength={10} className='border pb-1 border-[#1a1a1d52] w-full h-10 mt-1 mb-4 text-[15px] text-gray pl-10 rounded' onChange={(e) => { setPhone(e.target.value) }} required />
+                    <input type="text" maxLength={10} className='border pb-1 border-[#1a1a1d52] w-full h-10 mt-1 mb-4 text-[15px] text-gray pl-10 rounded-full' onChange={(e) => { setPhone(e.target.value) }} required />
                   </div>
                   <label className='text-sm font-dmsans' htmlFor="">Email Address</label>
-                  <input type="email" className='border border-[#1a1a1d52] w-full h-10 mt-1 mb-4 text-sm text-gray pl-5 rounded' onChange={(e) => { setEmail(e.target.value) }} required />
+                  <input type="email" className='border border-[#1a1a1d52] w-full h-10 mt-1 mb-4 text-sm text-gray pl-5 rounded-full' onChange={(e) => { setEmail(e.target.value) }} required />
                   <label className='text-sm font-dmsans' htmlFor="">Password</label>
                   <div className='relative h-10 mt-1 mb-4 flex items-center'>
                     <div className='absolute h-full flex items-center text-gray right-3'><FiEyeOff /></div>
-                    <input type="password" placeholder='8+ characters' className='border border-[#1a1a1d52] w-full h-full text-sm text-gray pl-5 rounded' onChange={(e) => { setPassword(e.target.value) }} required />
+                    <input type="password" placeholder='8+ characters' className='border border-[#1a1a1d52] w-full h-full text-sm text-gray pl-5 rounded-full' onChange={(e) => { setPassword(e.target.value) }} required />
                   </div>
                   <label className='text-sm font-dmsans' htmlFor="">Confirm Password</label>
                   <div className='relative h-10 mt-1 mb-4 flex items-center'>
                     <div className='absolute h-full flex items-center text-gray right-3'><FiEyeOff /></div>
-                    <input type="password" className='border border-[#1a1a1d52] w-full h-10 mt-1 mb-3 text-sm text-gray pl-5 rounded' onChange={(e) => { setConfirmPassword(e.target.value) }} required />
+                    <input type="password" className='border border-[#1a1a1d52] w-full h-10 mt-1 mb-3 text-sm text-gray pl-5 rounded-full' onChange={(e) => { setConfirmPassword(e.target.value) }} required />
 
                   </div>
                   <div className='flex w-full h-4 items-center justify-start'>
                     <span><input type="checkbox" className=' active:bg-darkred' required /></span>
                     <span className='text-xs ml-2'>Subscribe to our newsletter</span>
                   </div>
-                  <button className='w-full h-11 bg-darkred font-dmsans uppercase text-[#ffffff] mt-5 rounded flex items-center justify-center' type='submit'>{loading ? <Spinner /> : `Sign Up`}</button>
+                  <button className='w-full h-11 bg-darkred font-dmsans uppercase text-[#ffffff] mt-5 rounded-full flex items-center justify-center' type='submit'>{loading ? <Spinner /> : `Sign Up`}</button>
                   <div className='text-xs flex items-center justify-center mt-4 mb-4'>
                     <span className='h-[1px] w-full bg-gray mr-1'></span>
                     or
                     <span className='h-[1px] w-full bg-gray ml-1'></span>
                   </div>
-                  <button className='mb-4 w-full h-11 border border-[#1a1a1d38] text-sm rounded relative flex items-center justify-center'>
+                  <button className='mb-4 w-full h-11 border border-[#1a1a1d38] text-sm rounded-full relative flex items-center justify-center'>
                     <span className='left-2 h-full absolute flex justify-center items-center'><img className='flex items-center justify-center p-2 h-full w-full' src={Google} alt="" /></span>
                     Login with Google
                   </button>

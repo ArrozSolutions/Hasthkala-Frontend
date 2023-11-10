@@ -146,7 +146,7 @@ const Footer = () => {
                         </h6>
                         <div className='flex justify-center lg:justify-start items-center h-10 text-sm w-full pr-5'>
                             <input type="text" placeholder='Enter Your Email Address' className='text-xs pl-3 h-full border rounded min-w-[200px] sm:min-w-[300px]' />
-                            <button className='font-dmsans bg-darkred rounded text-white h-full min-w-[100px] ml-2'>Subscribe</button>
+                            <button className='font-dmsans bg-darkred rounded-full text-white h-full min-w-[100px] ml-2'>Subscribe</button>
                         </div>
                         
                     </div>

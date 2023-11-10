@@ -109,7 +109,7 @@ const GiftBuyNow = () => {
         console.log(firstname, country, state, city, email, phone, address, zipcode);
         if (firstname && country && state && city && email && phone && address && zipcode) {
             var usertype = auth?.usertype;
-            dispatch(orderItem(firstname + "" + lastname, country, state, city, email, phone, address, zipcode, usertype, uid, status, buynowdata, paymentMode,orderName, parseFloat((totalPrice + shipping) - discount || 0).toFixed(2))).then(() => {
+            dispatch(orderItem(firstname + "" + lastname, country, state, city, email, phone, address, zipcode, usertype, uid, status, buynowdata, paymentMode,orderName, parseFloat((parseInt(totalPrice) + parseInt(shipping)) - discount || 0).toFixed(2))).then(() => {
                 errorToast("Order Created Successfully");
                 setOrderPlaced(true);
                 setTimeout(() => {
@@ -340,10 +340,10 @@ const GiftBuyNow = () => {
                         </div>
                         <div className='flex justify-between text-[16px] font-dmsans'>
                             <p>Total</p>
-                            <p>₹{parseFloat((totalPrice + shipping) - discount).toFixed(2)}</p>
+                            <p>₹{parseFloat((parseInt(totalPrice) + parseInt(shipping)) - discount).toFixed(2)}</p>
                         </div>
                         <div className='mt-4'>
-                            <button className='bg-darkred text-white uppercase w-full h-10 rounded text-[14px] font-dmsans flex items-center justify-center' onClick={() => {
+                            <button className='bg-darkred text-white uppercase w-full h-10 rounded-full text-[14px] font-dmsans flex items-center justify-center' onClick={() => {
                                 if (cod) {
                                     handlePlaceOrder();
                                 } else {

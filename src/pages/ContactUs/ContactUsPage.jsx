@@ -29,6 +29,7 @@ const ContactUsPage = () => {
         setLoading(true);
         if (name && email && phone && message) {
             const post = {
+                uid:auth?.user?._id || 'null',
                 name,
                 email,
                 phone,
@@ -64,7 +65,7 @@ const ContactUsPage = () => {
             <Header2 />
             <div className='w-full h-screen flex justify-start items-start mt-[-60px]'>
                 <div className='hidden pt-20 sm:flex w-1/2 h-full flex-col justify-center items-center scale-50 lg:scale-100 '>
-                    <div className='h-[400px] w-[400px] justify-center items-center ml-60'>
+                    <div className='h-[400px] w-[400px] justify-center items-center ml-40'>
                         <img className='max-h-full max-w-full' src={Logo} alt="" />
                     </div>
                 </div>
@@ -80,14 +81,14 @@ const ContactUsPage = () => {
                                 </div>
                                 <div className='pl-10 pr-10 pt-6'>
                                 <label className='text-xs font-dmsans' htmlFor="">Name</label>
-                                    <input type="text" className='border border-[#1a1a1d52] w-full h-9 mt-1 mb-3 text-xs text-gray pl-5 rounded' onChange={(e) => { setName(e.target.value) }} required />
+                                    <input type="text" className='border border-[#1a1a1d52] w-full h-9 mt-1 mb-3 text-xs text-gray pl-5 rounded-full' onChange={(e) => { setName(e.target.value) }} required />
                                     <label className='text-xs font-dmsans' htmlFor="">Email</label>
-                                    <input type="email" className='border border-[#1a1a1d52] w-full h-9 mt-1 mb-3 text-xs text-gray pl-5 rounded' onChange={(e) => { setEmail(e.target.value) }} required />
+                                    <input type="email" className='border border-[#1a1a1d52] w-full h-9 mt-1 mb-3 text-xs text-gray pl-5 rounded-full' onChange={(e) => { setEmail(e.target.value) }} required />
                                     <label className='text-xs font-dmsans' htmlFor="">Mobile Number</label>
-                                    <input type="text" className='border border-[#1a1a1d52] w-full h-9 mt-1 mb-3 text-xs text-gray pl-5 rounded' onChange={(e) => { setPhone(e.target.value) }} required />
+                                    <input type="text" className='border border-[#1a1a1d52] w-full h-9 mt-1 mb-3 text-xs text-gray pl-5 rounded-full' onChange={(e) => { setPhone(e.target.value) }} required />
                                     <label className='text-xs font-dmsans' htmlFor="">Message</label>
                                     <textarea className='border border-[#1a1a1d52] w-full h-16 mt-1 mb-3 text-xs text-gray pl-5 rounded' onChange={(e) => { setMessage(e.target.value) }} required ></textarea>
-                                    <button className='w-full h-11 bg-darkred font-dmsans uppercase text-[#ffffff] mt-5 rounded flex items-center justify-center' type='submit'>{loading ? <Spinner /> : `Send`}</button>
+                                    <button className='w-full h-11 bg-darkred font-dmsans uppercase text-[#ffffff] mt-5 rounded-full flex items-center justify-center' type='submit'>{loading ? <Spinner /> : `Send`}</button>
                                 </div>
                             </form>
 

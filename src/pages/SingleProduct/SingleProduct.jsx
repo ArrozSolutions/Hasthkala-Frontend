@@ -236,7 +236,7 @@ const SingleProduct = () => {
                                         <p className='pl-4 pr-5 font-dmsans'>Spotify -</p><input onChange={(e) => { setCustomText(e.target.value) }} type="text" className='w-[300px] rounded h-9 text-sm' placeholder='Enter Custom Text' />
                                     </div>
                                     {
-                                        customImage && customText && <div className='w-full pl-5 pr-5 h-10'><button className=' h-full w-full mt-6  bg-darkred text-white font-dmsans rounded'>Checkout</button></div>
+                                        customImage && customText && <div onClick={handleCheckout} className='w-full pl-5 pr-5 h-10'><button className=' h-full w-full mt-6  bg-darkred text-white font-dmsans rounded'>Checkout</button></div>
                                     }
                                 </div>}
 
@@ -292,7 +292,7 @@ const SingleProduct = () => {
                         <div className='mt-5 text-sm font-dmsans sm:text-lg'>Deliver To</div>
                         <div className='flex justify-between sm:mt-4 mt-3'>
                             <input onChange={(e) => { setZipCode(e.target.value) }} type="text" placeholder='Pincode' className='h-8 sm:h-9 w-[250px] sm:w-[400px] pl-3 rounded border border-[#1a1a1d53] mr-1 sm:mr-0 text-sm' />
-                            <button onClick={checkZipCode} className='h-8 sm:h-9 rounded w-24 font-dmsans text-sm flex items-center justify-center bg-[#659ddc72]'>Check</button>
+                            <button onClick={checkZipCode} className='h-8 sm:h-9 rounded-full w-24 font-dmsans text-sm flex items-center justify-center bg-[#659ddc72]'>Check</button>
                         </div>
                         {checkPress && showZipCodeError && <div className='text-darkred text-sm font-dmsans mt-1'>Invalid Code</div>}
                         {checkPress && showZipCodeSuccess && <div className='text-[#38bd41] text-sm font-dmsans mt-1'>Available!</div>}
@@ -310,7 +310,7 @@ const SingleProduct = () => {
                         }
 
                         {!product?.havePersonalization ? <div className='flex mt-3 sm:mt-5 justify-between'>
-                            <button className=' w-[162px] sm:w-[250px] h-8 rounded font-dmsans text-sm border border-[#1a1a1d43]' onClick={async (e) => {
+                            <button className=' w-[162px] sm:w-[250px] h-10 rounded-full font-dmsans text-sm border border-[#1a1a1d43]' onClick={async (e) => {
                                 const uid = auth?._id;
                                 const pid = product?._id;
                                 const res = await dispatch(addItemToCart(pid, uid, quantity, product?.quantity)).then((success) => {
@@ -318,10 +318,10 @@ const SingleProduct = () => {
                                 });
                                 console.log(res, 'dispatch res');
                             }}>Add to Cart</button>
-                            <button className='w-[162px] sm:w-[250px] h-8 rounded font-dmsans text-sm bg-darkred text-white' onClick={buyNow}>Buy Now</button>
+                            <button className='w-[162px] sm:w-[250px] h-10 rounded-full font-dmsans text-sm bg-darkred text-white' onClick={buyNow}>Buy Now</button>
                         </div> :
                             <div className='flex'>
-                                <button onClick={handlePopup} className='text-white bg-darkred font-dmsans w-full h-12 rounded flex justify-center items-center '>Personalize Now</button>
+                                <button onClick={handlePopup} className='text-white bg-darkred font-dmsans w-full h-12 rounded-full flex justify-center items-center '>Personalize Now</button>
                             </div>
                         }
 

@@ -49,7 +49,7 @@ const Header = ({ name }) => {
                 </div>
                 <div className='relative items-center hidden lg:flex'>
                     <span onClick={handleSearch} className=' cursor-pointer absolute right-3'><BiSearch color='gray' size={19} /></span>
-                    <input onChange={(e) => { setValue(e.target.value) }} type="text" placeholder='Search your favorites' className='border border-[#1a1a1d3a] shadow text-gray rounded-md h-9 w-[450px] pl-4 text-sm'
+                    <input onChange={(e) => { setValue(e.target.value) }} type="text" placeholder='Search your favorites' className='border border-[#1a1a1d9f] shadow text-gray rounded-full h-10 w-[450px] pl-4 text-sm'
                         onKeyPress={event => {
                             if (event.key === 'Enter') {
                                 handleSearch();

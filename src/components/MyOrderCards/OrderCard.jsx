@@ -27,7 +27,7 @@ const OrderCard = ({ cartdata, price, paymentmode, customtext, customlink, custo
         }else if(status == "Pending"){
             setstatusforcustomer(statusModes[0]);
         }else{
-            setstatusforcustomer(`Delivered On ${todayDate} ${months[currentMonth]}`)
+            setstatusforcustomer(`Will Deliver On ${todayDate} ${months[currentMonth]}`)
         }
     },[status])
 

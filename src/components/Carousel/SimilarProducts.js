@@ -36,7 +36,7 @@ const SimilarProducts = ({ products }) => {
                                         <div className='h-3 w-3 mr-[2px]'><img className='h-full w-full' src={GoldenStar} alt="" /></div>
                                         <div className='h-3 w-3 mr-[2px]'><img className='h-full w-full' src={GrayStar} alt="" /></div>
                                         <div className='h-3 w-3 mr-[2px]'><img className='h-full w-full' src={GrayStar} alt="" /></div>
-                                    </span><span className='flex justify-center w-[70px]  h-[15px] sm:h-[25px] sm:w-[120px] items-center text-[7px] sm:text-xs bg-[#087e1c] text-[#ffffff] sm:pl-2 sm:pt-1 sm:pb-1 rounded sm:pr-2 '>Same Day Delivery</span></div>
+                                    </span></div>
                                     <p className='mb-2 text-xs sm:text-sm'><span className=' font-semibold mr-3 text-darkred '>₹ {p?.price}.00</span><span className='text-xs line-through'>3200.00</span></p>
                                 </div>
                             </div>

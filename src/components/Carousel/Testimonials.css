@@ -16,7 +16,7 @@
     border: 1px solid #1a1a1d88;
     height: 50px;
     width: 50px;
-    border-radius: 5px;
+    border-radius: 100%;
     box-shadow: 0 0 5px #1a1a1d68;
 }
 .splide3 .splide__arrow--next{
@@ -28,7 +28,7 @@
     border: 1px solid #1a1a1d88;
     height: 50px;
     width: 50px;
-    border-radius: 5px;
+    border-radius: 100%;
     box-shadow: 0 0 5px #1a1a1d68;
 }
 

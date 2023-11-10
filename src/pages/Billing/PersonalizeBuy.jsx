@@ -133,7 +133,7 @@ const PersonalizeBuy = () => {
                 cartdata: JSON.stringify(buynowdata),
                 paymentmode: paymentMode,
                 orderName,
-                totalprice: parseFloat((totalPrice + shipping) - (discount || 0)).toFixed(2),
+                totalprice: parseFloat((parseInt(totalPrice) + parseInt(shipping)) - (discount || 0)).toFixed(2),
                 customText,
                 customLink,
                 images: customImage,
@@ -377,10 +377,10 @@ const PersonalizeBuy = () => {
                         </div>
                         <div className='flex justify-between text-[16px] font-dmsans'>
                             <p>Total</p>
-                            <p>₹{parseFloat((totalPrice + shipping) - (discount || 0)).toFixed(2)}</p>
+                            <p>₹{parseFloat((parseInt(totalPrice) + parseInt(shipping)) - (discount || 0)).toFixed(2)}</p>
                         </div>
                         <div className='mt-4'>
-                            <button className='bg-darkred text-white uppercase w-full h-10 rounded text-[14px] font-dmsans flex items-center justify-center' onClick={() => {
+                            <button className='bg-darkred text-white uppercase w-full h-10 rounded-full text-[14px] font-dmsans flex items-center justify-center' onClick={() => {
                                 if (cod) {
                                     handlePlaceOrder();
                                 } else {

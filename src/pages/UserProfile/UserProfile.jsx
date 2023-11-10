@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { update } from '../../actions/User/UserAction';
 import { useNavigate } from 'react-router-dom';
 import SideBar from '../../components/SideBar/SideBar';
-import { BiSolidBell, BiSearch, BiSolidDownArrow, BiMenu, BiCross, BiX } from 'react-icons/bi';
+import { BiSolidBell, BiSearch, BiSolidDownArrow, BiMenu, BiCross, BiX, BiLeftArrowAlt } from 'react-icons/bi';
 import UserImage from '../../assets/lamp.jpg';
 
 const UserProfile = () => {
@@ -114,35 +114,28 @@ const UserProfile = () => {
 
         {((auth?.user?.usertype == "complete" && auth?.authenticate) || auth?.user?.usertype == "semi_incomplete") && <div className='flex flex-col w-full h-screen justify-start items-center sm:pl-10 pl-3 pr-5'>
 
-          <div className='flex justify-between w-full h-20 sm:h-16 items-center  pt-3 pb-3 '>
-            <div className='flex mt-2 sm:mt-0 justify-between items-center w-full'>
-              <div className='z-50' onClick={toggleHamburger}>
+          {/* PROFILE HEADER  */}
+          <div className='flex justify-between w-full pt-3 pb-3 items-center'>
+            <div className='flex justify-between items-center w-full h-full'>
+              <div className='flex sm:hidden z-50 pl-5' onClick={toggleHamburger}>
                 {
                   hamburger ? <BiX size={23} /> : <BiMenu size={23} />
                 }
               </div>
-              {/* <div className='hidden relative sm:flex items-center'>
-                <span className='absolute ml-3 mt-1'><BiSearch color='gray' size={20} /></span>
-                <input className='bg-[#7a7a8314] h-10 pl-9 w-[300px] rounded-full' type="text" placeholder='Search' />
-              </div> */}
-              <div className='flex justify-center items-center'>
-                <div className='relative cursor-pointer h-10 w-10 rounded-md flex items-center justify-center mr-4 bg-[#1a1a1d12]'>
-                  {notifications && <div className='absolute w-3 h-3 bg-red-600 rounded-full right-0 top-0 flex justify-center items-center text-[9px] text-white'>{notificationsCount}</div>}
-                  <BiSolidBell size={20} color='gray' />
-                  {/* <div className='absolute min-h-20 w-[300px] bg-white shadow-xl border rounded pl-2 pr-2 border-[#1a1a1d34] right-0 top-10'>
-                    a
-                  </div> */}
-                </div>
-                <div className='flex border border-[#1a1a1d32] rounded-md'>
-                  <div className='h-10 w-10'><img className='h-full w-full rounded-bl-md rounded-tl-md p-[2px]' src={auth?.user?.avatar} alt="" /></div>
-                  <div className='flex flex-col text-xs font-semibold ml-3 mt-1'>
+              <div className='hidden sm:block' onClick={() => { navigate('/') }}>
+                <BiLeftArrowAlt size={28} />
+              </div>
+              <div className='flex justify-center items-center flex-row-reverse'>
+                <div className='h-10 w-10 rounded-full flex items-center justify-center mr-4 bg-[#1a1a1d12]'><BiSolidBell size={20} color='gray' /></div>
+                <div className='flex rounded-md'>
+                  <div className='flex flex-col text-xs font-semibold mr-2'>
                     <p>{auth.user?.fullname}</p>
                   </div>
-                  <div className='flex justify-center items-center ml-5 mr-2 mb-1 text-gray '><BiSolidDownArrow size={13} /></div>
                 </div>
               </div>
             </div>
           </div>
+          {/* PROFILE HEADER  */}
 
           <div className='w-full pl-2 text-lg sm:text-2xl font-semibold mt-8 sm:mt-3 mb-9'>Edit Profile</div>
 

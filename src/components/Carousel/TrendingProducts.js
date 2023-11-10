@@ -27,14 +27,14 @@ const TrendingProducts = () => {
             <Splide aria-label="My Favorite Images" className='pl-5 pr-5 sm:pl-20 sm:pr-20 pt-2 pb-2'>
                 {
                     products?.map((p, key) => (
-                        <SplideSlide key={key} className='slides h-[240px] sm:h-[400px] max-w-[150px] sm:max-w-[300px] shadow-xl bg-[#ffffff] rounded-lg border border-[#1a1a1d21] cursor-pointer'
+                        <SplideSlide key={key} className='slides h-[240px] sm:min-h-[405px] max-w-[150px] sm:max-w-[300px] shadow-xl bg-[#ffffff] rounded-lg border border-[#1a1a1d21] cursor-pointer'
                             onClick={() => {
                                 navigate(`/product/${p?.slug}`)
                             }}>
                             <div className='flex flex-col justify-between sm:justify-start w-full h-full'>
                                 <div className='w-full'>
                                     <div className='w-full max-h-[140px] sm:max-h-[300px] overflow-hidden'>
-                                        <img className='h-full w-full rounded-tr-md rounded-tl-md hover:scale-110 transition-all duration-500' src={p?.images[0]?.img} alt="Image1" />
+                                        <img className='max-h-[300px] min-h-[300px] w-full rounded-tr-md rounded-tl-md hover:scale-110 transition-all duration-500' src={p?.images[0]?.img} alt="Image1" />
                                     </div>
                                     <p className='sm:hidden mb-2 mt-2 font-semibold font-alegreya text-sm sm:text-[16.5px] pl-1'>{p?.name}</p>
 

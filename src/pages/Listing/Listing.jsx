@@ -277,7 +277,7 @@ const Listing = () => {
                             </div>
                             <div className='scale-[0.85] sm:scale-100 w-full flex justify-end items-center'>
                                 <span>Sort by:&nbsp;</span>
-                                <select name="" id="" className='border rounded h-8 text-xs' onChange={handleSort}>
+                                <select name="" id="" className='border rounded-full h-8 text-xs' onChange={handleSort}>
                                     <option value="latest" defaultChecked={true}>Latest Arrival</option>
                                     <option value="pricelowtohigh">Price: Low to High</option>
                                     <option value="pricehightolow">Price: High to Low</option>
